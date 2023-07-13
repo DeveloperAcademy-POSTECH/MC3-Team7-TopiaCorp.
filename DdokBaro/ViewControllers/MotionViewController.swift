@@ -1,13 +1,13 @@
 //
-//  ViewController.swift
+//  MotionViewController.swift
 //  DdokBaro
 //
-//  Created by daaan on 2023/07/11.
+//  Created by TopiaCorp. on 2023/07/13.
 //
 
 import UIKit
 
-class ViewController: UIViewController {
+class MotionViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()

@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D35DFA262A5F7E7B0043B644 /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D35DFA252A5F7E7B0043B644 /* TestViewController.swift */; };
+		D35DFA282A5F7F100043B644 /* TimerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D35DFA272A5F7F100043B644 /* TimerViewController.swift */; };
+		D35DFA2A2A5F7F2C0043B644 /* MotionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D35DFA292A5F7F2C0043B644 /* MotionViewController.swift */; };
 		D38DFAD72A5CE0AB0041C6E4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D38DFAD62A5CE0AB0041C6E4 /* AppDelegate.swift */; };
 		D38DFAD92A5CE0AB0041C6E4 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D38DFAD82A5CE0AB0041C6E4 /* SceneDelegate.swift */; };
 		D38DFADB2A5CE0AB0041C6E4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D38DFADA2A5CE0AB0041C6E4 /* ViewController.swift */; };
@@ -37,6 +40,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		D35DFA252A5F7E7B0043B644 /* TestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestViewController.swift; sourceTree = "<group>"; };
+		D35DFA272A5F7F100043B644 /* TimerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerViewController.swift; sourceTree = "<group>"; };
+		D35DFA292A5F7F2C0043B644 /* MotionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MotionViewController.swift; sourceTree = "<group>"; };
 		D38DFAD32A5CE0AB0041C6E4 /* DdokBaro.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DdokBaro.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D38DFAD62A5CE0AB0041C6E4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D38DFAD82A5CE0AB0041C6E4 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -78,6 +84,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		D35DFA242A5F7E410043B644 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				D38DFADA2A5CE0AB0041C6E4 /* ViewController.swift */,
+				D35DFA252A5F7E7B0043B644 /* TestViewController.swift */,
+				D35DFA272A5F7F100043B644 /* TimerViewController.swift */,
+				D35DFA292A5F7F2C0043B644 /* MotionViewController.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
 		D38DFACA2A5CE0AB0041C6E4 = {
 			isa = PBXGroup;
 			children = (
@@ -101,9 +118,9 @@
 		D38DFAD52A5CE0AB0041C6E4 /* DdokBaro */ = {
 			isa = PBXGroup;
 			children = (
+				D35DFA242A5F7E410043B644 /* ViewControllers */,
 				D38DFAD62A5CE0AB0041C6E4 /* AppDelegate.swift */,
 				D38DFAD82A5CE0AB0041C6E4 /* SceneDelegate.swift */,
-				D38DFADA2A5CE0AB0041C6E4 /* ViewController.swift */,
 				D38DFADC2A5CE0AB0041C6E4 /* Main.storyboard */,
 				D38DFAE22A5CE0AC0041C6E4 /* Assets.xcassets */,
 				D38DFAE42A5CE0AC0041C6E4 /* LaunchScreen.storyboard */,
@@ -261,9 +278,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D35DFA262A5F7E7B0043B644 /* TestViewController.swift in Sources */,
+				D35DFA2A2A5F7F2C0043B644 /* MotionViewController.swift in Sources */,
 				D38DFADB2A5CE0AB0041C6E4 /* ViewController.swift in Sources */,
 				D38DFAD72A5CE0AB0041C6E4 /* AppDelegate.swift in Sources */,
 				D38DFAD92A5CE0AB0041C6E4 /* SceneDelegate.swift in Sources */,
+				D35DFA282A5F7F100043B644 /* TimerViewController.swift in Sources */,
 				D38DFAE12A5CE0AB0041C6E4 /* DdokBaro.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
