@@ -52,7 +52,7 @@ class TimerViewController: UIViewController {
      let currentTime = Date()
      let elapsedTime = accumulatedTime + currentTime.timeIntervalSince(startTime)
      let hour = Int(elapsedTime / 3600)
-    let minute = Int((elapsedTime).truncatingRemainder(dividingBy: 60))
+     let minute = Int((elapsedTime).truncatingRemainder(dividingBy: 60))
      
      self.hourLabel.text = String(format:"%02d", hour)
      self.minuteLabel.text = String(format:"%02d", minute)
