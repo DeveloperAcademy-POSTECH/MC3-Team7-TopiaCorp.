@@ -23,10 +23,10 @@ class NotificationManager: NSObject, UNUserNotificationCenterDelegate {
         
     }
     
-//    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
-//            print("foreground 알람 작동 확인")
-//            completionHandler([.alert, .badge, .sound])
-//    }
+    //    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+    //            print("foreground 알람 작동 확인")
+    //            completionHandler([.alert, .badge, .sound])
+    //    }
     
     func scheduleNotification() {
         
@@ -36,7 +36,7 @@ class NotificationManager: NSObject, UNUserNotificationCenterDelegate {
         content.body = "거북목입니다" // 알림 내용 설정
         content.sound = UNNotificationSound.default
         content.badge = 1
-     
+        
         // trigger - time 발동 조건 관리 timeInterval은 초단위
         let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 0.1, repeats: false)
         
