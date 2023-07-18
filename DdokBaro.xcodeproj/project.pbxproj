@@ -10,6 +10,9 @@
 		B94D74822A60E549000A2E3B /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B94D74812A60E549000A2E3B /* WelcomeViewController.swift */; };
 		B94D74842A610D93000A2E3B /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B94D74832A610D93000A2E3B /* MainViewController.swift */; };
 		B94D74862A63B114000A2E3B /* CircleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B94D74852A63B114000A2E3B /* CircleViewController.swift */; };
+		0EDFC3AD2A63814C005B1C68 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 0EDFC3AC2A63814C005B1C68 /* Lottie */; };
+		0EDFC3AF2A6382A6005B1C68 /* sample.json in Resources */ = {isa = PBXBuildFile; fileRef = 0EDFC3AE2A6382A6005B1C68 /* sample.json */; };
+		0EDFC3B12A64076D005B1C68 /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EDFC3B02A64076D005B1C68 /* Notification.swift */; };
 		D329808D2A60DB9B004C2632 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D329808C2A60DB9B004C2632 /* Main.storyboard */; };
 		D35DFA262A5F7E7B0043B644 /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D35DFA252A5F7E7B0043B644 /* TestViewController.swift */; };
 		D35DFA282A5F7F100043B644 /* TimerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D35DFA272A5F7F100043B644 /* TimerViewController.swift */; };
@@ -49,6 +52,8 @@
 		B94D74812A60E549000A2E3B /* WelcomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
 		B94D74832A610D93000A2E3B /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		B94D74852A63B114000A2E3B /* CircleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleViewController.swift; sourceTree = "<group>"; };
+		0EDFC3AE2A6382A6005B1C68 /* sample.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = sample.json; path = ../../../../Downloads/sample.json; sourceTree = "<group>"; };
+		0EDFC3B02A64076D005B1C68 /* Notification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notification.swift; sourceTree = "<group>"; };
 		D329808C2A60DB9B004C2632 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		D35DFA252A5F7E7B0043B644 /* TestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestViewController.swift; sourceTree = "<group>"; };
 		D35DFA272A5F7F100043B644 /* TimerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerViewController.swift; sourceTree = "<group>"; };
@@ -76,6 +81,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0EDFC3AD2A63814C005B1C68 /* Lottie in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -148,6 +154,7 @@
 				D35DFA2D2A60D5CE0043B644 /* Storyboards */,
 				D38DFAD62A5CE0AB0041C6E4 /* AppDelegate.swift */,
 				D38DFAD82A5CE0AB0041C6E4 /* SceneDelegate.swift */,
+				0EDFC3AE2A6382A6005B1C68 /* sample.json */,
 				D38DFAE22A5CE0AC0041C6E4 /* Assets.xcassets */,
 				D38DFAE42A5CE0AC0041C6E4 /* LaunchScreen.storyboard */,
 				D38DFAE72A5CE0AC0041C6E4 /* Info.plist */,
@@ -189,6 +196,9 @@
 			dependencies = (
 			);
 			name = DdokBaro;
+			packageProductDependencies = (
+				0EDFC3AC2A63814C005B1C68 /* Lottie */,
+			);
 			productName = DdokBaro;
 			productReference = D38DFAD32A5CE0AB0041C6E4 /* DdokBaro.app */;
 			productType = "com.apple.product-type.application";
@@ -261,6 +271,9 @@
 				Base,
 			);
 			mainGroup = D38DFACA2A5CE0AB0041C6E4;
+			packageReferences = (
+				0EDFC3AB2A63814C005B1C68 /* XCRemoteSwiftPackageReference "lottie-ios" */,
+			);
 			productRefGroup = D38DFAD42A5CE0AB0041C6E4 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -280,6 +293,7 @@
 				D35DFA2F2A60D6240043B644 /* Timer.storyboard in Resources */,
 				D35DFA312A60D6A10043B644 /* Trial.storyboard in Resources */,
 				D35DFA332A60D7010043B644 /* Motion.storyboard in Resources */,
+				0EDFC3AF2A6382A6005B1C68 /* sample.json in Resources */,
 				D329808D2A60DB9B004C2632 /* Main.storyboard in Resources */,
 				D38DFAE62A5CE0AC0041C6E4 /* LaunchScreen.storyboard in Resources */,
 				D38DFAE32A5CE0AC0041C6E4 /* Assets.xcassets in Resources */,
@@ -314,6 +328,7 @@
 				D38DFADB2A5CE0AB0041C6E4 /* ViewController.swift in Sources */,
 				D38DFAD72A5CE0AB0041C6E4 /* AppDelegate.swift in Sources */,
 				B94D74862A63B114000A2E3B /* CircleViewController.swift in Sources */,
+				0EDFC3B12A64076D005B1C68 /* Notification.swift in Sources */,
 				D38DFAD92A5CE0AB0041C6E4 /* SceneDelegate.swift in Sources */,
 				D35DFA282A5F7F100043B644 /* TimerViewController.swift in Sources */,
 				D38DFAE12A5CE0AB0041C6E4 /* DdokBaro.xcdatamodeld in Sources */,
@@ -485,8 +500,10 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = V7Z62V83Y6;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = DdokBaro/Info.plist;
+				INFOPLIST_KEY_NSMotionUsageDescription = "Used to acquire motion for AirPods.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -513,8 +530,10 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = V7Z62V83Y6;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = DdokBaro/Info.plist;
+				INFOPLIST_KEY_NSMotionUsageDescription = "Used to acquire motion for AirPods.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -646,6 +665,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		0EDFC3AB2A63814C005B1C68 /* XCRemoteSwiftPackageReference "lottie-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/airbnb/lottie-ios";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		0EDFC3AC2A63814C005B1C68 /* Lottie */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 0EDFC3AB2A63814C005B1C68 /* XCRemoteSwiftPackageReference "lottie-ios" */;
+			productName = Lottie;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		D38DFADF2A5CE0AB0041C6E4 /* DdokBaro.xcdatamodeld */ = {
