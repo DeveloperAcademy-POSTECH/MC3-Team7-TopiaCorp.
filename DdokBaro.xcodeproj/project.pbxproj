@@ -7,9 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		B94D74822A60E549000A2E3B /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B94D74812A60E549000A2E3B /* WelcomeViewController.swift */; };
-		B94D74842A610D93000A2E3B /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B94D74832A610D93000A2E3B /* MainViewController.swift */; };
-		B94D74862A63B114000A2E3B /* CircleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B94D74852A63B114000A2E3B /* CircleViewController.swift */; };
 		0EDFC3AD2A63814C005B1C68 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 0EDFC3AC2A63814C005B1C68 /* Lottie */; };
 		0EDFC3AF2A6382A6005B1C68 /* sample.json in Resources */ = {isa = PBXBuildFile; fileRef = 0EDFC3AE2A6382A6005B1C68 /* sample.json */; };
 		0EDFC3B12A64076D005B1C68 /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EDFC3B02A64076D005B1C68 /* Notification.swift */; };
@@ -49,9 +46,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		B94D74812A60E549000A2E3B /* WelcomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
-		B94D74832A610D93000A2E3B /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
-		B94D74852A63B114000A2E3B /* CircleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleViewController.swift; sourceTree = "<group>"; };
 		0EDFC3AE2A6382A6005B1C68 /* sample.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = sample.json; path = ../../../../Downloads/sample.json; sourceTree = "<group>"; };
 		0EDFC3B02A64076D005B1C68 /* Notification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notification.swift; sourceTree = "<group>"; };
 		D329808C2A60DB9B004C2632 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
@@ -109,9 +103,7 @@
 				D35DFA252A5F7E7B0043B644 /* TestViewController.swift */,
 				D35DFA272A5F7F100043B644 /* TimerViewController.swift */,
 				D35DFA292A5F7F2C0043B644 /* MotionViewController.swift */,
-				B94D74812A60E549000A2E3B /* WelcomeViewController.swift */,
-				B94D74832A610D93000A2E3B /* MainViewController.swift */,
-				B94D74852A63B114000A2E3B /* CircleViewController.swift */,
+				0EDFC3B02A64076D005B1C68 /* Notification.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -322,12 +314,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				D35DFA262A5F7E7B0043B644 /* TestViewController.swift in Sources */,
-				B94D74842A610D93000A2E3B /* MainViewController.swift in Sources */,
-				B94D74822A60E549000A2E3B /* WelcomeViewController.swift in Sources */,
 				D35DFA2A2A5F7F2C0043B644 /* MotionViewController.swift in Sources */,
 				D38DFADB2A5CE0AB0041C6E4 /* ViewController.swift in Sources */,
 				D38DFAD72A5CE0AB0041C6E4 /* AppDelegate.swift in Sources */,
-				B94D74862A63B114000A2E3B /* CircleViewController.swift in Sources */,
 				0EDFC3B12A64076D005B1C68 /* Notification.swift in Sources */,
 				D38DFAD92A5CE0AB0041C6E4 /* SceneDelegate.swift in Sources */,
 				D35DFA282A5F7F100043B644 /* TimerViewController.swift in Sources */,
