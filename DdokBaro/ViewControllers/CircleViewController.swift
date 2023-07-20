@@ -7,28 +7,36 @@
 
 import UIKit
 
-class CircleViewController : UIView{
+class CircleViewController: UIView {
 
     override func draw(_ rect: CGRect) {
-            let ellipseRect = CGRect(x:0, y:0, width: 530, height: 177)
-            
-            let path = UIBezierPath(ovalIn: bounds)
-            
-            let shadowLayer = CALayer()
-            shadowLayer.frame = CGRect(x: bounds.origin.x, y: bounds.origin.y, width: bounds.width, height: bounds.height / 2)
-            shadowLayer.shadowColor = UIColor.systemGray.cgColor
-            shadowLayer.shadowOpacity = 0.5
-            shadowLayer.shadowOffset = CGSize(width: 4, height: 4)
-            shadowLayer.shadowRadius = 13
-            shadowLayer.masksToBounds = false
-            
-            layer.addSublayer(shadowLayer)
+        let y: CGFloat = 65
+        let curveTo: CGFloat = 0
+        let myBezier = UIBezierPath()
+        myBezier.move(to: CGPoint(x: 0, y: y))
+        myBezier.addQuadCurve(to: CGPoint(x: bounds.width, y: y), controlPoint: CGPoint(x: bounds.width / 2, y: curveTo))
+        myBezier.addLine(to: CGPoint(x: bounds.width, y: bounds.height))
+        myBezier.addLine(to: CGPoint(x: 0, y: bounds.height))
+        myBezier.close()
         
-        let maskLayer = CAShapeLayer()
-                maskLayer.path = path.cgPath
-                layer.mask = maskLayer
-                
-                UIColor.yellow.setFill()
-                path.fill()
+        // 배경 색상 설정
+        backgroundColor?.setFill()
+        myBezier.fill()
+        
+        // 도형의 경로에 그림자 적용
+        let context = UIGraphicsGetCurrentContext()
+        context?.saveGState()
+        context?.addPath(myBezier.cgPath)
+        context?.setShadow(offset: CGSize(width: 0, height: -4), blur: 4.0, color: UIColor(red: 0.243, green: 0.416, blue: 0.906, alpha: 0.1).cgColor)
+        context?.fillPath()
+        context?.restoreGState()
     }
 }
+
+
+    
+    
+    
+    
+
+
