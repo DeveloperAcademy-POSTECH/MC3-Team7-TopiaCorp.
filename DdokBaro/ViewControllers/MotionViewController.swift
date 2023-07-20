@@ -26,9 +26,9 @@ class MotionViewController: UIViewController, CMHeadphoneMotionManagerDelegate {
     private var timer = Timer()
     
     enum angle: Int {
-        case notgood = 20
-        case bad = 30
-        case danger = 40
+        case notgood = -20
+        case bad = -30
+        case danger = -40
     }
     
     override func viewDidLoad() {
@@ -110,9 +110,30 @@ class MotionViewController: UIViewController, CMHeadphoneMotionManagerDelegate {
                         animationView3.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 280).isActive = true
                         //animationView3.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 0).isActive = true
                         animationView3.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -190).isActive = true
-
                         animationView3.play()
-                        print("피치 35 이상")
+                        if intPitch < angle.bad.rawValue {
+                            self.view.addSubview(animationView4)
+                            animationView4.translatesAutoresizingMaskIntoConstraints = false
+                            animationView4.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 280).isActive = true
+                            //animationView3.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 0).isActive = true
+                            animationView4.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -190).isActive = true
+                            animationView3.stop()
+                            animationView4.play()
+                            
+                            if intPitch < angle.danger.rawValue {
+                                self.view.addSubview(animationView5)
+                                animationView5.translatesAutoresizingMaskIntoConstraints = false
+                                animationView5.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 280).isActive = true
+                                //animationView3.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 0).isActive = true
+                                animationView5.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -190).isActive = true
+                                animationView4.stop()
+                                animationView5.play()
+                            }
+                            
+                        }
+
+                        
+                        //print("피치 35 이상")
                         
                         //타이머가 없을 경우 타이머 작동, 타이머가 있을경우에는 다시 타이머가 작동되지 않도록
                         if timer.isValid {
@@ -175,10 +196,10 @@ class MotionViewController: UIViewController, CMHeadphoneMotionManagerDelegate {
     func quaternion(_ x: Double, _ y: Double, _ z: Double, _ w: Double) -> String {
         // Absolute value just makes it look nicer
         var str = ""
-        str += String(format: "X: %.1f\n", abs(x))
-        str += String(format: "Y: %.1f\n", abs(y))
-        str += String(format: "Z: %.1f\n", abs(z))
-        str += String(format: "W: %.1f\n", abs(w))
+        str += String(format: "X: %.2f\n", x)
+        str += String(format: "Y: %.2f\n", y)
+        str += String(format: "Z: %.2f\n", z)
+        str += String(format: "W: %.2f\n", w)
         return str
     }
     
