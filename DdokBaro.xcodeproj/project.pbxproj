@@ -7,8 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0E8342222A66191D00922168 /* TurtleBody.json in Resources */ = {isa = PBXBuildFile; fileRef = 0E8342212A66191D00922168 /* TurtleBody.json */; };
+		0E8342242A66212C00922168 /* TurtleHead.json in Resources */ = {isa = PBXBuildFile; fileRef = 0E8342232A66212C00922168 /* TurtleHead.json */; };
+		0E8342282A67EB1F00922168 /* WaterDrops1.json in Resources */ = {isa = PBXBuildFile; fileRef = 0E8342252A67EB1F00922168 /* WaterDrops1.json */; };
+		0E8342292A67EB1F00922168 /* WaterDrops2.json in Resources */ = {isa = PBXBuildFile; fileRef = 0E8342262A67EB1F00922168 /* WaterDrops2.json */; };
+		0E83422A2A67EB1F00922168 /* WaterDrops3.json in Resources */ = {isa = PBXBuildFile; fileRef = 0E8342272A67EB1F00922168 /* WaterDrops3.json */; };
 		0EDFC3AD2A63814C005B1C68 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 0EDFC3AC2A63814C005B1C68 /* Lottie */; };
-		0EDFC3AF2A6382A6005B1C68 /* sample.json in Resources */ = {isa = PBXBuildFile; fileRef = 0EDFC3AE2A6382A6005B1C68 /* sample.json */; };
 		0EDFC3B12A64076D005B1C68 /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EDFC3B02A64076D005B1C68 /* Notification.swift */; };
 		D329808D2A60DB9B004C2632 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D329808C2A60DB9B004C2632 /* Main.storyboard */; };
 		D35DFA262A5F7E7B0043B644 /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D35DFA252A5F7E7B0043B644 /* TestViewController.swift */; };
@@ -46,7 +50,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		0EDFC3AE2A6382A6005B1C68 /* sample.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = sample.json; path = ../../../../Downloads/sample.json; sourceTree = "<group>"; };
+		0E8342212A66191D00922168 /* TurtleBody.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = TurtleBody.json; sourceTree = "<group>"; };
+		0E8342232A66212C00922168 /* TurtleHead.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = TurtleHead.json; sourceTree = "<group>"; };
+		0E8342252A67EB1F00922168 /* WaterDrops1.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = WaterDrops1.json; sourceTree = "<group>"; };
+		0E8342262A67EB1F00922168 /* WaterDrops2.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = WaterDrops2.json; sourceTree = "<group>"; };
+		0E8342272A67EB1F00922168 /* WaterDrops3.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = WaterDrops3.json; sourceTree = "<group>"; };
 		0EDFC3B02A64076D005B1C68 /* Notification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notification.swift; sourceTree = "<group>"; };
 		D329808C2A60DB9B004C2632 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		D35DFA252A5F7E7B0043B644 /* TestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestViewController.swift; sourceTree = "<group>"; };
@@ -146,7 +154,11 @@
 				D35DFA2D2A60D5CE0043B644 /* Storyboards */,
 				D38DFAD62A5CE0AB0041C6E4 /* AppDelegate.swift */,
 				D38DFAD82A5CE0AB0041C6E4 /* SceneDelegate.swift */,
-				0EDFC3AE2A6382A6005B1C68 /* sample.json */,
+				0E8342212A66191D00922168 /* TurtleBody.json */,
+				0E8342232A66212C00922168 /* TurtleHead.json */,
+				0E8342252A67EB1F00922168 /* WaterDrops1.json */,
+				0E8342262A67EB1F00922168 /* WaterDrops2.json */,
+				0E8342272A67EB1F00922168 /* WaterDrops3.json */,
 				D38DFAE22A5CE0AC0041C6E4 /* Assets.xcassets */,
 				D38DFAE42A5CE0AC0041C6E4 /* LaunchScreen.storyboard */,
 				D38DFAE72A5CE0AC0041C6E4 /* Info.plist */,
@@ -283,11 +295,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				D35DFA2F2A60D6240043B644 /* Timer.storyboard in Resources */,
+				0E8342242A66212C00922168 /* TurtleHead.json in Resources */,
 				D35DFA312A60D6A10043B644 /* Trial.storyboard in Resources */,
+				0E8342292A67EB1F00922168 /* WaterDrops2.json in Resources */,
+				0E8342282A67EB1F00922168 /* WaterDrops1.json in Resources */,
 				D35DFA332A60D7010043B644 /* Motion.storyboard in Resources */,
-				0EDFC3AF2A6382A6005B1C68 /* sample.json in Resources */,
 				D329808D2A60DB9B004C2632 /* Main.storyboard in Resources */,
+				0E8342222A66191D00922168 /* TurtleBody.json in Resources */,
 				D38DFAE62A5CE0AC0041C6E4 /* LaunchScreen.storyboard in Resources */,
+				0E83422A2A67EB1F00922168 /* WaterDrops3.json in Resources */,
 				D38DFAE32A5CE0AC0041C6E4 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
