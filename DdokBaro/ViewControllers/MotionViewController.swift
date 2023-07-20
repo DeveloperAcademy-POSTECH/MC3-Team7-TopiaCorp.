@@ -103,7 +103,7 @@ class MotionViewController: UIViewController, CMHeadphoneMotionManagerDelegate {
                     }
                     
                     
-                    //만약 목 각도가 정해진 기준 이상이면
+                    //만약 목 각도가 정해진 기준 이상이면(notgood - 1단계, bad - 2단계, danger - 3단계)
                     if intPitch < angle.notgood.rawValue {
                         self.view.addSubview(animationView3)
                         animationView3.translatesAutoresizingMaskIntoConstraints = false
@@ -111,6 +111,7 @@ class MotionViewController: UIViewController, CMHeadphoneMotionManagerDelegate {
                         //animationView3.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 0).isActive = true
                         animationView3.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -190).isActive = true
                         animationView3.play()
+                        
                         if intPitch < angle.bad.rawValue {
                             self.view.addSubview(animationView4)
                             animationView4.translatesAutoresizingMaskIntoConstraints = false
