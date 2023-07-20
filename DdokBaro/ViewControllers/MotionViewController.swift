@@ -78,7 +78,7 @@ class MotionViewController: UIViewController, CMHeadphoneMotionManagerDelegate {
                     DispatchQueue.main.async { [self] in
                         var str = "Attitude:\n"
                         str += degreeText("Pitch 고개 위 아래", pitch)
-                        str += degreeText("Roll 고개 꺽는거(근데 앞으로 빼도 수치가 좀 바뀜!)", roll)
+                        str += degreeText("Roll 고개 꺽는거(근데 앞으로 빼도 수치가 좀 바뀜!!)", roll)
                         str += degreeText("Yaw 고개 옆으로 돌리는거 ", yaw)
                         
                         str += "\nQuaternion:\n"
