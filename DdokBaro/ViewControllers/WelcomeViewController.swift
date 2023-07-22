@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Lottie
 
 
 class WelcomeViewController: UIViewController {
@@ -29,14 +30,23 @@ class WelcomeViewController: UIViewController {
         startingButton.titleLabel?.font = UIFont.systemFont(ofSize: 17, weight: .bold)
         descriptionLabel.font = UIFont.systemFont(ofSize: 17)
         
-        self.changeTextColor()   
+        self.changeTextColor()
+        
+        let welcomeTurtle = LottieAnimation.named("welcomeTurtle")
+        let welcomeTurtleView = LottieAnimationView(animation: welcomeTurtle)
+        //self.view.addSubview(welcomeTurtleView)
+        //welcomeTurtleView.frame = self.view.bounds
+        welcomeTurtleView.center = self.view.center
+        welcomeTurtleView.contentMode = .scaleAspectFit
+        //welcomeTurtleView.play()
+        welcomeTurtleView.loopMode = .loop
+        //welcomeTurtleView.backgroundColor = UIColor.black
     }
     func changeTextColor() {
         guard let text = self.titleLabel.text else {return}
         let attributeString = NSMutableAttributedString(string: text)
-        attributeString.addAttribute(.foregroundColor, value: UIColor.systemBlue, range: (text as NSString).range(of: "시작해볼까요?"))
+        attributeString.addAttribute(.foregroundColor, value: UIColor.pointBlue, range: (text as NSString).range(of: "시작해볼까요?"))
         self.titleLabel.attributedText = attributeString
-        
     }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "startStopwatchSegue" {
@@ -47,7 +57,7 @@ class WelcomeViewController: UIViewController {
         }
     }
     
-    @IBAction func timerStarButton(_ sender: UIButton) {
+    @IBAction func timerStartButton(_ sender: UIButton) {
         startTime = Date()
         timer = Timer.scheduledTimer(timeInterval: 0.01, target: self,selector: #selector(updateTimer),userInfo: nil, repeats: true)
         RunLoop.current.add(timer,forMode: .common)
@@ -57,11 +67,7 @@ class WelcomeViewController: UIViewController {
         let currentTime = Date()
         let elapsedTime = accumulatedTime + currentTime.timeIntervalSince(startTime)
         
-        let hour = Int(elapsedTime / 60)
-        let minute = Int((elapsedTime).truncatingRemainder(dividingBy: 60))
-    
+        _ = Int(elapsedTime / 60)
+        _ = Int((elapsedTime).truncatingRemainder(dividingBy: 60))
     }
-    
-    
-    
 }
