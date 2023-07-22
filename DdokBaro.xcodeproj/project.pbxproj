@@ -33,6 +33,7 @@
 		D39820BF2A67798B004FE798 /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D39820BE2A67798B004FE798 /* WelcomeViewController.swift */; };
 		D39820C12A677A0C004FE798 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D39820C02A677A0C004FE798 /* MainViewController.swift */; };
 		D39820C32A677A41004FE798 /* CircleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D39820C22A677A41004FE798 /* CircleViewController.swift */; };
+		D39AE0A32A6BE03A003D072D /* WaterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D39AE0A22A6BE03A003D072D /* WaterViewController.swift */; };
 		D3ED8F982A6B41DD005E02DB /* WaterWaveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3ED8F972A6B41DD005E02DB /* WaterWaveView.swift */; };
 		D3ED8F9B2A6B4530005E02DB /* UIColorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3ED8F9A2A6B4530005E02DB /* UIColorManager.swift */; };
 /* End PBXBuildFile section */
@@ -84,6 +85,7 @@
 		D39820BE2A67798B004FE798 /* WelcomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
 		D39820C02A677A0C004FE798 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		D39820C22A677A41004FE798 /* CircleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleViewController.swift; sourceTree = "<group>"; };
+		D39AE0A22A6BE03A003D072D /* WaterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaterViewController.swift; sourceTree = "<group>"; };
 		D3ED8F972A6B41DD005E02DB /* WaterWaveView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaterWaveView.swift; sourceTree = "<group>"; };
 		D3ED8F9A2A6B4530005E02DB /* UIColorManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -126,6 +128,7 @@
 				D39820C02A677A0C004FE798 /* MainViewController.swift */,
 				D39820C22A677A41004FE798 /* CircleViewController.swift */,
 				D3ED8F972A6B41DD005E02DB /* WaterWaveView.swift */,
+				D39AE0A22A6BE03A003D072D /* WaterViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -364,6 +367,7 @@
 				D38DFAD92A5CE0AB0041C6E4 /* SceneDelegate.swift in Sources */,
 				D35DFA282A5F7F100043B644 /* TimerViewController.swift in Sources */,
 				D38DFAE12A5CE0AB0041C6E4 /* DdokBaro.xcdatamodeld in Sources */,
+				D39AE0A32A6BE03A003D072D /* WaterViewController.swift in Sources */,
 				D39820C12A677A0C004FE798 /* MainViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
