@@ -12,6 +12,7 @@ let screenWidth = UIScreen.main.bounds.size.width
 class WaterWaveView: UIView {
     private let firstWave = CAShapeLayer()
     private let secondWave = CAShapeLayer()
+    private let percentLabel = UILabel()
     
     private var firstColor: UIColor = .clear
     private var secondColor: UIColor = .clear
@@ -39,6 +40,20 @@ class WaterWaveView: UIView {
 
 extension WaterWaveView {
     private func setupViews() {
+        let dropLetView = DropletView(frame: CGRect(x: 0.0, y: 0.0, width: min(width, width), height: min(width, width)))
+        clipsToBounds = true
+        translatesAutoresizingMaskIntoConstraints = false
+        dropLetView.layer.masksToBounds = true
+
+        addSubview(dropLetView)
+        dropLetView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            dropLetView.widthAnchor.constraint(equalToConstant: min(width, width)),
+            dropLetView.heightAnchor.constraint(equalToConstant: min(width, width)),
+            dropLetView.centerXAnchor.constraint(equalTo: centerXAnchor),
+            dropLetView.centerYAnchor.constraint(equalTo: centerYAnchor)
+        ])
+        
         bounds = CGRect(x: 0.0, y: 0.0, width: min(width, width), height: min(width, width))
         clipsToBounds = true
         backgroundColor = .clear
@@ -48,13 +63,14 @@ extension WaterWaveView {
         layer.borderColor = UIColor.black.cgColor
         
         waveHeight = 8.0
-        firstColor = .cyan
-        secondColor = .cyan.withAlphaComponent(0.4)
+        firstColor = UIColor(hexCode: "367AF6")
+        secondColor = UIColor(hexCode: "367AF6").withAlphaComponent(0.4)
         createFirstWave()
         
         if !showSingleWave {
             createSecondWave()
         }
+        createPercentLabel()
     }
     
     private func createFirstWave() {
@@ -71,10 +87,34 @@ extension WaterWaveView {
         layer.addSublayer(secondWave)
     }
     
+    private func createPercentLabel() {
+        percentLabel.font = UIFont.boldSystemFont(ofSize: 35.0)
+        percentLabel.text = ""
+        percentLabel.textColor = .darkGray
+        addSubview(percentLabel)
+        percentLabel.translatesAutoresizingMaskIntoConstraints = false
+        //waterWaveView 가로 세로 중앙에 배치
+        percentLabel.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
+        percentLabel.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
+    }
+    
+    func percentAnim() {
+        let anim = CABasicAnimation(keyPath: "opacity")//애니메이션 속성은 투명도 조절이다.
+        anim.duration = 1.5 //지속시간
+        anim.fromValue = 0.0 //투명도 0.0으로 시작
+        anim.toValue = 1.0 //투명도 목표 값
+        anim.repeatCount = .infinity
+        anim.isRemovedOnCompletion = false //애니메이션이 완료되었을 때 레이어에서 제거?
+        
+        percentLabel.layer.add(anim, forKey: nil)
+    }
+    
     func setupProgress(_ pr: CGFloat) {
         progress = pr
+        percentLabel.text = "\(Int(100 * progress))L"
         
         let top: CGFloat = pr * bounds.size.height
+        print(top)
         firstWave.setValue(width - top, forKeyPath: "position.y")
         secondWave.setValue(width - top, forKeyPath: "position.y")
         

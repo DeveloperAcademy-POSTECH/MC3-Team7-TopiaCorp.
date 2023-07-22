@@ -34,6 +34,7 @@
 		D39820C12A677A0C004FE798 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D39820C02A677A0C004FE798 /* MainViewController.swift */; };
 		D39820C32A677A41004FE798 /* CircleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D39820C22A677A41004FE798 /* CircleViewController.swift */; };
 		D39AE0A32A6BE03A003D072D /* WaterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D39AE0A22A6BE03A003D072D /* WaterViewController.swift */; };
+		D39AE0A62A6BFAFC003D072D /* DropletView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D39AE0A52A6BFAFC003D072D /* DropletView.swift */; };
 		D3ED8F982A6B41DD005E02DB /* WaterWaveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3ED8F972A6B41DD005E02DB /* WaterWaveView.swift */; };
 		D3ED8F9B2A6B4530005E02DB /* UIColorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3ED8F9A2A6B4530005E02DB /* UIColorManager.swift */; };
 /* End PBXBuildFile section */
@@ -86,6 +87,7 @@
 		D39820C02A677A0C004FE798 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		D39820C22A677A41004FE798 /* CircleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleViewController.swift; sourceTree = "<group>"; };
 		D39AE0A22A6BE03A003D072D /* WaterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaterViewController.swift; sourceTree = "<group>"; };
+		D39AE0A52A6BFAFC003D072D /* DropletView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropletView.swift; sourceTree = "<group>"; };
 		D3ED8F972A6B41DD005E02DB /* WaterWaveView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaterWaveView.swift; sourceTree = "<group>"; };
 		D3ED8F9A2A6B4530005E02DB /* UIColorManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -127,7 +129,6 @@
 				D39820BE2A67798B004FE798 /* WelcomeViewController.swift */,
 				D39820C02A677A0C004FE798 /* MainViewController.swift */,
 				D39820C22A677A41004FE798 /* CircleViewController.swift */,
-				D3ED8F972A6B41DD005E02DB /* WaterWaveView.swift */,
 				D39AE0A22A6BE03A003D072D /* WaterViewController.swift */,
 			);
 			path = ViewControllers;
@@ -169,6 +170,7 @@
 			children = (
 				D35DFA2D2A60D5CE0043B644 /* Storyboards */,
 				D35DFA242A5F7E410043B644 /* ViewControllers */,
+				D39AE0A42A6BFA16003D072D /* Views */,
 				D3ED8F992A6B4454005E02DB /* Managers */,
 				D38DFAD62A5CE0AB0041C6E4 /* AppDelegate.swift */,
 				D38DFAD82A5CE0AB0041C6E4 /* SceneDelegate.swift */,
@@ -200,6 +202,15 @@
 				D38DFAFC2A5CE0AC0041C6E4 /* DdokBaroUITestsLaunchTests.swift */,
 			);
 			path = DdokBaroUITests;
+			sourceTree = "<group>";
+		};
+		D39AE0A42A6BFA16003D072D /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				D3ED8F972A6B41DD005E02DB /* WaterWaveView.swift */,
+				D39AE0A52A6BFAFC003D072D /* DropletView.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		D3ED8F992A6B4454005E02DB /* Managers */ = {
@@ -364,6 +375,7 @@
 				D38DFAD72A5CE0AB0041C6E4 /* AppDelegate.swift in Sources */,
 				0EDFC3B12A64076D005B1C68 /* Notification.swift in Sources */,
 				D3ED8F982A6B41DD005E02DB /* WaterWaveView.swift in Sources */,
+				D39AE0A62A6BFAFC003D072D /* DropletView.swift in Sources */,
 				D38DFAD92A5CE0AB0041C6E4 /* SceneDelegate.swift in Sources */,
 				D35DFA282A5F7F100043B644 /* TimerViewController.swift in Sources */,
 				D38DFAE12A5CE0AB0041C6E4 /* DdokBaro.xcdatamodeld in Sources */,
