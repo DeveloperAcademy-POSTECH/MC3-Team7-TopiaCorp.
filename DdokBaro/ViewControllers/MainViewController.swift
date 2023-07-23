@@ -21,7 +21,6 @@ class MainViewController: UIViewController {
     @IBOutlet weak var resetButton: UIButton!
     @IBOutlet weak var circleView: CircleViewController!
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         topTitleLabel.font = UIFont.boldSystemFont(ofSize: 28)

@@ -13,7 +13,7 @@ class NotificationManager: NSObject, UNUserNotificationCenterDelegate {
     static let shared = NotificationManager()
     
     func requestAuthorization() {
-        notificationCenter.requestAuthorization(options: [.alert, .badge, .sound]) { granted, error in
+        notificationCenter.requestAuthorization(options: [.alert, .sound]) { granted, error in
             if granted {
                 print("Notification 권한 성공")
             } else {
@@ -35,7 +35,6 @@ class NotificationManager: NSObject, UNUserNotificationCenterDelegate {
         content.title = "주토피아에서 알려드립니다" // 알림 제목 설정
         content.body = "거북목입니다" // 알림 내용 설정
         content.sound = UNNotificationSound.default
-        content.badge = 1
         
         // trigger - time 발동 조건 관리 timeInterval은 초단위
         let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 0.1, repeats: false)
