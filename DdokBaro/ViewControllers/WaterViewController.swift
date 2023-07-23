@@ -11,6 +11,12 @@ class WaterViewController: UIViewController {
     let screenWidth = UIScreen.main.bounds.size.width
     
     let waterWaveView = WaterWaveView()
+    
+    var currentProgress: CGFloat = 0.5
+    @IBAction func waterWaveSlider(_ sender: UISlider) {
+        currentProgress = CGFloat(sender.value)
+        self.waterWaveView.setupProgress(currentProgress)
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -47,7 +53,6 @@ class WaterViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        var currentProgress: CGFloat = 0.4
         self.waterWaveView.setupProgress(currentProgress)
     }
 
