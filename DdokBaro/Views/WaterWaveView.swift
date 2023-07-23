@@ -115,8 +115,8 @@ extension WaterWaveView {
         
         let top: CGFloat = pr * bounds.size.height
         print(top)
-        firstWave.setValue(width - top, forKeyPath: "position.y")
-        secondWave.setValue(width - top, forKeyPath: "position.y")
+        firstWave.setValue((width - top + 72) * 0.6, forKeyPath: "position.y")
+        secondWave.setValue((width - top + 72) * 0.6, forKeyPath: "position.y")
         
         if !start {
             DispatchQueue.main.async {
