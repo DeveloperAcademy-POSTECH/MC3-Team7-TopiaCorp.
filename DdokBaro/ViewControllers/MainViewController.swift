@@ -12,9 +12,9 @@ import Lottie
 import UserNotifications
 
 enum SFSymbolKey: String {
-  case pause = "pause.circle"
-  case stop = "xmark.circle.fill"
-  case clock = "clock"
+    case pause = "pause.circle"
+    case stop = "xmark.circle.fill"
+    case clock = "clock"
 }
 
 class MainViewController: UIViewController, CMHeadphoneMotionManagerDelegate {
@@ -26,6 +26,9 @@ class MainViewController: UIViewController, CMHeadphoneMotionManagerDelegate {
     var startTime = Date()
     var isPaused: Bool = false
     var accumulatedTime: TimeInterval = 0.0
+    
+    var currentWeight = (0.0, 0.0, 0.0, 0.0, 0.0, 0) // 현재 측정 각도
+    var userWeight = (0.0, 0.0, 0.0, 0.0, 0.0, 0) // 사용자 설정 가중치
     
     let screenWidth = UIScreen.main.bounds.size.width
     let waterWaveView = WaterWaveView()
@@ -51,6 +54,10 @@ class MainViewController: UIViewController, CMHeadphoneMotionManagerDelegate {
         case danger = -30
         case worst = -40
     }
+    
+    let dropWhenBad: CGFloat = 5.0
+    let dropWhenDanger: CGFloat = 10.0
+    let dropWhenWorst: CGFloat = 15.0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -89,19 +96,19 @@ class MainViewController: UIViewController, CMHeadphoneMotionManagerDelegate {
         ])
         
         let totalPath = UIBezierPath()
-
+        
         let width = screenWidth*0.5
         let height = screenWidth*0.5
-
+        
         let center = CGPoint(x: width / 2, y: height / 2)
         let startPoint = CGPoint(x: width / 2, y: height / 20)
-
+        
         totalPath.move(to: startPoint)
         totalPath.addArc(withCenter: center, radius: width * 9 / (20 * sqrt(2.0)),
-                       startAngle: 5 * (.pi / 4), endAngle: 7 * (.pi / 4), clockwise: false)
+                         startAngle: 5 * (.pi / 4), endAngle: 7 * (.pi / 4), clockwise: false)
         totalPath.addLine(to: startPoint)
         totalPath.close()
-
+        
         let maskLayer = CAShapeLayer()
         maskLayer.path = totalPath.cgPath
         waterWaveView.layer.mask = maskLayer
@@ -147,6 +154,8 @@ class MainViewController: UIViewController, CMHeadphoneMotionManagerDelegate {
                     let w = motion.attitude.quaternion.w
                     intPitch = degreeInt(pitch)
                     
+                    currentWeight = (x, y, z, w, pitch, degreeInt(pitch))
+                    
                     //디스패치큐 사용해서 cpu효율적으로 사용, 디스패치큐는 딱히 사용할 필요는 없음
                     DispatchQueue.main.async { [self] in
                         var str = "Attitude:\n"
@@ -167,24 +176,24 @@ class MainViewController: UIViewController, CMHeadphoneMotionManagerDelegate {
                             animationView2.currentProgress = AnimationProgressTime(0)
                         }
                         else{
-                            animationView2.currentProgress = AnimationProgressTime(-pitch/40)
+                            animationView2.currentProgress = AnimationProgressTime(max(-(pitch - userWeight.4)/40, 0))
                         }
-                        
                         self.view.addSubview(animationView)
-                        
                     }
                     
                     
                     //만약 목 각도가 정해진 기준 이상이면(notgood - 1단계, bad - 2단계, danger - 3단계)
-                    if intPitch < angle.notgood.rawValue {
+                    if intPitch - userWeight.5 < angle.notgood.rawValue {
                         self.view.addSubview(animationView3)
                         animationView3.frame = self.view.bounds
                         animationView3.center = self.view.center
                         animationView3.contentMode = .scaleAspectFit
                         animationView3.play()
                         customHaptics?.turtlehaptic()
+                        currentProgress -= dropWhenBad * 0.00001
+                        self.waterWaveView.setupProgress(currentProgress)
                         
-                        if intPitch < angle.bad.rawValue {
+                        if intPitch - userWeight.5 < angle.bad.rawValue {
                             self.view.addSubview(animationView4)
                             //animationView4.transform.rotated(by: degrees(90))
                             animationView4.frame = self.view.bounds
@@ -193,18 +202,22 @@ class MainViewController: UIViewController, CMHeadphoneMotionManagerDelegate {
                             animationView3.stop()
                             //customHaptics.turtlehaptic()
                             //animationView4.play()
+                            currentProgress -= dropWhenWorst * 0.00001
+                            self.waterWaveView.setupProgress(currentProgress)
                             
-                            if intPitch < angle.danger.rawValue {
+                            if intPitch - userWeight.5 < angle.danger.rawValue {
                                 self.view.addSubview(animationView5)
                                 //animationView5.frame = self.view.bounds
                                 //animationView5.center = self.view.center
                                 //animationView5.contentMode = .scaleAspectFit
                                 animationView4.stop()
                                 //animationView5.play()
+                                currentProgress -= dropWhenDanger * 0.00001
+                                self.waterWaveView.setupProgress(currentProgress)
                             }
                             
                         }
-
+                        
                         
                         if motionTimer.isValid {
                             
@@ -364,6 +377,21 @@ class MainViewController: UIViewController, CMHeadphoneMotionManagerDelegate {
         //print("타이머 실험")
         NotificationManager().scheduleNotification()
         //Vibration.light.vibrate()
+    }
+    
+    func setUserWeight(currentWeight: (Double, Double, Double, Double, Double, Int)) {
+        userWeight = currentWeight
+    }
+    
+    override func motionEnded(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
+        if event?.subtype == .motionShake {
+            setUserWeight(currentWeight: currentWeight)
+            print("shake: \(userWeight)")
+        }
+    }
+    
+    override func motionCancelled(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
+        print("motionCancelled")
     }
 }
 
