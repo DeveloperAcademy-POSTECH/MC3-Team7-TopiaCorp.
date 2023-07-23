@@ -5,10 +5,12 @@
 //  Created by TopiaCorp. on 2023/07/13.
 //
 
+import Combine
 import UIKit
 import CoreMotion
 import Lottie
 import UserNotifications
+import CoreHaptics
 
 class MotionViewController: UIViewController, CMHeadphoneMotionManagerDelegate {
     
@@ -20,17 +22,23 @@ class MotionViewController: UIViewController, CMHeadphoneMotionManagerDelegate {
     
     var intPitch: Int = 0
     
+    var rabbit:Bool = false
+    
     //AirPods Pro => manager :) 헤드폰 모니터 매니저 담는 상수
     let manager = CMHeadphoneMotionManager()
+    
+    var customHaptics: CustomHaptics!
+
     
     private var timer = Timer()
     
     enum angle: Int {
-        case notgood = -20
-        case bad = -30
-        case danger = -40
+        case notgood = -10
+        case bad = -20
+        case danger = -30
+        case worst = -40
     }
-    
+
     override func viewDidLoad() {
         NotificationManager().requestAuthorization()
         super.viewDidLoad()
@@ -90,7 +98,7 @@ class MotionViewController: UIViewController, CMHeadphoneMotionManagerDelegate {
                         animationView2.center = self.view.center
                         animationView2.contentMode = .scaleAspectFit
                         animationView2.animationSpeed = 1.0
-                        //animationView2.currentProgress = AnimationProgressTime(pitch/80)
+                        
                         if pitch > 0 {
                             animationView2.currentProgress = AnimationProgressTime(0)
                         }
@@ -106,49 +114,48 @@ class MotionViewController: UIViewController, CMHeadphoneMotionManagerDelegate {
                     //만약 목 각도가 정해진 기준 이상이면(notgood - 1단계, bad - 2단계, danger - 3단계)
                     if intPitch < angle.notgood.rawValue {
                         self.view.addSubview(animationView3)
-                        animationView3.translatesAutoresizingMaskIntoConstraints = false
-                        animationView3.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 280).isActive = true
-                        //animationView3.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 0).isActive = true
-                        animationView3.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -190).isActive = true
+                        animationView3.frame = self.view.bounds
+                        animationView3.center = self.view.center
+                        animationView3.contentMode = .scaleAspectFit
                         animationView3.play()
+                        customHaptics?.turtlehaptic()
                         
                         if intPitch < angle.bad.rawValue {
                             self.view.addSubview(animationView4)
-                            animationView4.translatesAutoresizingMaskIntoConstraints = false
-                            animationView4.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 280).isActive = true
-                            //animationView3.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 0).isActive = true
-                            animationView4.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -190).isActive = true
+                            //animationView4.transform.rotated(by: degrees(90))
+                            animationView4.frame = self.view.bounds
+                            animationView4.center = self.view.center
+                            animationView4.contentMode = .scaleAspectFit
                             animationView3.stop()
-                            animationView4.play()
+                            //customHaptics.turtlehaptic()
+                            //animationView4.play()
                             
                             if intPitch < angle.danger.rawValue {
                                 self.view.addSubview(animationView5)
-                                animationView5.translatesAutoresizingMaskIntoConstraints = false
-                                animationView5.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 280).isActive = true
-                                //animationView3.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 0).isActive = true
-                                animationView5.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -190).isActive = true
+                                //animationView5.frame = self.view.bounds
+                                //animationView5.center = self.view.center
+                                //animationView5.contentMode = .scaleAspectFit
                                 animationView4.stop()
-                                animationView5.play()
+                                //animationView5.play()
                             }
                             
                         }
 
                         
-                        //print("피치 35 이상")
-                        
-                        //타이머가 없을 경우 타이머 작동, 타이머가 있을경우에는 다시 타이머가 작동되지 않도록
                         if timer.isValid {
                             
                         }
                         else {
-                            timer = Timer.scheduledTimer(timeInterval: 180, target: self, selector: #selector(turtleAlert), userInfo: nil, repeats: false)
+                            timer = Timer.scheduledTimer(timeInterval: 5, target: self, selector: #selector(turtleAlert), userInfo: nil, repeats: false)
                             print("타이머 실행")
                             //timerCounting = true
                         }
                     }
+                    
                     //만약 목 각도가 기준선 이하로 돌아오면 타이머 삭제
                     else{
                         timer.invalidate()
+                        stopSound()
                     }
                     
                 } else {
@@ -156,7 +163,6 @@ class MotionViewController: UIViewController, CMHeadphoneMotionManagerDelegate {
                 }
                 
             })
-        
         
         //거북이 몸통을 위에 겹치기 위해 여기에 작성
         animationView.frame = self.view.bounds
@@ -187,6 +193,8 @@ class MotionViewController: UIViewController, CMHeadphoneMotionManagerDelegate {
     //에어팟 연결 끊겼을때
     func headphoneMotionManagerDidDisconnect(_ manager: CMHeadphoneMotionManager) {
         textView.text = "에어팟 연결 끊김"
+        rabbit = true
+        print(rabbit)
         print("에어팟 연결 끊김")
     }
     
@@ -219,6 +227,7 @@ class MotionViewController: UIViewController, CMHeadphoneMotionManagerDelegate {
     @objc func turtleAlert() {
         //print("타이머 실험")
         NotificationManager().scheduleNotification()
+        //Vibration.light.vibrate()
     }
 }
 

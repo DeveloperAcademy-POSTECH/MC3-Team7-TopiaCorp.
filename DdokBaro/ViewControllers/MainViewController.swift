@@ -31,6 +31,7 @@ class MainViewController: UIViewController {
     @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var startPauseButton: UIButton!
     @IBOutlet weak var resetButton: UIButton!
+    @IBOutlet weak var circleView: CircleViewController!
     
     override func viewDidLoad() {
         super.viewDidLoad()
