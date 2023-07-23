@@ -8,6 +8,8 @@
 import UIKit
 
 extension UIColor {
+    class var pointBlue: UIColor? { return UIColor(named: "pointBlue") }
+    
     convenience init(hexCode: String, alpha: CGFloat = 1.0) {
         var hexFormatted: String = hexCode.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines).uppercased()
         

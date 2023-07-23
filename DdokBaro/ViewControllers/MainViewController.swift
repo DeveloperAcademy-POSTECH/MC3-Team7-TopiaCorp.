@@ -4,12 +4,8 @@
 //
 //  Created by TopiaCorp. on 2023/07/14.
 //
-import Foundation
-import UIKit
 
-extension UIColor {
-    class var pointBlue: UIColor? { return UIColor(named: "pointBlue") }
-}
+import UIKit
 
 enum SFSymbolKey: String {
   case pause = "pause.circle"
@@ -27,6 +23,10 @@ class MainViewController: UIViewController {
     var isPaused: Bool = false
     var accumulatedTime: TimeInterval = 0.0
     
+    let screenWidth = UIScreen.main.bounds.size.width
+    let waterWaveView = WaterWaveView()
+    var currentProgress: CGFloat = 1.0 // 현재 물의 양 0.0 ~ 1.0
+    
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var startPauseButton: UIButton!
@@ -36,6 +36,7 @@ class MainViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // timer view controller
         let circleView = CircleViewController()
         
         titleLabel.font = UIFont.boldSystemFont(ofSize: 28)
@@ -56,7 +57,38 @@ class MainViewController: UIViewController {
         ])
         startTimer()
         updateTimer()
+        
+        // water view controller
+        view.addSubview(waterWaveView)
+        waterWaveView.setupProgress(waterWaveView.progress)
+        
+        NSLayoutConstraint.activate([
+            waterWaveView.widthAnchor.constraint(equalToConstant: screenWidth * 0.5),
+            waterWaveView.heightAnchor.constraint(equalToConstant: screenWidth * 0.5),
+            waterWaveView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            waterWaveView.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: 200),
+        ])
+        
+        let totalPath = UIBezierPath()
+
+        let width = screenWidth*0.5
+        let height = screenWidth*0.5
+
+        let center = CGPoint(x: width / 2, y: height / 2)
+        let startPoint = CGPoint(x: width / 2, y: height / 20)
+
+        totalPath.move(to: startPoint)
+        totalPath.addArc(withCenter: center, radius: width * 9 / (20 * sqrt(2.0)),
+                       startAngle: 5 * (.pi / 4), endAngle: 7 * (.pi / 4), clockwise: false)
+        totalPath.addLine(to: startPoint)
+        totalPath.close()
+
+        let maskLayer = CAShapeLayer()
+        maskLayer.path = totalPath.cgPath
+        waterWaveView.layer.mask = maskLayer
     }
+    
+    //MARK: timer view controller
     
     func changeTextColor() {
         guard let text = self.titleLabel.text else {return}
@@ -113,6 +145,13 @@ class MainViewController: UIViewController {
         
         showminute = String(format:"%02d", minute)
         self.timeLabel.text = showhour + labelHour + showminute + labelMinute
+    }
+    
+    //MARK: water view controller
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        self.waterWaveView.setupProgress(currentProgress)
     }
 }
 
