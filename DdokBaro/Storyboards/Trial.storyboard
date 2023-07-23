@@ -35,6 +35,15 @@
                                     <segue destination="roG-7x-xqY" kind="presentation" modalPresentationStyle="fullScreen" id="r1e-5b-qfW"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zNw-vV-P0i">
+                                <rect key="frame" x="161" y="643" width="71" height="35"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="tinted" title="Wave!"/>
+                                <connections>
+                                    <segue destination="m6O-oS-lJR" kind="presentation" modalPresentationStyle="fullScreen" id="lxs-OL-slE"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -54,13 +63,38 @@
             </objects>
             <point key="canvasLocation" x="770" y="-58"/>
         </scene>
+        <!--Water View Controller-->
+        <scene sceneID="7QE-TH-q8y">
+            <objects>
+                <viewController id="m6O-oS-lJR" customClass="WaterViewController" customModule="DdokBaro" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="26L-FK-n77">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="y5n-0y-0Y0">
+                                <rect key="frame" x="75" y="685" width="242" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <connections>
+                                    <action selector="waterWaveSlider:" destination="m6O-oS-lJR" eventType="valueChanged" id="ThU-YX-hMZ"/>
+                                </connections>
+                            </slider>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="nZ5-Kw-Vqx"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="1ob-fO-aUl"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="vcu-Ej-uju" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1183.969465648855" y="3.5211267605633805"/>
+        </scene>
         <!--Motion-->
         <scene sceneID="LDp-UE-ZNR">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="bCP-hC-GJQ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <viewControllerPlaceholder storyboardName="Motion" id="roG-7x-xqY" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="6In-aF-WJj"/>
                 </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bCP-hC-GJQ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="769" y="65"/>
         </scene>
