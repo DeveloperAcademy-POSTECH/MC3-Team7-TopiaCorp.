@@ -4,45 +4,64 @@
 //
 //  Created by TopiaCorp. on 2023/07/14.
 //
-
+import Foundation
 import UIKit
 
+extension UIColor {
+    class var pointBlue: UIColor? { return UIColor(named: "pointBlue") }
+}
+
+enum SFSymbolKey: String {
+  case pause = "pause.circle"
+  case stop = "xmark.circle.fill"
+  case clock = "clock"
+}
+
 class MainViewController: UIViewController {
-    
+    var showhour = "00"
+    var showminute = "00"
+    let labelHour = " 시간 "
+    let labelMinute = " 분"
     var timer = Timer()
     var startTime = Date()
     var isPaused: Bool = false
     var accumulatedTime: TimeInterval = 0.0
     
-    @IBOutlet weak var topTitleLabel: UILabel!
-    @IBOutlet weak var hourLabel: UILabel!
-    @IBOutlet weak var minuteLabel: UILabel!
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var startPauseButton: UIButton!
     @IBOutlet weak var resetButton: UIButton!
-    @IBOutlet weak var circleView: CircleViewController!
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        topTitleLabel.font = UIFont.boldSystemFont(ofSize: 28)
-        topTitleLabel.text = "바른 자세를 유지해\n양동이의 물을 지켜주세요!"
-        topTitleLabel.numberOfLines = 0
+        
+        let circleView = CircleViewController()
+        
+        titleLabel.font = UIFont.boldSystemFont(ofSize: 28)
+        titleLabel.text = "바른 자세를 유지해\n양동이의 물을 지켜주세요!"
+        titleLabel.numberOfLines = 0
+        timeLabel.font = UIFont.boldSystemFont(ofSize: 28)
         
         self.changeTextColor()
         
-        let circleViewController = CircleViewController()
-        circleView = circleViewController
         view.addSubview(circleView)
-        
+        self.view.sendSubviewToBack(circleView)
+        circleView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            circleView.widthAnchor.constraint(equalToConstant: 390),
+            circleView.heightAnchor.constraint(equalToConstant: 250),
+            circleView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            circleView.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: 300),
+        ])
         startTimer()
         updateTimer()
     }
+    
     func changeTextColor() {
-        guard let text = self.topTitleLabel.text else {return}
+        guard let text = self.titleLabel.text else {return}
         let attributeString = NSMutableAttributedString(string: text)
-        attributeString.addAttribute(.foregroundColor, value: UIColor.systemBlue, range: (text as NSString).range(of: "양동이의 물을 지켜주세요!"))
-        self.topTitleLabel.attributedText = attributeString
-        
+        attributeString.addAttribute(.foregroundColor, value: UIColor.pointBlue, range: (text as NSString).range(of: "양동이의 물을 지켜주세요!"))
+        self.titleLabel.attributedText = attributeString
     }
     private func startTimer() {
         timer = Timer.scheduledTimer(timeInterval: 0.01, target: self, selector: #selector(updateTimer), userInfo: nil, repeats: true)
@@ -54,20 +73,21 @@ class MainViewController: UIViewController {
             timer = Timer.scheduledTimer(timeInterval: 0.01, target: self, selector: #selector(updateTimer), userInfo: nil, repeats: true)
             RunLoop.current.add(timer, forMode: .common)
             isPaused = false
-            self.setButton("일시 정지")
+            startPauseButton.setTitle("일시 정지", for: .normal)
             
         } else {
             timer.invalidate()
             accumulatedTime += Date().timeIntervalSince(startTime)
             isPaused = true
-            self.setButton("시작")
+            startPauseButton.setTitle("다시 시작", for: .normal)
         }
     }
     @IBAction func resetTapped(_ sender: UIButton) {
         self.timer.invalidate()
-        self.hourLabel.text = "00"
-        self.minuteLabel.text = "00"
-        self.setButton("시작")
+        showhour = "00"
+        showminute = "00"
+        self.timeLabel.text = showhour + labelHour + showminute + labelMinute
+        startPauseButton.setTitle("다시 시작", for: .normal)
         self.startTime = Date()
         isPaused = true
         accumulatedTime = 0.0
@@ -81,17 +101,18 @@ class MainViewController: UIViewController {
         
         if minute >= 60 {
             let extraHours = minute / 60
-            self.hourLabel.text = String(format:"%02d", minute + extraHours)
+            showhour = String(format:"%02d", minute + extraHours)
+            self.timeLabel.text = showhour + labelHour + showminute + labelMinute
         } else {
-            self.hourLabel.text = String(format: "%02d", minute)
+            showhour = String(format: "%02d", minute)
+            self.timeLabel.text = showhour + labelHour + showminute + labelMinute
         }
+        showhour = String(format:"%02d", hour)
+        self.timeLabel.text = showhour + labelHour + showminute + labelMinute
         
-        self.hourLabel.text = String(format:"%02d", hour)
-        self.minuteLabel.text = String(format:"%02d", minute)
-    }
-    private func setButton(_ string: String){
-        self.startPauseButton.setTitle(string, for: .normal)
-        self.startPauseButton.setTitle(string, for: .highlighted)
+        showminute = String(format:"%02d", minute)
+        self.timeLabel.text = showhour + labelHour + showminute + labelMinute
     }
 }
+
 
