@@ -48,6 +48,7 @@
 		D39820C32A677A41004FE798 /* CircleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D39820C22A677A41004FE798 /* CircleViewController.swift */; };
 		D39AE0A32A6BE03A003D072D /* WaterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D39AE0A22A6BE03A003D072D /* WaterViewController.swift */; };
 		D39AE0A62A6BFAFC003D072D /* DropletView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D39AE0A52A6BFAFC003D072D /* DropletView.swift */; };
+		D3CFE9C82A6ED27900CB3358 /* LottieWrapperView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3CFE9C72A6ED27900CB3358 /* LottieWrapperView.swift */; };
 		D3ED8F982A6B41DD005E02DB /* WaterWaveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3ED8F972A6B41DD005E02DB /* WaterWaveView.swift */; };
 		D3ED8F9B2A6B4530005E02DB /* UIColorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3ED8F9A2A6B4530005E02DB /* UIColorManager.swift */; };
 /* End PBXBuildFile section */
@@ -114,6 +115,7 @@
 		D39820C22A677A41004FE798 /* CircleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleViewController.swift; sourceTree = "<group>"; };
 		D39AE0A22A6BE03A003D072D /* WaterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaterViewController.swift; sourceTree = "<group>"; };
 		D39AE0A52A6BFAFC003D072D /* DropletView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropletView.swift; sourceTree = "<group>"; };
+		D3CFE9C72A6ED27900CB3358 /* LottieWrapperView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LottieWrapperView.swift; sourceTree = "<group>"; };
 		D3ED8F972A6B41DD005E02DB /* WaterWaveView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaterWaveView.swift; sourceTree = "<group>"; };
 		D3ED8F9A2A6B4530005E02DB /* UIColorManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -264,6 +266,7 @@
 			children = (
 				D3ED8F972A6B41DD005E02DB /* WaterWaveView.swift */,
 				D39AE0A52A6BFAFC003D072D /* DropletView.swift */,
+				D3CFE9C72A6ED27900CB3358 /* LottieWrapperView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -442,6 +445,7 @@
 				676BD2FB2A6789F000541BD9 /* NoAirpodViewController.swift in Sources */,
 				675242E62A68C1E200F07886 /* Onboarding2ViewController.swift in Sources */,
 				0EDFC3B12A64076D005B1C68 /* Notification.swift in Sources */,
+				D3CFE9C82A6ED27900CB3358 /* LottieWrapperView.swift in Sources */,
 				D3ED8F982A6B41DD005E02DB /* WaterWaveView.swift in Sources */,
 				D39AE0A62A6BFAFC003D072D /* DropletView.swift in Sources */,
 				D38DFAD92A5CE0AB0041C6E4 /* SceneDelegate.swift in Sources */,
