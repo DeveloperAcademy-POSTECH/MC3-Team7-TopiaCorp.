@@ -7,28 +7,51 @@
 
 import UIKit
 
-class CircleViewController : UIView{
-
+class CircleViewController: UIView {
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+    }
+    
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+    }
+    
     override func draw(_ rect: CGRect) {
-            let ellipseRect = CGRect(x:0, y:0, width: 530, height: 177)
-            
-            let path = UIBezierPath(ovalIn: bounds)
-            
-            let shadowLayer = CALayer()
-            shadowLayer.frame = CGRect(x: bounds.origin.x, y: bounds.origin.y, width: bounds.width, height: bounds.height / 2)
-            shadowLayer.shadowColor = UIColor.systemGray.cgColor
-            shadowLayer.shadowOpacity = 0.5
-            shadowLayer.shadowOffset = CGSize(width: 4, height: 4)
-            shadowLayer.shadowRadius = 13
-            shadowLayer.masksToBounds = false
-            
-            layer.addSublayer(shadowLayer)
+        let _: CGFloat = 390
+        let height: CGFloat = 250
         
-        let maskLayer = CAShapeLayer()
-                maskLayer.path = path.cgPath
-                layer.mask = maskLayer
-                
-                UIColor.yellow.setFill()
-                path.fill()
+        let y: CGFloat = 65
+        let curveTo: CGFloat = 0
+        
+        let myBezier = UIBezierPath()
+        myBezier.move(to: CGPoint(x: 0, y: y))
+        myBezier.addQuadCurve(to: CGPoint(x: bounds.width, y: y), controlPoint: CGPoint(x: bounds.width / 2, y: curveTo))
+        myBezier.addLine(to: CGPoint(x: bounds.width, y: bounds.height))
+        myBezier.addLine(to: CGPoint(x: 0, y: bounds.height))
+        myBezier.close()
+        
+        let shapeLayer = CAShapeLayer()
+        shapeLayer.path = myBezier.cgPath
+        shapeLayer.fillColor = UIColor.white.cgColor
+       
+        let shadowPath = UIBezierPath(cgPath: myBezier.cgPath)
+        shapeLayer.shadowPath = shadowPath.cgPath
+        
+        shapeLayer.shadowOffset = CGSize(width: 0, height: -height / 12)
+        shapeLayer.shadowOpacity = 0.5
+        shapeLayer.shadowRadius = 13
+        shapeLayer.shadowColor = UIColor(red: 0.243, green: 0.416, blue: 0.906, alpha: 0.1).cgColor
+        
+        
+        self.layer.addSublayer(shapeLayer)
     }
 }
+
+
+    
+    
+    
+    
+
+
