@@ -11,17 +11,12 @@ import CoreMotion
 import Lottie
 import UserNotifications
 
-enum SFSymbolKey: String {
-    case pause = "pause.circle"
-    case stop = "xmark.circle.fill"
-    case clock = "clock"
-}
-
 class MainViewController: UIViewController, CMHeadphoneMotionManagerDelegate {
     var showhour = "00"
     var showminute = "00"
-    let labelHour = " 시간 "
-    let labelMinute = " 분"
+    let labelHour = "시간 "
+    let labelMinute = "분"
+    let emptyString = " "
     var timer = Timer()
     var startTime = Date()
     var isPaused: Bool = false
@@ -38,7 +33,6 @@ class MainViewController: UIViewController, CMHeadphoneMotionManagerDelegate {
     @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var startPauseButton: UIButton!
     @IBOutlet weak var resetButton: UIButton!
-    @IBOutlet weak var circleView: CircleViewController!
     
     var intPitch: Int = 0
     var rabbit:Bool = false
@@ -62,13 +56,23 @@ class MainViewController: UIViewController, CMHeadphoneMotionManagerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        if isStart == false {
+            startTimer()
+            updateTimer()
+            isStart = true
+        }
         // timer view controller
         let circleView = CircleViewController()
         
         titleLabel.font = UIFont.boldSystemFont(ofSize: 28)
         titleLabel.text = "바른 자세를 유지해\n양동이의 물을 지켜주세요!"
         titleLabel.numberOfLines = 0
-        timeLabel.font = UIFont.boldSystemFont(ofSize: 28)
+        
+        timeLabel.setupLabelAndButton(view: timeLabel, systemName: "clock", text: emptyString + showhour + labelHour + showminute + labelMinute, imageColor: .pointBlue ?? .black, textColor: .pointBlue ?? .black, font: .boldSystemFont(ofSize: 28), pointSize: 28, weight: .bold)
+        
+        startPauseButton.setupLabelAndButton(view: startPauseButton, systemName: "pause.circle.fill", text: " 일시 정지", imageColor: .white, textColor: .white, font: UIFont.boldSystemFont(ofSize: 17) , pointSize: 17, weight: .bold)
+        
+        resetButton.setupLabelAndButton(view: resetButton, systemName: "xmark.circle.fill", text: " 측정 종료", imageColor: .pointRed ?? .black, textColor: .pointRed ?? .black, font: UIFont.boldSystemFont(ofSize: 17) , pointSize: 17, weight: .bold)
         
         self.changeTextColor()
         
@@ -81,8 +85,8 @@ class MainViewController: UIViewController, CMHeadphoneMotionManagerDelegate {
             circleView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             circleView.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: 300),
         ])
-        startTimer()
-        updateTimer()
+        //        startTimer()
+        //        updateTimer()
         
         // water view controller
         view.addSubview(waterWaveView)
@@ -262,7 +266,7 @@ class MainViewController: UIViewController, CMHeadphoneMotionManagerDelegate {
     
     private func startTimer() {
         timer = Timer.scheduledTimer(timeInterval: 0.01, target: self, selector: #selector(updateTimer), userInfo: nil, repeats: true)
-        RunLoop.current.add(timer, forMode: .common)
+        //        RunLoop.current.add(timer, forMode: .common)
     }
     
     @IBAction func pauseTapped(_ sender: UIButton) {
@@ -271,13 +275,13 @@ class MainViewController: UIViewController, CMHeadphoneMotionManagerDelegate {
             timer = Timer.scheduledTimer(timeInterval: 0.01, target: self, selector: #selector(updateTimer), userInfo: nil, repeats: true)
             RunLoop.current.add(timer, forMode: .common)
             isPaused = false
-            startPauseButton.setTitle("일시 정지", for: .normal)
+            startPauseButton.setupLabelAndButton(view: startPauseButton, systemName: "pause.circle.fill", text: " 일시 정지", imageColor: .white, textColor: .white, font: UIFont.boldSystemFont(ofSize: 17), pointSize: 17, weight: .bold)
             
         } else {
             timer.invalidate()
             accumulatedTime += Date().timeIntervalSince(startTime)
             isPaused = true
-            startPauseButton.setTitle("다시 시작", for: .normal)
+            startPauseButton.setupLabelAndButton(view: startPauseButton, systemName: "pause.circle.fill", text: " 다시 시작", imageColor: .white, textColor: .white, font: .boldSystemFont(ofSize: 17), pointSize: 17, weight: .bold)
         }
     }
     
@@ -285,8 +289,8 @@ class MainViewController: UIViewController, CMHeadphoneMotionManagerDelegate {
         self.timer.invalidate()
         showhour = "00"
         showminute = "00"
-        self.timeLabel.text = showhour + labelHour + showminute + labelMinute
-        startPauseButton.setTitle("다시 시작", for: .normal)
+        timeLabel.setupLabelAndButton(view: timeLabel, systemName: "clock", text: emptyString + showhour + labelHour + showminute + labelMinute, imageColor: .pointBlue ?? .black, textColor: .pointBlue ?? .black, font: .boldSystemFont(ofSize: 28), pointSize: 28, weight: .bold)
+        startPauseButton.setupLabelAndButton(view: startPauseButton, systemName: "pause.circle.fill", text: " 다시 시작", imageColor: .white, textColor: .white, font: UIFont.boldSystemFont(ofSize: 17), pointSize: 17, weight: .bold)
         self.startTime = Date()
         isPaused = true
         accumulatedTime = 0.0
@@ -294,24 +298,26 @@ class MainViewController: UIViewController, CMHeadphoneMotionManagerDelegate {
     
     @objc private func updateTimer(){
         let currentTime = Date()
-        let elapsedTime = accumulatedTime + currentTime.timeIntervalSince(startTime)
+        let elapsedTime = currentTime.timeIntervalSince(startTime) + accumulatedTime
         
         let hour = Int(elapsedTime / 60)
         let minute = Int((elapsedTime).truncatingRemainder(dividingBy: 60))
         
+        timeLabel.setupLabelAndButton(view: timeLabel, systemName: "clock", text: emptyString +  showhour + labelHour + showminute + labelMinute, imageColor: .pointBlue ?? .black, textColor: .pointBlue ?? .black, font: .boldSystemFont(ofSize: 28), pointSize: 28, weight: .bold)
+        
         if minute >= 60 {
             let extraHours = minute / 60
             showhour = String(format:"%02d", minute + extraHours)
-            self.timeLabel.text = showhour + labelHour + showminute + labelMinute
+            
         } else {
-            showhour = String(format: "%02d", minute)
-            self.timeLabel.text = showhour + labelHour + showminute + labelMinute
+            showminute = String(format:"%02d", minute)
+            
         }
         showhour = String(format:"%02d", hour)
-        self.timeLabel.text = showhour + labelHour + showminute + labelMinute
-        
         showminute = String(format:"%02d", minute)
-        self.timeLabel.text = showhour + labelHour + showminute + labelMinute
+        
+        
+        
     }
     
     //MARK: water view controller
@@ -393,5 +399,5 @@ class MainViewController: UIViewController, CMHeadphoneMotionManagerDelegate {
     override func motionCancelled(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
         print("motionCancelled")
     }
+    
 }
-

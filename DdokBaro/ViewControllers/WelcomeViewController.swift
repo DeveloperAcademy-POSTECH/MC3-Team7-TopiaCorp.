@@ -8,6 +8,7 @@
 import UIKit
 import Lottie
 
+var isStart:Bool = false
 
 class WelcomeViewController: UIViewController {
     var timer = Timer()
@@ -48,16 +49,16 @@ class WelcomeViewController: UIViewController {
         attributeString.addAttribute(.foregroundColor, value: UIColor.pointBlue, range: (text as NSString).range(of: "시작해볼까요?"))
         self.titleLabel.attributedText = attributeString
     }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "startStopwatchSegue" {
-            if let stopwatchVC = segue.destination as? TimerViewController {
+            if let stopwatchVC = segue.destination as? MainViewController {
                 stopwatchVC.startTime = startTime
                 stopwatchVC.accumulatedTime = accumulatedTime
             }
         }
     }
-    
-    @IBAction func timerStartButton(_ sender: UIButton) {
+    @IBAction func timerStartButton(_ sender: Any) {
         startTime = Date()
         timer = Timer.scheduledTimer(timeInterval: 0.01, target: self,selector: #selector(updateTimer),userInfo: nil, repeats: true)
         RunLoop.current.add(timer,forMode: .common)
