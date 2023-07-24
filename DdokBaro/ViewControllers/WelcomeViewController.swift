@@ -36,6 +36,7 @@ class WelcomeViewController: UIViewController {
         self.view.addSubview(welcomeTurtleView)
         welcomeTurtleView.frame = self.view.bounds
         welcomeTurtleView.center = self.view.center
+        welcomeTurtleView.setPlay()
         
         self.view.sendSubviewToBack(welcomeTurtleView)
     }

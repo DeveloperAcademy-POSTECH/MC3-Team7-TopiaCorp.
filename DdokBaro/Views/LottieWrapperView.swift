@@ -37,8 +37,17 @@ class LottieWrapperView: UIView {
         animationView.topAnchor.constraint(equalTo: topAnchor).isActive = true
         animationView.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
         animationView.contentMode = .scaleAspectFit
-        animationView.play()
         animationView.loopMode = .loop
+    }
+    
+    func setPlay() { animationView.play() }
+    
+    func setStop() { animationView.stop() }
+    
+    func setSpeed() { animationView.animationSpeed = 1.0 }
+    
+    func setProgress(currentProgress: Double) {
+        animationView.currentProgress = currentProgress
     }
     
     override func layoutSubviews() {
