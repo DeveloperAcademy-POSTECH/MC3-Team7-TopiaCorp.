@@ -20,6 +20,12 @@
 		0E8342242A66212C00922168 /* TurtleHead.json in Resources */ = {isa = PBXBuildFile; fileRef = 0E8342232A66212C00922168 /* TurtleHead.json */; };
 		0EDFC3AD2A63814C005B1C68 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 0EDFC3AC2A63814C005B1C68 /* Lottie */; };
 		0EDFC3B12A64076D005B1C68 /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EDFC3B02A64076D005B1C68 /* Notification.swift */; };
+		675242E42A68C1D000F07886 /* Onboarding1ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675242E32A68C1D000F07886 /* Onboarding1ViewController.swift */; };
+		675242E62A68C1E200F07886 /* Onboarding2ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675242E52A68C1E200F07886 /* Onboarding2ViewController.swift */; };
+		675242EA2A68CACA00F07886 /* TurtleAirpod.json in Resources */ = {isa = PBXBuildFile; fileRef = 675242E92A68CACA00F07886 /* TurtleAirpod.json */; };
+		675242EE2A6CF69900F07886 /* Onboarding3ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675242ED2A6CF69900F07886 /* Onboarding3ViewController.swift */; };
+		676BD2F72A677CFF00541BD9 /* Onboarding.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 676BD2F62A677CFF00541BD9 /* Onboarding.storyboard */; };
+		676BD2FB2A6789F000541BD9 /* NoAirpodViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 676BD2FA2A6789F000541BD9 /* NoAirpodViewController.swift */; };
 		B9B3548D2A693D4C008FFBC2 /* welcomeTurtle.json in Resources */ = {isa = PBXBuildFile; fileRef = B9B3548C2A693D4C008FFBC2 /* welcomeTurtle.json */; };
 		D329808D2A60DB9B004C2632 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D329808C2A60DB9B004C2632 /* Main.storyboard */; };
 		D35DFA262A5F7E7B0043B644 /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D35DFA252A5F7E7B0043B644 /* TestViewController.swift */; };
@@ -76,6 +82,12 @@
 		0E8342212A66191D00922168 /* TurtleBody.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = TurtleBody.json; sourceTree = "<group>"; };
 		0E8342232A66212C00922168 /* TurtleHead.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = TurtleHead.json; sourceTree = "<group>"; };
 		0EDFC3B02A64076D005B1C68 /* Notification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notification.swift; sourceTree = "<group>"; };
+		675242E32A68C1D000F07886 /* Onboarding1ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Onboarding1ViewController.swift; sourceTree = "<group>"; };
+		675242E52A68C1E200F07886 /* Onboarding2ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Onboarding2ViewController.swift; sourceTree = "<group>"; };
+		675242E92A68CACA00F07886 /* TurtleAirpod.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = TurtleAirpod.json; sourceTree = "<group>"; };
+		675242ED2A6CF69900F07886 /* Onboarding3ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Onboarding3ViewController.swift; sourceTree = "<group>"; };
+		676BD2F62A677CFF00541BD9 /* Onboarding.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Onboarding.storyboard; sourceTree = "<group>"; };
+		676BD2FA2A6789F000541BD9 /* NoAirpodViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoAirpodViewController.swift; sourceTree = "<group>"; };
 		B9B3548C2A693D4C008FFBC2 /* welcomeTurtle.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = welcomeTurtle.json; sourceTree = "<group>"; };
 		D329808C2A60DB9B004C2632 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		D35DFA252A5F7E7B0043B644 /* TestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestViewController.swift; sourceTree = "<group>"; };
@@ -165,6 +177,10 @@
 				D39820BE2A67798B004FE798 /* WelcomeViewController.swift */,
 				D39820C02A677A0C004FE798 /* MainViewController.swift */,
 				D39820C22A677A41004FE798 /* CircleViewController.swift */,
+				676BD2FA2A6789F000541BD9 /* NoAirpodViewController.swift */,
+				675242E32A68C1D000F07886 /* Onboarding1ViewController.swift */,
+				675242E52A68C1E200F07886 /* Onboarding2ViewController.swift */,
+				675242ED2A6CF69900F07886 /* Onboarding3ViewController.swift */,
 				0E5CC54E2A6A6D2D00A3903F /* Vibrate.swift */,
 				0E5CC5502A6A6D3B00A3903F /* Sound.swift */,
 				0E5CC5522A6BA5AA00A3903F /* Haptics.swift */,
@@ -176,6 +192,7 @@
 		D35DFA2D2A60D5CE0043B644 /* Storyboards */ = {
 			isa = PBXGroup;
 			children = (
+				676BD2F62A677CFF00541BD9 /* Onboarding.storyboard */,
 				D329808C2A60DB9B004C2632 /* Main.storyboard */,
 				D35DFA302A60D6A10043B644 /* Trial.storyboard */,
 				D35DFA2E2A60D6240043B644 /* Timer.storyboard */,
@@ -216,6 +233,7 @@
 				D3ED8F992A6B4454005E02DB /* Managers */,
 				D38DFAD62A5CE0AB0041C6E4 /* AppDelegate.swift */,
 				D38DFAD82A5CE0AB0041C6E4 /* SceneDelegate.swift */,
+				675242E92A68CACA00F07886 /* TurtleAirpod.json */,
 				D38DFAE22A5CE0AC0041C6E4 /* Assets.xcassets */,
 				D38DFAE42A5CE0AC0041C6E4 /* LaunchScreen.storyboard */,
 				D38DFAE72A5CE0AC0041C6E4 /* Info.plist */,
@@ -368,6 +386,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				675242EA2A68CACA00F07886 /* TurtleAirpod.json in Resources */,
 				B9B3548D2A693D4C008FFBC2 /* welcomeTurtle.json in Resources */,
 				D35DFA2F2A60D6240043B644 /* Timer.storyboard in Resources */,
 				0E8342242A66212C00922168 /* TurtleHead.json in Resources */,
@@ -378,6 +397,7 @@
 				0E5CC5572A6BEBFB00A3903F /* WaterDrops2.json in Resources */,
 				0E5CC5582A6BEBFB00A3903F /* WaterDrops3.json in Resources */,
 				D329808D2A60DB9B004C2632 /* Main.storyboard in Resources */,
+				676BD2F72A677CFF00541BD9 /* Onboarding.storyboard in Resources */,
 				0E8342222A66191D00922168 /* TurtleBody.json in Resources */,
 				0E5CC5652A6C065900A3903F /* WaterDrops1.json in Resources */,
 				0E5CC54D2A694AC000A3903F /* Rain.mp3 in Resources */,
@@ -407,6 +427,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				675242E42A68C1D000F07886 /* Onboarding1ViewController.swift in Sources */,
 				0E5CC5532A6BA5AB00A3903F /* Haptics.swift in Sources */,
 				0E5CC5512A6A6D3B00A3903F /* Sound.swift in Sources */,
 				D39820BF2A67798B004FE798 /* WelcomeViewController.swift in Sources */,
@@ -414,9 +435,12 @@
 				D3ED8F9B2A6B4530005E02DB /* UIColorManager.swift in Sources */,
 				D39820C32A677A41004FE798 /* CircleViewController.swift in Sources */,
 				D35DFA262A5F7E7B0043B644 /* TestViewController.swift in Sources */,
+				675242EE2A6CF69900F07886 /* Onboarding3ViewController.swift in Sources */,
 				D35DFA2A2A5F7F2C0043B644 /* MotionViewController.swift in Sources */,
 				D38DFADB2A5CE0AB0041C6E4 /* ViewController.swift in Sources */,
 				D38DFAD72A5CE0AB0041C6E4 /* AppDelegate.swift in Sources */,
+				676BD2FB2A6789F000541BD9 /* NoAirpodViewController.swift in Sources */,
+				675242E62A68C1E200F07886 /* Onboarding2ViewController.swift in Sources */,
 				0EDFC3B12A64076D005B1C68 /* Notification.swift in Sources */,
 				D3ED8F982A6B41DD005E02DB /* WaterWaveView.swift in Sources */,
 				D39AE0A62A6BFAFC003D072D /* DropletView.swift in Sources */,
