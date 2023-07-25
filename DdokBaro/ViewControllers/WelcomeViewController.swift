@@ -8,6 +8,7 @@
 import UIKit
 import Lottie
 
+var isStart: Bool = false
 
 class WelcomeViewController: UIViewController {
     var timer = Timer()

@@ -34,25 +34,34 @@ class MainViewController: UIViewController, CMHeadphoneMotionManagerDelegate {
     let waterWaveView = WaterWaveView()
     var currentProgress: CGFloat = 1.0 // 현재 물의 양 0.0 ~ 1.0
     
+    @IBOutlet weak var titleSubLabel: UILabel!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var startPauseButton: UIButton!
     @IBOutlet weak var resetButton: UIButton!
     @IBOutlet weak var circleView: CircleViewController!
-    
+
     var intPitch: Int = 0
     var rabbit:Bool = false
     
     //AirPods Pro => manager :) 헤드폰 모니터 매니저 담는 상수
     let manager = CMHeadphoneMotionManager()
     
+    private var badSoundTimer = Timer()
+    
+    private var dangerSoundTimer = Timer()
+    
+    private var worstTimer = Timer()
+    
     private var motionTimer = Timer()
+    
+    private var hapticManager: HapticManager?
     
     enum angle: Int {
         case notgood = -10
-        case bad = -20
-        case danger = -30
-        case worst = -40
+        case bad = -25
+        case danger = -32
+        case worst = -42
     }
     
     let dropWhenBad: CGFloat = 5.0
@@ -66,9 +75,10 @@ class MainViewController: UIViewController, CMHeadphoneMotionManagerDelegate {
         let circleView = CircleViewController()
         
         titleLabel.font = UIFont.boldSystemFont(ofSize: 28)
-        titleLabel.text = "바른 자세를 유지해\n양동이의 물을 지켜주세요!"
+        titleLabel.text = "자세를 바르게 하고\n아이폰을 흔들어 주세요!"
         titleLabel.numberOfLines = 0
         timeLabel.font = UIFont.boldSystemFont(ofSize: 28)
+        titleSubLabel.font = UIFont.boldSystemFont(ofSize: 17)
         
         self.changeTextColor()
         
@@ -81,8 +91,12 @@ class MainViewController: UIViewController, CMHeadphoneMotionManagerDelegate {
             circleView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             circleView.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: 300),
         ])
-        startTimer()
-        updateTimer()
+        if isStart == false {
+            startTimer()
+            updateTimer()
+            isStart = true
+            
+        }
         
         // water view controller
         view.addSubview(waterWaveView)
@@ -198,9 +212,15 @@ class MainViewController: UIViewController, CMHeadphoneMotionManagerDelegate {
                             self.view.sendSubviewToBack(animationView2)
                             animationView3.setStop()
                             //customHaptics.turtlehaptic()
-                            animationView4.play()
+                            animationView4.setPlay()
                             currentProgress -= dropWhenWorst * 0.00001
                             self.waterWaveView.setupProgress(currentProgress)
+                            if badSoundTimer.isValid {
+                                
+                            }
+                            else {
+                                badSoundTimer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(badSound), userInfo: nil, repeats: false)
+                            }
                             
                             if intPitch - userWeight.5 < angle.danger.rawValue {
                                 self.view.addSubview(animationView5)
@@ -213,6 +233,12 @@ class MainViewController: UIViewController, CMHeadphoneMotionManagerDelegate {
                                 self.view.sendSubviewToBack(animationView5)
                                 currentProgress -= dropWhenDanger * 0.00001
                                 self.waterWaveView.setupProgress(currentProgress)
+                                if dangerSoundTimer.isValid {
+                                    
+                                }
+                                else {
+                                    dangerSoundTimer = Timer.scheduledTimer(timeInterval: 0.5, target: self, selector: #selector(dangerSound), userInfo: nil, repeats: false)
+                                }
                             }
                             
                         }
@@ -222,7 +248,7 @@ class MainViewController: UIViewController, CMHeadphoneMotionManagerDelegate {
                             
                         }
                         else {
-                            motionTimer = Timer.scheduledTimer(timeInterval: 5, target: self, selector: #selector(turtleAlert), userInfo: nil, repeats: false)
+                            motionTimer = Timer.scheduledTimer(timeInterval: 180, target: self, selector: #selector(turtleAlert), userInfo: nil, repeats: false)
                             print("타이머 실행")
                             //timerCounting = true
                         }
@@ -232,6 +258,10 @@ class MainViewController: UIViewController, CMHeadphoneMotionManagerDelegate {
                     else{
                         motionTimer.invalidate()
                         stopSound()
+                        dangerSoundTimer.invalidate()
+                        animationView5.setStop()
+                        animationView4.setStop()
+                        animationView3.setStop()
                     }
                     
                 } else {
@@ -254,7 +284,7 @@ class MainViewController: UIViewController, CMHeadphoneMotionManagerDelegate {
     func changeTextColor() {
         guard let text = self.titleLabel.text else {return}
         let attributeString = NSMutableAttributedString(string: text)
-        attributeString.addAttribute(.foregroundColor, value: UIColor.pointBlue, range: (text as NSString).range(of: "양동이의 물을 지켜주세요!"))
+        attributeString.addAttribute(.foregroundColor, value: UIColor.pointBlue, range: (text as NSString).range(of: "아이폰을 흔들어 주세요!"))
         self.titleLabel.attributedText = attributeString
     }
     
@@ -376,6 +406,17 @@ class MainViewController: UIViewController, CMHeadphoneMotionManagerDelegate {
         NotificationManager().scheduleNotification()
         //Vibration.light.vibrate()
     }
+    
+    @objc func badSound(){
+        playSound(soundName: "Drop", rate: 1.0)
+    }
+    @objc func dangerSound(){
+        playSound(soundName: "Drop", rate: 1.0)
+    }
+    @objc func haptic(){
+        hapticManager?.playPattern()
+    }
+    
     
     func setUserWeight(currentWeight: (Double, Double, Double, Double, Double, Int)) {
         userWeight = currentWeight
