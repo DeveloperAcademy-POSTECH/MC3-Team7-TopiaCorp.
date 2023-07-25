@@ -192,7 +192,6 @@ class MotionViewController: UIViewController, CMHeadphoneMotionManagerDelegate {
         animationView.animationSpeed = 1.0
         animationView.loopMode = .loop
         animationView.play()
-        
     }
     
     //degree 텍스트 출력위해
@@ -214,8 +213,6 @@ class MotionViewController: UIViewController, CMHeadphoneMotionManagerDelegate {
     //에어팟 연결 끊겼을때
     func headphoneMotionManagerDidDisconnect(_ manager: CMHeadphoneMotionManager) {
         textView.text = "에어팟 연결 끊김"
-        rabbit = true
-        print(rabbit)
         print("에어팟 연결 끊김")
     }
     
