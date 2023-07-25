@@ -27,10 +27,15 @@ class MotionViewController: UIViewController, CMHeadphoneMotionManagerDelegate {
     //AirPods Pro => manager :) 헤드폰 모니터 매니저 담는 상수
     let manager = CMHeadphoneMotionManager()
     
-    var customHaptics: CustomHaptics!
-
+    var badSoundTimer = Timer()
+    
+    var dangerSoundTimer = Timer()
+    
+    var worstTimer = Timer()
     
     private var timer = Timer()
+    
+    private var hapticManager: HapticManager?
     
     enum angle: Int {
         case notgood = -10
@@ -38,8 +43,10 @@ class MotionViewController: UIViewController, CMHeadphoneMotionManagerDelegate {
         case danger = -30
         case worst = -40
     }
-
+    
     override func viewDidLoad() {
+        hapticManager = HapticManager()
+        
         NotificationManager().requestAuthorization()
         super.viewDidLoad()
         textView.text = "에어팟 프로를 연결해주세요"
@@ -118,7 +125,6 @@ class MotionViewController: UIViewController, CMHeadphoneMotionManagerDelegate {
                         animationView3.center = self.view.center
                         animationView3.contentMode = .scaleAspectFit
                         animationView3.play()
-                        customHaptics?.turtlehaptic()
                         
                         if intPitch < angle.bad.rawValue {
                             self.view.addSubview(animationView4)
@@ -128,26 +134,39 @@ class MotionViewController: UIViewController, CMHeadphoneMotionManagerDelegate {
                             animationView4.contentMode = .scaleAspectFit
                             animationView3.stop()
                             //customHaptics.turtlehaptic()
-                            //animationView4.play()
+                            animationView4.play()
+                            if badSoundTimer.isValid {
+                                
+                            }
+                            else {
+                                badSoundTimer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(badSound), userInfo: nil, repeats: false)
+                            }
                             
                             if intPitch < angle.danger.rawValue {
+                                badSoundTimer.invalidate()
                                 self.view.addSubview(animationView5)
-                                //animationView5.frame = self.view.bounds
-                                //animationView5.center = self.view.center
-                                //animationView5.contentMode = .scaleAspectFit
+                                animationView5.frame = self.view.bounds
+                                animationView5.center = self.view.center
+                                animationView5.contentMode = .scaleAspectFit
                                 animationView4.stop()
-                                //animationView5.play()
+                                animationView5.play()
+                                if dangerSoundTimer.isValid {
+                                    
+                                }
+                                else {
+                                    dangerSoundTimer = Timer.scheduledTimer(timeInterval: 0.5, target: self, selector: #selector(dangerSound), userInfo: nil, repeats: false)
+                                }
                             }
                             
                         }
-
+                        
                         
                         if timer.isValid {
                             
                         }
                         else {
-                            timer = Timer.scheduledTimer(timeInterval: 5, target: self, selector: #selector(turtleAlert), userInfo: nil, repeats: false)
-                            print("타이머 실행")
+                            timer = Timer.scheduledTimer(timeInterval: 180, target: self, selector: #selector(turtleAlert), userInfo: nil, repeats: false)
+                            //print("타이머 실행")
                             //timerCounting = true
                         }
                     }
@@ -155,7 +174,9 @@ class MotionViewController: UIViewController, CMHeadphoneMotionManagerDelegate {
                     //만약 목 각도가 기준선 이하로 돌아오면 타이머 삭제
                     else{
                         timer.invalidate()
+                        
                         stopSound()
+                        dangerSoundTimer.invalidate()
                     }
                     
                 } else {
@@ -171,7 +192,6 @@ class MotionViewController: UIViewController, CMHeadphoneMotionManagerDelegate {
         animationView.animationSpeed = 1.0
         animationView.loopMode = .loop
         animationView.play()
-
     }
     
     //degree 텍스트 출력위해
@@ -193,8 +213,6 @@ class MotionViewController: UIViewController, CMHeadphoneMotionManagerDelegate {
     //에어팟 연결 끊겼을때
     func headphoneMotionManagerDidDisconnect(_ manager: CMHeadphoneMotionManager) {
         textView.text = "에어팟 연결 끊김"
-        rabbit = true
-        print(rabbit)
         print("에어팟 연결 끊김")
     }
     
@@ -229,6 +247,16 @@ class MotionViewController: UIViewController, CMHeadphoneMotionManagerDelegate {
         NotificationManager().scheduleNotification()
         //Vibration.light.vibrate()
     }
+    @objc func badSound(){
+        playSound(soundName: "Drop", rate: 1.0)
+    }
+    @objc func dangerSound(){
+        playSound(soundName: "Drop", rate: 1.0)
+    }
+    @objc func haptic(){
+        hapticManager?.playPattern()
+    }
 }
+    
 
 

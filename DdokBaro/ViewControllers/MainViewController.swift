@@ -45,7 +45,7 @@ class MainViewController: UIViewController, CMHeadphoneMotionManagerDelegate {
     
     //AirPods Pro => manager :) 헤드폰 모니터 매니저 담는 상수
     let manager = CMHeadphoneMotionManager()
-    var customHaptics: CustomHaptics!
+    
     private var motionTimer = Timer()
     
     enum angle: Int {
@@ -189,7 +189,7 @@ class MainViewController: UIViewController, CMHeadphoneMotionManagerDelegate {
                         animationView3.center = self.view.center
                         animationView3.contentMode = .scaleAspectFit
                         animationView3.play()
-                        customHaptics?.turtlehaptic()
+                        //customHaptics?.turtlehaptic()
                         currentProgress -= dropWhenBad * 0.00001
                         self.waterWaveView.setupProgress(currentProgress)
                         
@@ -201,17 +201,17 @@ class MainViewController: UIViewController, CMHeadphoneMotionManagerDelegate {
                             animationView4.contentMode = .scaleAspectFit
                             animationView3.stop()
                             //customHaptics.turtlehaptic()
-                            //animationView4.play()
+                            animationView4.play()
                             currentProgress -= dropWhenWorst * 0.00001
                             self.waterWaveView.setupProgress(currentProgress)
                             
                             if intPitch - userWeight.5 < angle.danger.rawValue {
                                 self.view.addSubview(animationView5)
-                                //animationView5.frame = self.view.bounds
-                                //animationView5.center = self.view.center
-                                //animationView5.contentMode = .scaleAspectFit
+                                animationView5.frame = self.view.bounds
+                                animationView5.center = self.view.center
+                                animationView5.contentMode = .scaleAspectFit
                                 animationView4.stop()
-                                //animationView5.play()
+                                animationView5.play()
                                 currentProgress -= dropWhenDanger * 0.00001
                                 self.waterWaveView.setupProgress(currentProgress)
                             }

@@ -7,15 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0E5CC54C2A694AC000A3903F /* Drop.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 0E5CC54A2A694AC000A3903F /* Drop.mp3 */; };
 		0E5CC54D2A694AC000A3903F /* Rain.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 0E5CC54B2A694AC000A3903F /* Rain.mp3 */; };
 		0E5CC54F2A6A6D2D00A3903F /* Vibrate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E5CC54E2A6A6D2D00A3903F /* Vibrate.swift */; };
 		0E5CC5512A6A6D3B00A3903F /* Sound.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E5CC5502A6A6D3B00A3903F /* Sound.swift */; };
 		0E5CC5532A6BA5AB00A3903F /* Haptics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E5CC5522A6BA5AA00A3903F /* Haptics.swift */; };
-		0E5CC5572A6BEBFB00A3903F /* WaterDrops2.json in Resources */ = {isa = PBXBuildFile; fileRef = 0E5CC5542A6BEBFB00A3903F /* WaterDrops2.json */; };
-		0E5CC5582A6BEBFB00A3903F /* WaterDrops3.json in Resources */ = {isa = PBXBuildFile; fileRef = 0E5CC5552A6BEBFB00A3903F /* WaterDrops3.json */; };
 		0E5CC5632A6C018900A3903F /* TurtleResultB.json in Resources */ = {isa = PBXBuildFile; fileRef = 0E5CC5622A6C018900A3903F /* TurtleResultB.json */; };
 		0E5CC5652A6C065900A3903F /* WaterDrops1.json in Resources */ = {isa = PBXBuildFile; fileRef = 0E5CC5642A6C065900A3903F /* WaterDrops1.json */; };
+		0E5CC5722A6E152500A3903F /* WaterDrops3.json in Resources */ = {isa = PBXBuildFile; fileRef = 0E5CC5702A6E152500A3903F /* WaterDrops3.json */; };
+		0E5CC5732A6E152500A3903F /* WaterDrops2.json in Resources */ = {isa = PBXBuildFile; fileRef = 0E5CC5712A6E152500A3903F /* WaterDrops2.json */; };
+		0E5CC5752A6E153100A3903F /* Drop.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 0E5CC5742A6E153100A3903F /* Drop.mp3 */; };
+		0E5CC5772A6E15D200A3903F /* Drop2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 0E5CC5762A6E15D200A3903F /* Drop2.mp3 */; };
 		0E8342222A66191D00922168 /* TurtleBody.json in Resources */ = {isa = PBXBuildFile; fileRef = 0E8342212A66191D00922168 /* TurtleBody.json */; };
 		0E8342242A66212C00922168 /* TurtleHead.json in Resources */ = {isa = PBXBuildFile; fileRef = 0E8342232A66212C00922168 /* TurtleHead.json */; };
 		0EDFC3AD2A63814C005B1C68 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 0EDFC3AC2A63814C005B1C68 /* Lottie */; };
@@ -70,15 +71,16 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		0E5CC54A2A694AC000A3903F /* Drop.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Drop.mp3; sourceTree = "<group>"; };
 		0E5CC54B2A694AC000A3903F /* Rain.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Rain.mp3; sourceTree = "<group>"; };
 		0E5CC54E2A6A6D2D00A3903F /* Vibrate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Vibrate.swift; sourceTree = "<group>"; };
 		0E5CC5502A6A6D3B00A3903F /* Sound.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sound.swift; sourceTree = "<group>"; };
 		0E5CC5522A6BA5AA00A3903F /* Haptics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Haptics.swift; sourceTree = "<group>"; };
-		0E5CC5542A6BEBFB00A3903F /* WaterDrops2.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = WaterDrops2.json; sourceTree = "<group>"; };
-		0E5CC5552A6BEBFB00A3903F /* WaterDrops3.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = WaterDrops3.json; sourceTree = "<group>"; };
 		0E5CC5622A6C018900A3903F /* TurtleResultB.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = TurtleResultB.json; sourceTree = "<group>"; };
 		0E5CC5642A6C065900A3903F /* WaterDrops1.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = WaterDrops1.json; sourceTree = "<group>"; };
+		0E5CC5702A6E152500A3903F /* WaterDrops3.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = WaterDrops3.json; sourceTree = "<group>"; };
+		0E5CC5712A6E152500A3903F /* WaterDrops2.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = WaterDrops2.json; sourceTree = "<group>"; };
+		0E5CC5742A6E153100A3903F /* Drop.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Drop.mp3; sourceTree = "<group>"; };
+		0E5CC5762A6E15D200A3903F /* Drop2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Drop2.mp3; sourceTree = "<group>"; };
 		0E8342212A66191D00922168 /* TurtleBody.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = TurtleBody.json; sourceTree = "<group>"; };
 		0E8342232A66212C00922168 /* TurtleHead.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = TurtleHead.json; sourceTree = "<group>"; };
 		0EDFC3B02A64076D005B1C68 /* Notification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notification.swift; sourceTree = "<group>"; };
@@ -147,7 +149,8 @@
 		0E5CC5482A6948F200A3903F /* Sound */ = {
 			isa = PBXGroup;
 			children = (
-				0E5CC54A2A694AC000A3903F /* Drop.mp3 */,
+				0E5CC5742A6E153100A3903F /* Drop.mp3 */,
+				0E5CC5762A6E15D200A3903F /* Drop2.mp3 */,
 				0E5CC54B2A694AC000A3903F /* Rain.mp3 */,
 			);
 			path = Sound;
@@ -159,8 +162,8 @@
 				0E8342212A66191D00922168 /* TurtleBody.json */,
 				0E8342232A66212C00922168 /* TurtleHead.json */,
 				0E5CC5642A6C065900A3903F /* WaterDrops1.json */,
-				0E5CC5542A6BEBFB00A3903F /* WaterDrops2.json */,
-				0E5CC5552A6BEBFB00A3903F /* WaterDrops3.json */,
+				0E5CC5712A6E152500A3903F /* WaterDrops2.json */,
+				0E5CC5702A6E152500A3903F /* WaterDrops3.json */,
 				0E5CC5622A6C018900A3903F /* TurtleResultB.json */,
 			);
 			path = Lottie;
@@ -390,16 +393,17 @@
 				B9B3548D2A693D4C008FFBC2 /* welcomeTurtle.json in Resources */,
 				D35DFA2F2A60D6240043B644 /* Timer.storyboard in Resources */,
 				0E8342242A66212C00922168 /* TurtleHead.json in Resources */,
+				0E5CC5732A6E152500A3903F /* WaterDrops2.json in Resources */,
 				D35DFA312A60D6A10043B644 /* Trial.storyboard in Resources */,
-				0E5CC54C2A694AC000A3903F /* Drop.mp3 in Resources */,
+				0E5CC5722A6E152500A3903F /* WaterDrops3.json in Resources */,
 				0E5CC5632A6C018900A3903F /* TurtleResultB.json in Resources */,
 				D35DFA332A60D7010043B644 /* Motion.storyboard in Resources */,
-				0E5CC5572A6BEBFB00A3903F /* WaterDrops2.json in Resources */,
-				0E5CC5582A6BEBFB00A3903F /* WaterDrops3.json in Resources */,
 				D329808D2A60DB9B004C2632 /* Main.storyboard in Resources */,
 				676BD2F72A677CFF00541BD9 /* Onboarding.storyboard in Resources */,
 				0E8342222A66191D00922168 /* TurtleBody.json in Resources */,
 				0E5CC5652A6C065900A3903F /* WaterDrops1.json in Resources */,
+				0E5CC5752A6E153100A3903F /* Drop.mp3 in Resources */,
+				0E5CC5772A6E15D200A3903F /* Drop2.mp3 in Resources */,
 				0E5CC54D2A694AC000A3903F /* Rain.mp3 in Resources */,
 				D38DFAE62A5CE0AC0041C6E4 /* LaunchScreen.storyboard in Resources */,
 				D38DFAE32A5CE0AC0041C6E4 /* Assets.xcassets in Resources */,
@@ -617,7 +621,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = D9HG424P5H;
+				DEVELOPMENT_TEAM = V7Z62V83Y6;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = DdokBaro/Info.plist;
 				INFOPLIST_KEY_NSMotionUsageDescription = "Used to acquire motion for AirPods.";
@@ -647,7 +651,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = D9HG424P5H;
+				DEVELOPMENT_TEAM = V7Z62V83Y6;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = DdokBaro/Info.plist;
 				INFOPLIST_KEY_NSMotionUsageDescription = "Used to acquire motion for AirPods.";
