@@ -37,8 +37,6 @@ class Onboarding3ViewController: UIViewController {
                 incircleView4.heightAnchor.constraint(equalToConstant: imageSize)
             ])
             
-//            circleView3.clipsToBounds = true
-//            circleView3.setGradient(color1: .white, color2: UIColor(hexCode: "ECF2FF"))
         }
     }
 }
