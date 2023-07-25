@@ -92,7 +92,7 @@ class MainViewController: UIViewController, CMHeadphoneMotionManagerDelegate {
             waterWaveView.widthAnchor.constraint(equalToConstant: screenWidth * 0.5),
             waterWaveView.heightAnchor.constraint(equalToConstant: screenWidth * 0.5),
             waterWaveView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            waterWaveView.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: 200),
+            waterWaveView.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: 215),
         ])
         
         let totalPath = UIBezierPath()
@@ -116,20 +116,11 @@ class MainViewController: UIViewController, CMHeadphoneMotionManagerDelegate {
         // motion view controller
         NotificationManager().requestAuthorization()
         
-        let animation = LottieAnimation.named("TurtleBody")
-        let animationView = LottieAnimationView(animation: animation)
-        
-        let animation2 = LottieAnimation.named("TurtleHead")
-        let animationView2 = LottieAnimationView(animation: animation2)
-        
-        let animation3 = LottieAnimation.named("WaterDrops1")
-        let animationView3 = LottieAnimationView(animation: animation3)
-        
-        let animation4 = LottieAnimation.named("WaterDrops2")
-        let animationView4 = LottieAnimationView(animation: animation4)
-        
-        let animation5 = LottieAnimation.named("WaterDrops3")
-        let animationView5 = LottieAnimationView(animation: animation5)
+        let animationView1 = LottieWrapperView(animationName: "TurtleBody")
+        let animationView2 = LottieWrapperView(animationName: "TurtleHead")
+        let animationView3 = LottieWrapperView(animationName: "WaterDrops1")
+        let animationView4 = LottieWrapperView(animationName: "WaterDrops2")
+        let animationView5 = LottieWrapperView(animationName: "WaterDrops3")
         
         //헤드폰 모니터링 할려면 delegate 대리자 필요
         manager.delegate = self
@@ -170,15 +161,18 @@ class MainViewController: UIViewController, CMHeadphoneMotionManagerDelegate {
                         animationView2.frame = self.view.bounds
                         animationView2.center = self.view.center
                         animationView2.contentMode = .scaleAspectFit
-                        animationView2.animationSpeed = 1.0
+                        animationView2.setSpeed()
+                        self.view.sendSubviewToBack(animationView2)
                         
                         if pitch > 0 {
-                            animationView2.currentProgress = AnimationProgressTime(0)
+                            animationView2.setProgress(currentProgress: AnimationProgressTime(0))
                         }
-                        else{
-                            animationView2.currentProgress = AnimationProgressTime(max(-(pitch - userWeight.4)/40, 0))
+                        else {
+                            animationView2.setProgress(currentProgress: AnimationProgressTime(max(-(pitch - userWeight.4)/40, 0)))
                         }
-                        self.view.addSubview(animationView)
+                        self.view.addSubview(animationView1)
+                        self.view.sendSubviewToBack(animationView1)
+                        self.view.sendSubviewToBack(animationView2)
                     }
                     
                     
@@ -188,8 +182,9 @@ class MainViewController: UIViewController, CMHeadphoneMotionManagerDelegate {
                         animationView3.frame = self.view.bounds
                         animationView3.center = self.view.center
                         animationView3.contentMode = .scaleAspectFit
-                        animationView3.play()
-                        //customHaptics?.turtlehaptic()
+                        animationView3.setPlay()
+                        self.view.sendSubviewToBack(animationView3)
+                        self.view.sendSubviewToBack(animationView2)
                         currentProgress -= dropWhenBad * 0.00001
                         self.waterWaveView.setupProgress(currentProgress)
                         
@@ -199,7 +194,9 @@ class MainViewController: UIViewController, CMHeadphoneMotionManagerDelegate {
                             animationView4.frame = self.view.bounds
                             animationView4.center = self.view.center
                             animationView4.contentMode = .scaleAspectFit
-                            animationView3.stop()
+                            self.view.sendSubviewToBack(animationView4)
+                            self.view.sendSubviewToBack(animationView2)
+                            animationView3.setStop()
                             //customHaptics.turtlehaptic()
                             animationView4.play()
                             currentProgress -= dropWhenWorst * 0.00001
@@ -210,8 +207,10 @@ class MainViewController: UIViewController, CMHeadphoneMotionManagerDelegate {
                                 animationView5.frame = self.view.bounds
                                 animationView5.center = self.view.center
                                 animationView5.contentMode = .scaleAspectFit
-                                animationView4.stop()
-                                animationView5.play()
+                                animationView4.setStop()
+                                animationView5.setPlay()
+                                self.view.sendSubviewToBack(animationView5)
+                                self.view.sendSubviewToBack(animationView5)
                                 currentProgress -= dropWhenDanger * 0.00001
                                 self.waterWaveView.setupProgress(currentProgress)
                             }
@@ -242,13 +241,12 @@ class MainViewController: UIViewController, CMHeadphoneMotionManagerDelegate {
             })
         
         //거북이 몸통을 위에 겹치기 위해 여기에 작성
-        animationView.frame = self.view.bounds
-        animationView.center = self.view.center
-        animationView.contentMode = .scaleAspectFit
-        animationView.animationSpeed = 1.0
-        animationView.loopMode = .loop
-        animationView.play()
-        self.view.sendSubviewToBack(animationView)
+        animationView1.frame = self.view.bounds
+        animationView1.center = self.view.center
+        animationView1.contentMode = .scaleAspectFit
+        animationView1.setSpeed()
+        animationView1.setPlay()
+        self.view.sendSubviewToBack(animationView1)
     }
     
     //MARK: timer view controller

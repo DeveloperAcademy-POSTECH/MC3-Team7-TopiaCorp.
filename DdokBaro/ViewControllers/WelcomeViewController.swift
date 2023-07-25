@@ -32,15 +32,13 @@ class WelcomeViewController: UIViewController {
         
         self.changeTextColor()
         
-        let welcomeTurtle = LottieAnimation.named("welcomeTurtle")
-        let welcomeTurtleView = LottieAnimationView(animation: welcomeTurtle)
-        //self.view.addSubview(welcomeTurtleView)
-        //welcomeTurtleView.frame = self.view.bounds
+        let welcomeTurtleView = LottieWrapperView(animationName: "welcomeTurtle")
+        self.view.addSubview(welcomeTurtleView)
+        welcomeTurtleView.frame = self.view.bounds
         welcomeTurtleView.center = self.view.center
-        welcomeTurtleView.contentMode = .scaleAspectFit
-        //welcomeTurtleView.play()
-        welcomeTurtleView.loopMode = .loop
-        //welcomeTurtleView.backgroundColor = UIColor.black
+        welcomeTurtleView.setPlay()
+        
+        self.view.sendSubviewToBack(welcomeTurtleView)
     }
     func changeTextColor() {
         guard let text = self.titleLabel.text else {return}
