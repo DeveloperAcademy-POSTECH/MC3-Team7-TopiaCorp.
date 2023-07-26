@@ -97,7 +97,7 @@
                             </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="nzt-ed-3Fs"/>
-                        <color key="backgroundColor" red="0.94509803921568625" green="0.96470588235294119" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </view>
                     <navigationItem key="navigationItem" id="Fsg-ms-EES"/>
                     <connections>

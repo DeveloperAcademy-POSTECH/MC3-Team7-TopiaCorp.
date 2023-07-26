@@ -24,12 +24,14 @@ class WelcomeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+//        view.setGradientColor(startPoint: CGPoint(x: 0.5, y: 0.0), endPoint: CGPoint(x: 0.5, y: 1.0))
 
         titleLabel.font = UIFont.boldSystemFont(ofSize: 28)
         titleLabel.text = "오늘의 작업을\n시작해볼까요?"
         titleLabel.numberOfLines = 0
         startingButton.titleLabel?.font = UIFont.systemFont(ofSize: 17, weight: .bold)
-        descriptionLabel.font = UIFont.systemFont(ofSize: 17)
+        descriptionLabel.font = UIFont.systemFont(ofSize: 17, weight: .bold)
         
         self.changeTextColor()
         

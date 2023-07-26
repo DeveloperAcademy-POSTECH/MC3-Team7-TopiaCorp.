@@ -56,6 +56,8 @@ class MainViewController: UIViewController, CMHeadphoneMotionManagerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+//        view.setGradientColor(startPoint: CGPoint(x: 0.5, y: 0.0), endPoint: CGPoint(x: 0.5, y: 1.0))
+        
         if isStart == false {
             startTimer()
             updateTimer()
@@ -266,7 +268,7 @@ class MainViewController: UIViewController, CMHeadphoneMotionManagerDelegate {
     
     private func startTimer() {
         timer = Timer.scheduledTimer(timeInterval: 0.01, target: self, selector: #selector(updateTimer), userInfo: nil, repeats: true)
-        //        RunLoop.current.add(timer, forMode: .common)
+                RunLoop.current.add(timer, forMode: .common)
     }
     
     @IBAction func pauseTapped(_ sender: UIButton) {
