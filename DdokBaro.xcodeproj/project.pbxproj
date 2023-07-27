@@ -54,6 +54,7 @@
 		D3CFE9C82A6ED27900CB3358 /* LottieWrapperView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3CFE9C72A6ED27900CB3358 /* LottieWrapperView.swift */; };
 		D3ED8F982A6B41DD005E02DB /* WaterWaveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3ED8F972A6B41DD005E02DB /* WaterWaveView.swift */; };
 		D3ED8F9B2A6B4530005E02DB /* UIColorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3ED8F9A2A6B4530005E02DB /* UIColorManager.swift */; };
+		D3FF8F4F2A72721F00A3CC43 /* noSound.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D3FF8F4E2A72721F00A3CC43 /* noSound.mp3 */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -124,6 +125,7 @@
 		D3CFE9C72A6ED27900CB3358 /* LottieWrapperView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LottieWrapperView.swift; sourceTree = "<group>"; };
 		D3ED8F972A6B41DD005E02DB /* WaterWaveView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaterWaveView.swift; sourceTree = "<group>"; };
 		D3ED8F9A2A6B4530005E02DB /* UIColorManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorManager.swift; sourceTree = "<group>"; };
+		D3FF8F4E2A72721F00A3CC43 /* noSound.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = noSound.mp3; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -155,6 +157,7 @@
 		0E5CC5482A6948F200A3903F /* Sound */ = {
 			isa = PBXGroup;
 			children = (
+				D3FF8F4E2A72721F00A3CC43 /* noSound.mp3 */,
 				0E5CC5742A6E153100A3903F /* Drop.mp3 */,
 				0E5CC5762A6E15D200A3903F /* Drop2.mp3 */,
 				0E5CC54B2A694AC000A3903F /* Rain.mp3 */,
@@ -400,6 +403,7 @@
 			files = (
 				675242EA2A68CACA00F07886 /* TurtleAirpod.json in Resources */,
 				B9B3548D2A693D4C008FFBC2 /* welcomeTurtle.json in Resources */,
+				D3FF8F4F2A72721F00A3CC43 /* noSound.mp3 in Resources */,
 				D35DFA2F2A60D6240043B644 /* Timer.storyboard in Resources */,
 				0E8342242A66212C00922168 /* TurtleHead.json in Resources */,
 				0E5CC5732A6E152500A3903F /* WaterDrops2.json in Resources */,
