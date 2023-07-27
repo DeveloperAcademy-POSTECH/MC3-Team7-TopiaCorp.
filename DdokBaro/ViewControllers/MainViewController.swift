@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import AVFoundation
 import CoreHaptics
 import CoreMotion
 import Lottie
@@ -68,6 +69,8 @@ class MainViewController: UIViewController, CMHeadphoneMotionManagerDelegate {
     let dropWhenBad: CGFloat = 5.0
     let dropWhenDanger: CGFloat = 10.0
     let dropWhenWorst: CGFloat = 15.0
+    
+    var audioPlayer = AVAudioPlayer()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -134,6 +137,13 @@ class MainViewController: UIViewController, CMHeadphoneMotionManagerDelegate {
         
         // motion view controller
         NotificationManager().requestAuthorization()
+        
+        let noSound = Bundle.main.path(forResource: "noSound", ofType: "mp3")
+        do {
+            audioPlayer = try AVAudioPlayer(contentsOf: URL(fileURLWithPath: noSound!))
+            try AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.playback, mode: AVAudioSession.Mode.default, options: [AVAudioSession.CategoryOptions.mixWithOthers])
+        } catch { print(error) }
+        audioPlayer.play()
         
         let animationView1 = LottieWrapperView(animationName: "TurtleBody")
         let animationView2 = LottieWrapperView(animationName: "TurtleHead")
@@ -305,12 +315,13 @@ class MainViewController: UIViewController, CMHeadphoneMotionManagerDelegate {
             RunLoop.current.add(timer, forMode: .common)
             isPaused = false
             startPauseButton.setupLabelAndButton(view: startPauseButton, systemName: "pause.circle.fill", text: " 일시 정지", imageColor: .white, textColor: .white, font: UIFont.boldSystemFont(ofSize: 17), pointSize: 17, weight: .bold)
-            
+            audioPlayer.play()
         } else {
             timer.invalidate()
             accumulatedTime += Date().timeIntervalSince(startTime)
             isPaused = true
             startPauseButton.setupLabelAndButton(view: startPauseButton, systemName: "pause.circle.fill", text: " 다시 시작", imageColor: .white, textColor: .white, font: .boldSystemFont(ofSize: 17), pointSize: 17, weight: .bold)
+            audioPlayer.pause()
         }
     }
     
