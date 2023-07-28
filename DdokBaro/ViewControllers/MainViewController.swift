@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import AVFoundation
 import CoreHaptics
 import CoreMotion
 import Lottie
@@ -22,6 +23,7 @@ class MainViewController: UIViewController, CMHeadphoneMotionManagerDelegate {
     var showminute = "00"
     let labelHour = " 시간 "
     let labelMinute = " 분"
+    let emptyString = " "
     var timer = Timer()
     var startTime = Date()
     var isPaused: Bool = false
@@ -67,6 +69,7 @@ class MainViewController: UIViewController, CMHeadphoneMotionManagerDelegate {
     let animationView2 = LottieWrapperView(animationName: "TurtleHead")
     let animationView3 = LottieWrapperView(animationName: "WaterDrops1")
     let animationView4 = LottieWrapperView(animationName: "WaterDrops2")
+    var audioPlayer = AVAudioPlayer()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -77,8 +80,12 @@ class MainViewController: UIViewController, CMHeadphoneMotionManagerDelegate {
         titleLabel.font = UIFont.boldSystemFont(ofSize: 28)
         titleLabel.text = "자세를 바르게 하고\n아이폰을 흔들어 주세요!"
         titleLabel.numberOfLines = 0
-        timeLabel.font = UIFont.boldSystemFont(ofSize: 28)
         titleSubLabel.font = UIFont.boldSystemFont(ofSize: 17)
+        timeLabel.setupLabelAndButton(view: timeLabel, systemName: "clock", text: emptyString + showhour + labelHour + showminute + labelMinute, imageColor: .pointBlue ?? .black, textColor: .pointBlue ?? .black, font: .boldSystemFont(ofSize: 28), pointSize: 28, weight: .bold)
+        
+        startPauseButton.setupLabelAndButton(view: startPauseButton, systemName: "pause.circle.fill", text: " 일시 정지", imageColor: .white, textColor: .white, font: UIFont.boldSystemFont(ofSize: 17) , pointSize: 17, weight: .bold)
+        
+        resetButton.setupLabelAndButton(view: resetButton, systemName: "xmark.circle.fill", text: " 측정 종료", imageColor: .pointRed ?? .black, textColor: .pointRed ?? .black, font: UIFont.boldSystemFont(ofSize: 17) , pointSize: 17, weight: .bold)
         
         self.changeTextColor()
         view.addSubview(circleView)
@@ -163,6 +170,12 @@ class MainViewController: UIViewController, CMHeadphoneMotionManagerDelegate {
 //            //거북이 몸통을 위에 겹치기 위해 여기에 작성
 //            self?.animationView1.setPlay()
 //        }
+        let noSound = Bundle.main.path(forResource: "noSound", ofType: "mp3")
+        do {
+            audioPlayer = try AVAudioPlayer(contentsOf: URL(fileURLWithPath: noSound!))
+            try AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.playback, mode: AVAudioSession.Mode.default, options: [AVAudioSession.CategoryOptions.mixWithOthers])
+        } catch { print(error) }
+        audioPlayer.play()
         
         //헤드폰 모니터링 할려면 delegate 대리자 필요
         manager.delegate = self
@@ -250,12 +263,13 @@ private func startTimer() {
         RunLoop.current.add(timer, forMode: .common)
         isPaused = false
         startPauseButton.setTitle("일시 정지", for: .normal)
-        
+        audioPlayer.play()
     } else {
         timer.invalidate()
         accumulatedTime += Date().timeIntervalSince(startTime)
         isPaused = true
         startPauseButton.setTitle("다시 시작", for: .normal)
+        audioPlayer.pause()
     }
 }
 
@@ -263,8 +277,8 @@ private func startTimer() {
         self.timer.invalidate()
         showhour = "00"
         showminute = "00"
-        self.timeLabel.text = showhour + labelHour + showminute + labelMinute
-        startPauseButton.setTitle("다시 시작", for: .normal)
+        timeLabel.setupLabelAndButton(view: timeLabel, systemName: "clock", text: emptyString + showhour + labelHour + showminute + labelMinute, imageColor: .pointBlue ?? .black, textColor: .pointBlue ?? .black, font: .boldSystemFont(ofSize: 28), pointSize: 28, weight: .bold)
+        startPauseButton.setupLabelAndButton(view: startPauseButton, systemName: "pause.circle.fill", text: " 다시 시작", imageColor: .white, textColor: .white, font: UIFont.boldSystemFont(ofSize: 17), pointSize: 17, weight: .bold)
         self.startTime = Date()
         isPaused = true
         accumulatedTime = 0.0
@@ -277,19 +291,16 @@ private func startTimer() {
         let hour = Int(elapsedTime / 60)
         let minute = Int((elapsedTime).truncatingRemainder(dividingBy: 60))
         
+        timeLabel.setupLabelAndButton(view: timeLabel, systemName: "clock", text: emptyString +  showhour + labelHour + showminute + labelMinute, imageColor: .pointBlue ?? .black, textColor: .pointBlue ?? .black, font: .boldSystemFont(ofSize: 28), pointSize: 28, weight: .bold)
+        
         if minute >= 60 {
             let extraHours = minute / 60
             showhour = String(format:"%02d", minute + extraHours)
-            self.timeLabel.text = showhour + labelHour + showminute + labelMinute
         } else {
             showhour = String(format: "%02d", minute)
-            self.timeLabel.text = showhour + labelHour + showminute + labelMinute
         }
         showhour = String(format:"%02d", hour)
-        self.timeLabel.text = showhour + labelHour + showminute + labelMinute
-        
         showminute = String(format:"%02d", minute)
-        self.timeLabel.text = showhour + labelHour + showminute + labelMinute
     }
     
     //MARK: water view controller
