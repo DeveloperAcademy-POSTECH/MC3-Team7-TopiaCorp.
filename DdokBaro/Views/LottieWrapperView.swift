@@ -55,5 +55,7 @@ class LottieWrapperView: UIView {
         
         // If not using auto layout
         animationView.frame = self.bounds
+        animationView.center = self.center
+        animationView.contentMode = .scaleAspectFit
     }
 }

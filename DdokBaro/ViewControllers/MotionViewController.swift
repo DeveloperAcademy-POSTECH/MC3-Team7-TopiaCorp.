@@ -97,12 +97,12 @@ class MotionViewController: UIViewController, CMHeadphoneMotionManagerDelegate {
         animationView4.contentMode = .scaleAspectFit
         self.view.addSubview(animationView4)
         //animationView4.stop()
-        
-        animationView5.frame = self.view.bounds
-        animationView5.center = self.view.center
-        animationView5.contentMode = .scaleAspectFit
-        self.view.addSubview(animationView5)
-        //animationView5.stop()
+//
+//        animationView5.frame = self.view.bounds
+//        animationView5.center = self.view.center
+//        animationView5.contentMode = .scaleAspectFit
+//        self.view.addSubview(animationView5)
+//        //animationView5.stop()
         
         DispatchQueue.main.async { [weak self] in
             //거북이 몸통을 위에 겹치기 위해 여기에 작성
@@ -149,15 +149,15 @@ class MotionViewController: UIViewController, CMHeadphoneMotionManagerDelegate {
                     self?.animationView4.play()
                     
                     if self!.intPitch < angle.danger.rawValue {
-                        self?.animationView4.stop()
-                        self?.animationView5.play()
+                        //self?.animationView4.stop()
+                        //self?.animationView5.play()
                     }
                     
                     if self!.timer.isValid {
                         
                     }
                     else {
-                        self!.timer = Timer.scheduledTimer(timeInterval: 10, target: self, selector: #selector(self?.badSound), userInfo: nil, repeats: false)
+                        self!.timer = Timer.scheduledTimer(timeInterval: 10, target: self!, selector: #selector(self?.badSound), userInfo: nil, repeats: false)
                         //timerCounting = true
                     }
                 }
@@ -219,6 +219,3 @@ class MotionViewController: UIViewController, CMHeadphoneMotionManagerDelegate {
     }
     
 }
-
-
-
