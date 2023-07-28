@@ -24,9 +24,8 @@ class WelcomeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        titleLabel.font = UIFont.boldSystemFont(ofSize: 28)
         titleLabel.text = "오늘의 작업을\n시작해볼까요?"
+        titleLabel.font = UIFont.boldSystemFont(ofSize: 28)
         titleLabel.numberOfLines = 0
         startingButton.titleLabel?.font = UIFont.systemFont(ofSize: 17, weight: .bold)
         descriptionLabel.font = UIFont.systemFont(ofSize: 17)

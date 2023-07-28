@@ -28,6 +28,8 @@
 		676BD2F72A677CFF00541BD9 /* Onboarding.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 676BD2F62A677CFF00541BD9 /* Onboarding.storyboard */; };
 		676BD2FB2A6789F000541BD9 /* NoAirpodViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 676BD2FA2A6789F000541BD9 /* NoAirpodViewController.swift */; };
 		B983ACB42A70C6BE0084A9DC /* SetupLabel&Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = B983ACB32A70C6BE0084A9DC /* SetupLabel&Button.swift */; };
+		B98FE4EE2A72A13100E13890 /* SuccessViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B98FE4ED2A72A13100E13890 /* SuccessViewController.swift */; };
+		B98FE4F02A72A13C00E13890 /* FailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B98FE4EF2A72A13C00E13890 /* FailViewController.swift */; };
 		B9990A802A71520A0094F32C /* ZeroPointViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9990A7F2A71520A0094F32C /* ZeroPointViewController.swift */; };
 		B9B3548D2A693D4C008FFBC2 /* welcomeTurtle.json in Resources */ = {isa = PBXBuildFile; fileRef = B9B3548C2A693D4C008FFBC2 /* welcomeTurtle.json */; };
 		D329808D2A60DB9B004C2632 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D329808C2A60DB9B004C2632 /* Main.storyboard */; };
@@ -95,6 +97,8 @@
 		676BD2F62A677CFF00541BD9 /* Onboarding.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Onboarding.storyboard; sourceTree = "<group>"; };
 		676BD2FA2A6789F000541BD9 /* NoAirpodViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoAirpodViewController.swift; sourceTree = "<group>"; };
 		B983ACB32A70C6BE0084A9DC /* SetupLabel&Button.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SetupLabel&Button.swift"; sourceTree = "<group>"; };
+		B98FE4ED2A72A13100E13890 /* SuccessViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuccessViewController.swift; sourceTree = "<group>"; };
+		B98FE4EF2A72A13C00E13890 /* FailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FailViewController.swift; sourceTree = "<group>"; };
 		B9990A7F2A71520A0094F32C /* ZeroPointViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZeroPointViewController.swift; sourceTree = "<group>"; };
 		B9B3548C2A693D4C008FFBC2 /* welcomeTurtle.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = welcomeTurtle.json; sourceTree = "<group>"; };
 		D329808C2A60DB9B004C2632 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
@@ -198,6 +202,8 @@
 				0E5CC5522A6BA5AA00A3903F /* Haptics.swift */,
 				D39AE0A22A6BE03A003D072D /* WaterViewController.swift */,
 				B9990A7F2A71520A0094F32C /* ZeroPointViewController.swift */,
+				B98FE4ED2A72A13100E13890 /* SuccessViewController.swift */,
+				B98FE4EF2A72A13C00E13890 /* FailViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -454,6 +460,7 @@
 				D3ED8F9B2A6B4530005E02DB /* UIColorManager.swift in Sources */,
 				D39820C32A677A41004FE798 /* CircleViewController.swift in Sources */,
 				D35DFA262A5F7E7B0043B644 /* TestViewController.swift in Sources */,
+				B98FE4F02A72A13C00E13890 /* FailViewController.swift in Sources */,
 				675242EE2A6CF69900F07886 /* Onboarding3ViewController.swift in Sources */,
 				D35DFA2A2A5F7F2C0043B644 /* MotionViewController.swift in Sources */,
 				D38DFADB2A5CE0AB0041C6E4 /* ViewController.swift in Sources */,
@@ -466,6 +473,7 @@
 				D39AE0A62A6BFAFC003D072D /* DropletView.swift in Sources */,
 				D38DFAD92A5CE0AB0041C6E4 /* SceneDelegate.swift in Sources */,
 				D35DFA282A5F7F100043B644 /* TimerViewController.swift in Sources */,
+				B98FE4EE2A72A13100E13890 /* SuccessViewController.swift in Sources */,
 				D38DFAE12A5CE0AB0041C6E4 /* DdokBaro.xcdatamodeld in Sources */,
 				D39AE0A32A6BE03A003D072D /* WaterViewController.swift in Sources */,
 				D39820C12A677A0C004FE798 /* MainViewController.swift in Sources */,
