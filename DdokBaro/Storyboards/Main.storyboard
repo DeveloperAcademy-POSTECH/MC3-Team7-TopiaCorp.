@@ -455,6 +455,7 @@
                                     <fontDescription key="titleFontDescription" style="UICTFontTextStyleBody"/>
                                 </buttonConfiguration>
                                 <connections>
+                                    <action selector="SetupPointButton:" destination="kpM-3F-nlH" eventType="touchUpInside" id="FBa-20-He6"/>
                                     <segue destination="dFi-qe-lHF" kind="show" id="scS-8T-ymx"/>
                                 </connections>
                             </button>

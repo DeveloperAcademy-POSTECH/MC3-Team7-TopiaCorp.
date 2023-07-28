@@ -30,6 +30,7 @@
 		B98FE4EE2A72A13100E13890 /* SuccessViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B98FE4ED2A72A13100E13890 /* SuccessViewController.swift */; };
 		B98FE4F02A72A13C00E13890 /* FailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B98FE4EF2A72A13C00E13890 /* FailViewController.swift */; };
 		B9990A802A71520A0094F32C /* ZeroPointViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9990A7F2A71520A0094F32C /* ZeroPointViewController.swift */; };
+		B99E21BA2A7381BD0064F81F /* TurtleResultA.json in Resources */ = {isa = PBXBuildFile; fileRef = B99E21B92A7381BD0064F81F /* TurtleResultA.json */; };
 		B9B3548D2A693D4C008FFBC2 /* welcomeTurtle.json in Resources */ = {isa = PBXBuildFile; fileRef = B9B3548C2A693D4C008FFBC2 /* welcomeTurtle.json */; };
 		D329808D2A60DB9B004C2632 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D329808C2A60DB9B004C2632 /* Main.storyboard */; };
 		D35DFA262A5F7E7B0043B644 /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D35DFA252A5F7E7B0043B644 /* TestViewController.swift */; };
@@ -98,6 +99,7 @@
 		B98FE4ED2A72A13100E13890 /* SuccessViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuccessViewController.swift; sourceTree = "<group>"; };
 		B98FE4EF2A72A13C00E13890 /* FailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FailViewController.swift; sourceTree = "<group>"; };
 		B9990A7F2A71520A0094F32C /* ZeroPointViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZeroPointViewController.swift; sourceTree = "<group>"; };
+		B99E21B92A7381BD0064F81F /* TurtleResultA.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = TurtleResultA.json; sourceTree = "<group>"; };
 		B9B3548C2A693D4C008FFBC2 /* welcomeTurtle.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = welcomeTurtle.json; sourceTree = "<group>"; };
 		D329808C2A60DB9B004C2632 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		D35DFA252A5F7E7B0043B644 /* TestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestViewController.swift; sourceTree = "<group>"; };
@@ -171,6 +173,7 @@
 			isa = PBXGroup;
 			children = (
 				0E8342212A66191D00922168 /* TurtleBody.json */,
+				B99E21B92A7381BD0064F81F /* TurtleResultA.json */,
 				0E8342232A66212C00922168 /* TurtleHead.json */,
 				0E5CC5642A6C065900A3903F /* WaterDrops1.json */,
 				0E5CC5712A6E152500A3903F /* WaterDrops2.json */,
@@ -422,6 +425,7 @@
 				0E5CC5772A6E15D200A3903F /* Drop2.mp3 in Resources */,
 				0E5CC54D2A694AC000A3903F /* Rain.mp3 in Resources */,
 				D38DFAE62A5CE0AC0041C6E4 /* LaunchScreen.storyboard in Resources */,
+				B99E21BA2A7381BD0064F81F /* TurtleResultA.json in Resources */,
 				D38DFAE32A5CE0AC0041C6E4 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

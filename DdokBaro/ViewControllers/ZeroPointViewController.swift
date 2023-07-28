@@ -8,11 +8,7 @@
 import UIKit
 
 class ZeroPointViewController: UIViewController {
-    
-    var intPitch: Int = 0
-    var currentWeight = (0.0, 0.0, 0.0, 0.0, 0.0, 0) // 현재 측정 각도
-    
-    
+
     @IBOutlet weak var titleLabel: UILabel!
     
     @IBOutlet weak var turtleGuideImage: UIImageView!
@@ -51,6 +47,11 @@ class ZeroPointViewController: UIViewController {
         let attributeString = NSMutableAttributedString(string: text)
         attributeString.addAttribute(.foregroundColor, value: UIColor.pointBlue, range: (text as NSString).range(of: "조정이 필요해요"))
         self.titleLabel.attributedText = attributeString
+    }
+    
+    @IBAction func SetupPointButton(_ sender: Any) {
+        userWeight = currentWeight
+        print(userWeight)
     }
 }
 

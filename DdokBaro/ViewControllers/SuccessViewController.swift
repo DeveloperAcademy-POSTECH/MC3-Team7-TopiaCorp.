@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Lottie
 
 class SuccessViewController: UIViewController {
 
@@ -41,10 +42,11 @@ class SuccessViewController: UIViewController {
         waterView.layer.cornerRadius = 14
         
         
-        let turtleResultA = LottieWrapperView(animationName: "turtleResultA")
+        let turtleResultA = LottieWrapperView(animationName: "TurtleResultA")
         self.view.addSubview(turtleResultA)
         turtleResultA.frame = self.view.bounds
         turtleResultA.center = self.view.center
+        turtleResultA.contentMode = .scaleAspectFit
         turtleResultA.setPlay()
         
         self.view.sendSubviewToBack(turtleResultA)
