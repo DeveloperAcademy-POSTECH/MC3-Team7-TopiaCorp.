@@ -8,6 +8,11 @@
 import UIKit
 
 class ZeroPointViewController: UIViewController {
+    
+    var intPitch: Int = 0
+    var currentWeight = (0.0, 0.0, 0.0, 0.0, 0.0, 0) // 현재 측정 각도
+    
+    
     @IBOutlet weak var titleLabel: UILabel!
     
     @IBOutlet weak var turtleGuideImage: UIImageView!
@@ -22,8 +27,8 @@ class ZeroPointViewController: UIViewController {
     @IBOutlet weak var setupButton: UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
-        titleLabel.font = UIFont.boldSystemFont(ofSize: 28)
         titleLabel.text = "나에게 딱 맞는 측정을 위해\n조정이 필요해요"
+        titleLabel.font = UIFont.boldSystemFont(ofSize: 28)
         titleLabel.numberOfLines = 0
         self.changeTextColor()
         
@@ -48,3 +53,5 @@ class ZeroPointViewController: UIViewController {
         self.titleLabel.attributedText = attributeString
     }
 }
+
+
