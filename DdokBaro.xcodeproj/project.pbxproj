@@ -22,7 +22,6 @@
 		0EDFC3AD2A63814C005B1C68 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 0EDFC3AC2A63814C005B1C68 /* Lottie */; };
 		0EDFC3B12A64076D005B1C68 /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EDFC3B02A64076D005B1C68 /* Notification.swift */; };
 		675242E42A68C1D000F07886 /* Onboarding1ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675242E32A68C1D000F07886 /* Onboarding1ViewController.swift */; };
-		675242E62A68C1E200F07886 /* Onboarding2ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675242E52A68C1E200F07886 /* Onboarding2ViewController.swift */; };
 		675242EA2A68CACA00F07886 /* TurtleAirpod.json in Resources */ = {isa = PBXBuildFile; fileRef = 675242E92A68CACA00F07886 /* TurtleAirpod.json */; };
 		675242EE2A6CF69900F07886 /* Onboarding3ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675242ED2A6CF69900F07886 /* Onboarding3ViewController.swift */; };
 		676BD2F72A677CFF00541BD9 /* Onboarding.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 676BD2F62A677CFF00541BD9 /* Onboarding.storyboard */; };
@@ -91,7 +90,6 @@
 		0E8342232A66212C00922168 /* TurtleHead.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = TurtleHead.json; sourceTree = "<group>"; };
 		0EDFC3B02A64076D005B1C68 /* Notification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notification.swift; sourceTree = "<group>"; };
 		675242E32A68C1D000F07886 /* Onboarding1ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Onboarding1ViewController.swift; sourceTree = "<group>"; };
-		675242E52A68C1E200F07886 /* Onboarding2ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Onboarding2ViewController.swift; sourceTree = "<group>"; };
 		675242E92A68CACA00F07886 /* TurtleAirpod.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = TurtleAirpod.json; sourceTree = "<group>"; };
 		675242ED2A6CF69900F07886 /* Onboarding3ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Onboarding3ViewController.swift; sourceTree = "<group>"; };
 		676BD2F62A677CFF00541BD9 /* Onboarding.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Onboarding.storyboard; sourceTree = "<group>"; };
@@ -195,7 +193,6 @@
 				D39820C22A677A41004FE798 /* CircleViewController.swift */,
 				676BD2FA2A6789F000541BD9 /* NoAirpodViewController.swift */,
 				675242E32A68C1D000F07886 /* Onboarding1ViewController.swift */,
-				675242E52A68C1E200F07886 /* Onboarding2ViewController.swift */,
 				675242ED2A6CF69900F07886 /* Onboarding3ViewController.swift */,
 				0E5CC54E2A6A6D2D00A3903F /* Vibrate.swift */,
 				0E5CC5502A6A6D3B00A3903F /* Sound.swift */,
@@ -466,7 +463,6 @@
 				D38DFADB2A5CE0AB0041C6E4 /* ViewController.swift in Sources */,
 				D38DFAD72A5CE0AB0041C6E4 /* AppDelegate.swift in Sources */,
 				676BD2FB2A6789F000541BD9 /* NoAirpodViewController.swift in Sources */,
-				675242E62A68C1E200F07886 /* Onboarding2ViewController.swift in Sources */,
 				0EDFC3B12A64076D005B1C68 /* Notification.swift in Sources */,
 				D3CFE9C82A6ED27900CB3358 /* LottieWrapperView.swift in Sources */,
 				D3ED8F982A6B41DD005E02DB /* WaterWaveView.swift in Sources */,
