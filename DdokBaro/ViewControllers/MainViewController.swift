@@ -29,8 +29,8 @@ class MainViewController: UIViewController, CMHeadphoneMotionManagerDelegate {
     var isPaused: Bool = false
     var accumulatedTime: TimeInterval = 0.0
     
-    var currentWeight = (0.0, 0.0, 0.0, 0.0, 0.0, 0) // 현재 측정 각도
-    var userWeight = (0.0, 0.0, 0.0, 0.0, 0.0, 0) // 사용자 설정 가중치
+    var currentWeight = (0.0, 0) // 현재 측정 각도
+    var userWeight = (0.0, 0) // 사용자 설정 가중치
     
     let screenWidth = UIScreen.main.bounds.size.width
     let waterWaveView = WaterWaveView()
@@ -44,16 +44,11 @@ class MainViewController: UIViewController, CMHeadphoneMotionManagerDelegate {
     @IBOutlet weak var circleView: CircleViewController!
 
     var intPitch: Int = 0
-    var rabbit:Bool = false
     
     //AirPods Pro => manager :) 헤드폰 모니터 매니저 담는 상수
     let manager = CMHeadphoneMotionManager()
     
     private var badSoundTimer = Timer()
-    
-    private var dangerSoundTimer = Timer()
-    
-    private var worstTimer = Timer()
     
     private var motionTimer = Timer()
     
@@ -70,6 +65,10 @@ class MainViewController: UIViewController, CMHeadphoneMotionManagerDelegate {
     let dropWhenDanger: CGFloat = 10.0
     let dropWhenWorst: CGFloat = 15.0
     
+    let animationView1 = LottieWrapperView(animationName: "TurtleBody")
+    let animationView2 = LottieWrapperView(animationName: "TurtleHead")
+    let animationView3 = LottieWrapperView(animationName: "WaterDrops1")
+    let animationView4 = LottieWrapperView(animationName: "WaterDrops2")
     var audioPlayer = AVAudioPlayer()
     
     override func viewDidLoad() {
@@ -89,7 +88,6 @@ class MainViewController: UIViewController, CMHeadphoneMotionManagerDelegate {
         resetButton.setupLabelAndButton(view: resetButton, systemName: "xmark.circle.fill", text: " 측정 종료", imageColor: .pointRed ?? .black, textColor: .pointRed ?? .black, font: UIFont.boldSystemFont(ofSize: 17) , pointSize: 17, weight: .bold)
         
         self.changeTextColor()
-        
         view.addSubview(circleView)
         self.view.sendSubviewToBack(circleView)
         circleView.translatesAutoresizingMaskIntoConstraints = false
@@ -135,9 +133,43 @@ class MainViewController: UIViewController, CMHeadphoneMotionManagerDelegate {
         maskLayer.path = totalPath.cgPath
         waterWaveView.layer.mask = maskLayer
         
-        // motion view controller
         NotificationManager().requestAuthorization()
         
+        //animationView2.layoutSubviews()
+        animationView2.frame = self.view.bounds
+        animationView2.center = self.view.center
+        animationView2.contentMode = .scaleAspectFit
+        animationView2.setSpeed()
+        view.addSubview(animationView2)
+        
+        animationView1.frame = self.view.bounds
+        animationView1.center = self.view.center
+        animationView1.contentMode = .scaleAspectFit
+        animationView1.setSpeed()
+        animationView1.animationView.loopMode = .loop
+        self.view.addSubview(animationView1)
+        
+        //animationView3.layoutSubviews()
+        animationView3.frame = self.view.bounds
+        animationView3.center = self.view.center
+        animationView3.contentMode = .scaleAspectFit
+        self.view.addSubview(animationView3)
+        
+        //animationView4.layoutSubviews()
+        animationView4.frame = self.view.bounds
+        animationView4.center = self.view.center
+        animationView4.contentMode = .scaleAspectFit
+        self.view.addSubview(animationView4)
+        
+        self.view.sendSubviewToBack(animationView1)
+        self.view.sendSubviewToBack(animationView2)
+        self.view.sendSubviewToBack(animationView3)
+        self.view.sendSubviewToBack(animationView4)
+        
+//        DispatchQueue.main.async { [weak self] in
+//            //거북이 몸통을 위에 겹치기 위해 여기에 작성
+//            self?.animationView1.setPlay()
+//        }
         let noSound = Bundle.main.path(forResource: "noSound", ofType: "mp3")
         do {
             audioPlayer = try AVAudioPlayer(contentsOf: URL(fileURLWithPath: noSound!))
@@ -145,186 +177,102 @@ class MainViewController: UIViewController, CMHeadphoneMotionManagerDelegate {
         } catch { print(error) }
         audioPlayer.play()
         
-        let animationView1 = LottieWrapperView(animationName: "TurtleBody")
-        let animationView2 = LottieWrapperView(animationName: "TurtleHead")
-        let animationView3 = LottieWrapperView(animationName: "WaterDrops1")
-        let animationView4 = LottieWrapperView(animationName: "WaterDrops2")
-        let animationView5 = LottieWrapperView(animationName: "WaterDrops3")
-        
         //헤드폰 모니터링 할려면 delegate 대리자 필요
         manager.delegate = self
         
-        print("권한 허가됨 ", CMAuthorizationStatus.authorized)
-        
         manager.startDeviceMotionUpdates(
-            to: OperationQueue.current!, withHandler: { [self]
-                (deviceMotion, error) -> Void in
-                
-                //if 에어팟 연결되었을때
-                if let motion = deviceMotion {
-                    
-                    let attitude = motion.attitude
-                    let roll = degrees(attitude.roll)
-                    let pitch = degrees(attitude.pitch)
-                    let yaw = degrees(attitude.yaw)
-                    
-                    let x = motion.attitude.quaternion.x
-                    let y = motion.attitude.quaternion.y
-                    let z = motion.attitude.quaternion.z
-                    let w = motion.attitude.quaternion.w
-                    intPitch = degreeInt(pitch)
-                    
-                    currentWeight = (x, y, z, w, pitch, degreeInt(pitch))
-                    
-                    //디스패치큐 사용해서 cpu효율적으로 사용, 디스패치큐는 딱히 사용할 필요는 없음
-                    DispatchQueue.main.async { [self] in
-                        var str = "Attitude:\n"
-                        str += degreeText("Pitch 고개 위 아래", pitch)
-                        str += degreeText("Roll 고개 꺽는거(근데 앞으로 빼도 수치가 좀 바뀜!!)", roll)
-                        str += degreeText("Yaw 고개 옆으로 돌리는거 ", yaw)
-                        
-                        str += "\nQuaternion:\n"
-                        str += quaternion(x, y, z, w)
-                        
-                        self.view.addSubview(animationView2)
-                        animationView2.frame = self.view.bounds
-                        animationView2.center = self.view.center
-                        animationView2.contentMode = .scaleAspectFit
-                        animationView2.setSpeed()
-                        self.view.sendSubviewToBack(animationView2)
-                        
-                        if pitch > 0 {
-                            animationView2.setProgress(currentProgress: AnimationProgressTime(0))
-                        }
-                        else {
-                            animationView2.setProgress(currentProgress: AnimationProgressTime(max(-(pitch - userWeight.4)/40, 0)))
-                        }
-                        self.view.addSubview(animationView1)
-                        self.view.sendSubviewToBack(animationView1)
-                        self.view.sendSubviewToBack(animationView2)
-                    }
-                    
-                    
-                    //만약 목 각도가 정해진 기준 이상이면(notgood - 1단계, bad - 2단계, danger - 3단계)
-                    if intPitch - userWeight.5 < angle.notgood.rawValue {
-                        self.view.addSubview(animationView3)
-                        animationView3.frame = self.view.bounds
-                        animationView3.center = self.view.center
-                        animationView3.contentMode = .scaleAspectFit
-                        animationView3.setPlay()
-                        self.view.sendSubviewToBack(animationView3)
-                        self.view.sendSubviewToBack(animationView2)
-                        currentProgress -= dropWhenBad * 0.00001
-                        self.waterWaveView.setupProgress(currentProgress)
-                        
-                        if intPitch - userWeight.5 < angle.bad.rawValue {
-                            self.view.addSubview(animationView4)
-                            //animationView4.transform.rotated(by: degrees(90))
-                            animationView4.frame = self.view.bounds
-                            animationView4.center = self.view.center
-                            animationView4.contentMode = .scaleAspectFit
-                            self.view.sendSubviewToBack(animationView4)
-                            self.view.sendSubviewToBack(animationView2)
-                            animationView3.setStop()
-                            //customHaptics.turtlehaptic()
-                            animationView4.setPlay()
-                            currentProgress -= dropWhenWorst * 0.00001
-                            self.waterWaveView.setupProgress(currentProgress)
-                            if badSoundTimer.isValid {
-                                
-                            }
-                            else {
-                                badSoundTimer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(badSound), userInfo: nil, repeats: false)
-                            }
-                            
-                            if intPitch - userWeight.5 < angle.danger.rawValue {
-                                self.view.addSubview(animationView5)
-                                animationView5.frame = self.view.bounds
-                                animationView5.center = self.view.center
-                                animationView5.contentMode = .scaleAspectFit
-                                animationView4.setStop()
-                                animationView5.setPlay()
-                                self.view.sendSubviewToBack(animationView5)
-                                self.view.sendSubviewToBack(animationView5)
-                                currentProgress -= dropWhenDanger * 0.00001
-                                self.waterWaveView.setupProgress(currentProgress)
-                                if dangerSoundTimer.isValid {
-                                    
-                                }
-                                else {
-                                    dangerSoundTimer = Timer.scheduledTimer(timeInterval: 0.5, target: self, selector: #selector(dangerSound), userInfo: nil, repeats: false)
-                                }
-                            }
-                            
-                        }
-                        
-                        
-                        if motionTimer.isValid {
-                            
-                        }
-                        else {
-                            motionTimer = Timer.scheduledTimer(timeInterval: 180, target: self, selector: #selector(turtleAlert), userInfo: nil, repeats: false)
-                            print("타이머 실행")
-                            //timerCounting = true
-                        }
-                    }
-                    
-                    //만약 목 각도가 기준선 이하로 돌아오면 타이머 삭제
-                    else{
-                        motionTimer.invalidate()
-                        stopSound()
-                        dangerSoundTimer.invalidate()
-                        animationView5.setStop()
-                        animationView4.setStop()
-                        animationView3.setStop()
-                    }
-                    
-                } else {
-                    print("ERROR: \(error?.localizedDescription)")
-                }
-                
-            })
+            to: OperationQueue.current!, withHandler: { [weak self] deviceMotion, error in guard let motion = deviceMotion, error == nil else { return }
+                self?.turtleMotion(motion)
+            }
+        )
         
-        //거북이 몸통을 위에 겹치기 위해 여기에 작성
-        animationView1.frame = self.view.bounds
-        animationView1.center = self.view.center
-        animationView1.contentMode = .scaleAspectFit
-        animationView1.setSpeed()
-        animationView1.setPlay()
-        self.view.sendSubviewToBack(animationView1)
     }
     
-    //MARK: timer view controller
-    
-    func changeTextColor() {
-        guard let text = self.titleLabel.text else {return}
-        let attributeString = NSMutableAttributedString(string: text)
-        attributeString.addAttribute(.foregroundColor, value: UIColor.pointBlue, range: (text as NSString).range(of: "아이폰을 흔들어 주세요!"))
-        self.titleLabel.attributedText = attributeString
-    }
-    
-    private func startTimer() {
-        timer = Timer.scheduledTimer(timeInterval: 0.01, target: self, selector: #selector(updateTimer), userInfo: nil, repeats: true)
-        RunLoop.current.add(timer, forMode: .common)
-    }
-    
-    @IBAction func pauseTapped(_ sender: UIButton) {
-        if isPaused {
-            startTime = Date() //현재 시간으로 업데이트
-            timer = Timer.scheduledTimer(timeInterval: 0.01, target: self, selector: #selector(updateTimer), userInfo: nil, repeats: true)
-            RunLoop.current.add(timer, forMode: .common)
-            isPaused = false
-            startPauseButton.setupLabelAndButton(view: startPauseButton, systemName: "pause.circle.fill", text: " 일시 정지", imageColor: .white, textColor: .white, font: UIFont.boldSystemFont(ofSize: 17), pointSize: 17, weight: .bold)
-            audioPlayer.play()
-        } else {
-            timer.invalidate()
-            accumulatedTime += Date().timeIntervalSince(startTime)
-            isPaused = true
-            startPauseButton.setupLabelAndButton(view: startPauseButton, systemName: "pause.circle.fill", text: " 다시 시작", imageColor: .white, textColor: .white, font: .boldSystemFont(ofSize: 17), pointSize: 17, weight: .bold)
-            audioPlayer.pause()
+    func turtleMotion(_ motion: CMDeviceMotion)
+    {
+
+        let pitch = degrees(motion.attitude.pitch)
+        intPitch = degreeInt(pitch)
+        currentWeight = (pitch, degreeInt(pitch))
+        
+        DispatchQueue.main.async { [weak self] in
+            if pitch > 0 {
+                self?.animationView2.setProgress(currentProgress: AnimationProgressTime(0))
+            }
+            else {
+                self?.animationView2.setProgress(currentProgress: AnimationProgressTime(max(-(pitch - self!.userWeight.0)/40, 0)))
+            }
+
+        //만약 목 각도가 정해진 기준 이상이면(notgood - 1단계, bad - 2단계, danger - 3단계)
+            if self!.intPitch - self!.userWeight.1 < angle.notgood.rawValue {
+                self?.animationView3.setPlay()
+
+                self!.currentProgress -= self!.dropWhenBad * 0.00001
+                self!.waterWaveView.setupProgress(self!.currentProgress)
+                
+                if self!.intPitch - self!.userWeight.1 < angle.bad.rawValue {
+                    self?.animationView3.setStop()
+                    self?.animationView4.setPlay()
+                    
+                    self!.currentProgress -= self!.dropWhenWorst * 0.00001
+                    self!.waterWaveView.setupProgress(self!.currentProgress)
+                    
+//                    if self!.intPitch - self!.userWeight.1 < angle.danger.rawValue {
+//
+//                    }
+                    
+                    if self!.motionTimer.isValid {
+                        
+                    }
+                    else {
+                        self!.motionTimer = Timer.scheduledTimer(timeInterval: 180, target: self, selector: #selector(self?.badSound), userInfo: nil, repeats: false)
+                        print("타이머 실행")
+                        //timerCounting = true
+                    }
+                }
+            }
+        
+        //만약 목 각도가 기준선 이하로 돌아오면 타이머 삭제
+        else{
+            self!.motionTimer.invalidate()
+            stopSound()
+            self?.animationView4.setStop()
+            self?.animationView3.setStop()
         }
     }
-    
+}
+
+//MARK: timer view controller
+
+func changeTextColor() {
+    guard let text = self.titleLabel.text else {return}
+    let attributeString = NSMutableAttributedString(string: text)
+    attributeString.addAttribute(.foregroundColor, value: UIColor.pointBlue, range: (text as NSString).range(of: "아이폰을 흔들어 주세요!"))
+    self.titleLabel.attributedText = attributeString
+}
+
+private func startTimer() {
+    timer = Timer.scheduledTimer(timeInterval: 0.01, target: self, selector: #selector(updateTimer), userInfo: nil, repeats: true)
+    RunLoop.current.add(timer, forMode: .common)
+}
+
+@IBAction func pauseTapped(_ sender: UIButton) {
+    if isPaused {
+        startTime = Date() //현재 시간으로 업데이트
+        timer = Timer.scheduledTimer(timeInterval: 0.01, target: self, selector: #selector(updateTimer), userInfo: nil, repeats: true)
+        RunLoop.current.add(timer, forMode: .common)
+        isPaused = false
+        startPauseButton.setTitle("일시 정지", for: .normal)
+        audioPlayer.play()
+    } else {
+        timer.invalidate()
+        accumulatedTime += Date().timeIntervalSince(startTime)
+        isPaused = true
+        startPauseButton.setTitle("다시 시작", for: .normal)
+        audioPlayer.pause()
+    }
+}
+
     @IBAction func resetTapped(_ sender: UIButton) {
         self.timer.invalidate()
         showhour = "00"
@@ -378,30 +326,19 @@ class MainViewController: UIViewController, CMHeadphoneMotionManagerDelegate {
     
     //에어팟 연결되었을때
     func headphoneMotionManagerDidConnect(_ manager: CMHeadphoneMotionManager) {
+        animationView1.setPlay()
         print("에어팟 연결 성공")
     }
     
     //에어팟 연결 끊겼을때
     func headphoneMotionManagerDidDisconnect(_ manager: CMHeadphoneMotionManager) {
-        rabbit = true
-        print(rabbit)
+        animationView1.setStop()
         print("에어팟 연결 끊김")
     }
     
     //우리가 아는 각도로 바꿔주는 함수
     func degrees(_ radians: Double) -> Double { return 180 / .pi * radians }
-    
-    //Quaternion 값들 String으로 바꾸기
-    func quaternion(_ x: Double, _ y: Double, _ z: Double, _ w: Double) -> String {
-        // Absolute value just makes it look nicer
-        var str = ""
-        str += String(format: "X: %.2f\n", x)
-        str += String(format: "Y: %.2f\n", y)
-        str += String(format: "Z: %.2f\n", z)
-        str += String(format: "W: %.2f\n", w)
-        return str
-    }
-    
+
     //willappear - 다른 뷰에서 다시 올때 해주고 싶은 작업
     override func viewWillAppear(_ animated: Bool) {
         self.viewDidLoad()
@@ -423,27 +360,24 @@ class MainViewController: UIViewController, CMHeadphoneMotionManagerDelegate {
     @objc func badSound(){
         playSound(soundName: "Drop", rate: 1.0)
     }
-    @objc func dangerSound(){
-        playSound(soundName: "Drop", rate: 1.0)
-    }
     @objc func haptic(){
         hapticManager?.playPattern()
     }
     
     
-    func setUserWeight(currentWeight: (Double, Double, Double, Double, Double, Int)) {
+    func setUserWeight(currentWeight: (Double, Int)) {
         userWeight = currentWeight
     }
     
     override func motionEnded(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
         if event?.subtype == .motionShake {
             setUserWeight(currentWeight: currentWeight)
-            print("shake: \(userWeight)")
+            //print("shake: \(userWeight)")
         }
     }
     
     override func motionCancelled(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
-        print("motionCancelled")
+        //print("motionCancelled")
     }
 }
 
