@@ -13,9 +13,63 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        let launchedBefore = UserDefaults.standard.bool(forKey: "launchedBefore")
+        if !launchedBefore {
+            UserDefaults.standard.set(true, forKey: "launchedBefore")
+            let onboardingStoryboard = UIStoryboard(name: "Onboarding", bundle: nil)
+            let noAirpodViewController = onboardingStoryboard.instantiateViewController(withIdentifier: "NoAirpodViewController")
+            let onboarding1ViewController = onboardingStoryboard.instantiateViewController(withIdentifier: "Onboarding1ViewController")
+            let onboarding3ViewController = onboardingStoryboard.instantiateViewController(withIdentifier: "Onboarding3ViewController")
+            let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
+            let zeroPointViewController = mainStoryboard.instantiateViewController(withIdentifier: "ZeroPointViewController")
+            
+            let navigationController = UINavigationController(rootViewController: noAirpodViewController)
+            navigationController.pushViewController(onboarding1ViewController, animated: true)
+            navigationController.pushViewController(onboarding3ViewController, animated: true)
+            navigationController.pushViewController(zeroPointViewController, animated: true)
+            
+            if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
+               let window = windowScene.windows.first {
+                window.rootViewController = navigationController
+                window.makeKeyAndVisible()
+            }
+        } else {
+            let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
+            let welcomeViewController = mainStoryboard.instantiateViewController(withIdentifier: "WelcomeViewController")
+            
+            if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
+               let window = windowScene.windows.first {
+                window.rootViewController = welcomeViewController
+                window.makeKeyAndVisible()
+            }
+        }
+        
         UNUserNotificationCenter.current().delegate = self
+        
         return true
     }
+    func saveContext() {
+        let context = persistentContainer.viewContext
+        if context.hasChanges {
+            do {
+                try context.save()
+            } catch {
+                // Replace this with proper error handling
+                let nserror = error as NSError
+                fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
+            }
+        }
+    }
+}
+
+// Add UNUserNotificationCenterDelegate conformance (if not already added) to handle notifications
+//extension AppDelegate: UNUserNotificationCenterDelegate {
+//    // Add the required delegate methods here (optional, depending on your notification handling needs)
+//}
+//이 변경으로 'window' 속성에 액세스할 수 있어야 하며 코드가 예상대로 작동해야 합니다. UIApplication.shared.windows.first는 기본 창에 대한 액세스를 제공하며 이에 따라 루트 뷰 컨트롤러를 설정할 수 있습니다.
+
+
+
 
     // MARK: UISceneSession Lifecycle
 
@@ -33,7 +87,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     // MARK: - Core Data stack
 
-    lazy var persistentContainer: NSPersistentCloudKitContainer = {
+var persistentContainer: NSPersistentCloudKitContainer = {
         /*
          The persistent container for the application. This implementation
          creates and returns a container, having loaded the store for the
@@ -75,8 +129,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
         }
     }
-
-}
 
 extension AppDelegate : UNUserNotificationCenterDelegate {
     

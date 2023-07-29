@@ -28,7 +28,7 @@ class WelcomeViewController: UIViewController {
         titleLabel.font = UIFont.boldSystemFont(ofSize: 28)
         titleLabel.numberOfLines = 0
         startingButton.titleLabel?.font = UIFont.systemFont(ofSize: 17, weight: .bold)
-        descriptionLabel.font = UIFont.systemFont(ofSize: 17)
+        descriptionLabel.font = UIFont.boldSystemFont(ofSize: 17)
         
         self.changeTextColor()
         
@@ -43,7 +43,7 @@ class WelcomeViewController: UIViewController {
     func changeTextColor() {
         guard let text = self.titleLabel.text else {return}
         let attributeString = NSMutableAttributedString(string: text)
-        attributeString.addAttribute(.foregroundColor, value: UIColor.pointBlue, range: (text as NSString).range(of: "시작해볼까요?"))
+        attributeString.addAttribute(.foregroundColor, value: UIColor.pointBlue ?? .black, range: (text as NSString).range(of: "시작해볼까요?"))
         self.titleLabel.attributedText = attributeString
     }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

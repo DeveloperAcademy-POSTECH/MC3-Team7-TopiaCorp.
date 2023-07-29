@@ -71,7 +71,7 @@ class SuccessViewController: UIViewController {
     func changeTextColor() {
         guard let text = self.titleLabel.text else {return}
         let attributeString = NSMutableAttributedString(string: text)
-        attributeString.addAttribute(.foregroundColor, value: UIColor.pointBlue, range: (text as NSString).range(of: "잔디가 무럭무럭 자라요"))
+        attributeString.addAttribute(.foregroundColor, value: UIColor.pointBlue ?? .black, range: (text as NSString).range(of: "잔디가 무럭무럭 자라요"))
         self.titleLabel.attributedText = attributeString
     }
     

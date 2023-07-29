@@ -23,6 +23,8 @@ class ZeroPointViewController: UIViewController {
     @IBOutlet weak var setupButton: UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 17)
+        
         titleLabel.text = "나에게 딱 맞는 측정을 위해\n조정이 필요해요"
         titleLabel.font = UIFont.boldSystemFont(ofSize: 28)
         titleLabel.numberOfLines = 0
@@ -38,20 +40,25 @@ class ZeroPointViewController: UIViewController {
         
         descriptionLabel.text = "나중에 설정창에서 재설정 할 수 있어요"
         
-        setupButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 17)
         
         turtleGuideImage.image = UIImage(named: "TurtleGuide")
     }
     func changeTextColor() {
         guard let text = self.titleLabel.text else {return}
         let attributeString = NSMutableAttributedString(string: text)
-        attributeString.addAttribute(.foregroundColor, value: UIColor.pointBlue, range: (text as NSString).range(of: "조정이 필요해요"))
+        attributeString.addAttribute(.foregroundColor, value: UIColor.pointBlue ?? .black, range: (text as NSString).range(of: "조정이 필요해요"))
         self.titleLabel.attributedText = attributeString
     }
     
     @IBAction func SetupPointButton(_ sender: Any) {
         userWeight = currentWeight
         print(userWeight)
+    }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "OnboardingToMainSegue" {
+            // You can use segue.destination to access the destination view controller
+            // and pass any data if needed.
+        }
     }
 }
 
