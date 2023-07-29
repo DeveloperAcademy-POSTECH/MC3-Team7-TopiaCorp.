@@ -53,8 +53,7 @@ class ZeroPointViewController: UIViewController {
     }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "OnboardingToMainSegue" {
-            // You can use segue.destination to access the destination view controller
-            // and pass any data if needed.
+       
         }
     }
 }

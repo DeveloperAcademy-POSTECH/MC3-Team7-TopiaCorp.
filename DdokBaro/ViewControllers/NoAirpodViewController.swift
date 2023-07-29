@@ -39,14 +39,6 @@ class NoAirpodViewController: UIViewController {
         
         turtleAirpodView.play()
         turtleAirpodView.loopMode = .loop
-        
-//        let incircleView = LottieAnimationView(animation: LottieAnimation.named("TurtleAirpod"))
-//        self.view.addSubview(incircleView)
-//        incircleView.frame = self.view.bounds
-//        incircleView.center = self.view.center
-//        incircleView.contentMode = .scaleAspectFit
-//        incircleView.play()
-//        incircleView.loopMode = .loop
     }
     func changeTextColor() {
         guard let text = self.titleLabel.text else {return}

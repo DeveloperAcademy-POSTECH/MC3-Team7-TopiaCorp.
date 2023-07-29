@@ -13,37 +13,40 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
-        let launchedBefore = UserDefaults.standard.bool(forKey: "launchedBefore")
-        print("launchedBefore: \(launchedBefore)")
-        if !launchedBefore {
-            UserDefaults.standard.set(true, forKey: "launchedBefore")
-            let onboardingStoryboard = UIStoryboard(name: "Onboarding", bundle: nil)
-            let noAirpodViewController = onboardingStoryboard.instantiateViewController(withIdentifier: "NoAirpodViewController")
-            let onboarding1ViewController = onboardingStoryboard.instantiateViewController(withIdentifier: "Onboarding1ViewController")
-            let onboarding3ViewController = onboardingStoryboard.instantiateViewController(withIdentifier: "Onboarding3ViewController")
-            let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
-            let zeroPointViewController = mainStoryboard.instantiateViewController(withIdentifier: "ZeroPointViewController")
-            
-            let navigationController = UINavigationController(rootViewController: noAirpodViewController)
-            navigationController.pushViewController(onboarding1ViewController, animated: true)
-            navigationController.pushViewController(onboarding3ViewController, animated: true)
-            navigationController.pushViewController(zeroPointViewController, animated: true)
-            
-            if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
-               let window = windowScene.windows.first {
-                window.rootViewController = navigationController
-                window.makeKeyAndVisible()
-            }
-        } else {
-            let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
-            let welcomeViewController = mainStoryboard.instantiateViewController(withIdentifier: "WelcomeViewController")
-            
-            if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
-               let window = windowScene.windows.first {
-                window.rootViewController = welcomeViewController
-                window.makeKeyAndVisible()
-            }
-        }
+//        let launchedBefore = UserDefaults.standard.bool(forKey: "launchedBefore")
+//        print("launchedBefore: \(launchedBefore)")
+//        if !launchedBefore {
+//            print("First launch - displaying onboarding views")
+//            UserDefaults.standard.set(true, forKey: "launchedBefore")
+//            print("launchedBefore set to true")
+//            let onboardingStoryboard = UIStoryboard(name: "Onboarding", bundle: nil)
+//            let noAirpodViewController = onboardingStoryboard.instantiateViewController(withIdentifier: "NoAirpodViewController")
+//            let onboarding1ViewController = onboardingStoryboard.instantiateViewController(withIdentifier: "Onboarding1ViewController")
+//            let onboarding3ViewController = onboardingStoryboard.instantiateViewController(withIdentifier: "Onboarding3ViewController")
+//            let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
+//            let zeroPointViewController = mainStoryboard.instantiateViewController(withIdentifier: "ZeroPointViewController")
+//            
+//            let navigationController = UINavigationController(rootViewController: noAirpodViewController)
+//            navigationController.pushViewController(onboarding1ViewController, animated: true)
+//            navigationController.pushViewController(onboarding3ViewController, animated: true)
+//            navigationController.pushViewController(zeroPointViewController, animated: true)
+//            
+//            if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
+//               let window = windowScene.windows.first {
+//                window.rootViewController = navigationController
+//                window.makeKeyAndVisible()
+//            }
+//        } else {
+//            print("App already launched before - displaying main view")
+//            let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
+//            let welcomeViewController = mainStoryboard.instantiateViewController(withIdentifier: "WelcomeViewController")
+//            
+//            if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
+//               let window = windowScene.windows.first {
+//                window.rootViewController = welcomeViewController
+//                window.makeKeyAndVisible()
+//            }
+//        }
         
         UNUserNotificationCenter.current().delegate = self
         
