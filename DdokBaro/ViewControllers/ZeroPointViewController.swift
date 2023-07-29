@@ -23,14 +23,11 @@ class ZeroPointViewController: UIViewController {
     @IBOutlet weak var setupButton: UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 17)
         
         titleLabel.text = "나에게 딱 맞는 측정을 위해\n조정이 필요해요"
-        titleLabel.font = UIFont.boldSystemFont(ofSize: 28)
         titleLabel.numberOfLines = 0
         self.changeTextColor()
         
-        middleTitleLabel.font = UIFont.boldSystemFont(ofSize: 22)
         middleTitleLabel.text = "화면을 정면으로 바라보고"
         
         textOne.setupLabelAndButton(view: textOne, systemName: "1.circle.fill", text: " 허리와 어깨를 펴고", imageColor: .pointBlue ?? .blue, textColor: .pointBlue ?? .blue, font: .boldSystemFont(ofSize: 22), pointSize: 28, weight: .bold)

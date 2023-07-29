@@ -9,10 +9,13 @@ import UIKit
 import Lottie
 
 class SuccessViewController: UIViewController {
+    var showhour = "00"
+    var showminute = "00"
+    let labelHour = " 시간 "
+    let labelMinute = " 분"
 
     
     @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var turtleResultImage: UIImageView!
     
     @IBOutlet weak var timeView: UIView!
     
@@ -31,28 +34,24 @@ class SuccessViewController: UIViewController {
     
     
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        titleLabel.font = UIFont.boldSystemFont(ofSize: 28)
         titleLabel.text = "오늘도 바른 자세 유지 성공!\n잔디가 무럭무럭 자라요"
         titleLabel.numberOfLines = 0
         
         timeView.layer.cornerRadius = 14
         waterView.layer.cornerRadius = 14
         
-        
-        let turtleResultA = LottieWrapperView(animationName: "TurtleResultA")
+        let turtleResultA = LottieAnimationView(name: "TurtleResultA")
         self.view.addSubview(turtleResultA)
-        turtleResultA.frame = self.view.bounds
-        turtleResultA.center = self.view.center
+        turtleResultA.frame = CGRect(x: 40, y: 221, width: 300, height: 300)
         turtleResultA.contentMode = .scaleAspectFit
-        turtleResultA.setPlay()
+        turtleResultA.play()
+        turtleResultA.loopMode = .loop
         
         self.view.sendSubviewToBack(turtleResultA)
-        
-        
-        
+    
+
         toGrassButton.titleLabel?.font = UIFont.systemFont(ofSize: 17, weight: .bold)
         toMainButton.titleLabel?.font = UIFont.systemFont(ofSize: 17, weight: .bold)
         
@@ -62,9 +61,6 @@ class SuccessViewController: UIViewController {
        
         
         timeLabel.text = "0시간 0분"
-        timeLabel.font = UIFont.boldSystemFont(ofSize: 28)
-        
-        waterLabel.font = UIFont.boldSystemFont(ofSize: 28)
         
         self.changeTextColor()
     }

@@ -9,10 +9,13 @@ import UIKit
 import Lottie
 
 class FailViewController: UIViewController {
+    var showhour = "00"
+    var showminute = "00"
+    let labelHour = " 시간 "
+    let labelMinute = " 분"
 
     
     @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var turtleResultImage: UIImageView!
     
     @IBOutlet weak var timeView: UIView!
     
@@ -31,19 +34,18 @@ class FailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        titleLabel.font = UIFont.boldSystemFont(ofSize: 28)
         titleLabel.text = "물을 전부 쏟아버렸군요!\n다시 도전해볼까요?"
         titleLabel.numberOfLines = 0
         
         timeView.layer.cornerRadius = 14
         waterView.layer.cornerRadius = 14
         
-        
-        let turtleResultB = LottieWrapperView(animationName: "TurtleResultB")
+        let turtleResultB = LottieAnimationView(name: "TurtleResultB")
         self.view.addSubview(turtleResultB)
-        turtleResultB.frame = self.view.bounds
-        turtleResultB.center = self.view.center
-        turtleResultB.setPlay()
+        turtleResultB.frame = CGRect(x: 40, y: 221, width: 300, height: 300)
+        turtleResultB.contentMode = .scaleAspectFit
+        turtleResultB.play()
+        turtleResultB.loopMode = .loop
         
         self.view.sendSubviewToBack(turtleResultB)
         
