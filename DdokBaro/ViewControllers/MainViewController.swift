@@ -216,6 +216,7 @@ class MainViewController: UIViewController, CMHeadphoneMotionManagerDelegate {
                 self?.animationView2.setProgress(currentProgress: AnimationProgressTime(max(-(pitch - self!.userWeight.0)/40, 0)))
             }
             
+            //
             //만약 목 각도가 정해진 기준 이상이면(notgood - 1단계, bad - 2단계, danger - 3단계)
             if self!.intPitch - self!.userWeight.1 < angle.notgood.rawValue {
                 self?.animationView3.setPlay()
