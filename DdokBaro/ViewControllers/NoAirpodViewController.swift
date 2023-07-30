@@ -10,44 +10,43 @@ import Lottie
 
 class NoAirpodViewController: UIViewController {
     
+    @IBOutlet weak var titleLabel: UILabel!
+    
     @IBOutlet weak var descriptionLabel: UILabel!
     
     @IBOutlet weak var terminateButton: UIButton!
     
     @IBOutlet weak var circleView: UIView!
     
-    @IBOutlet weak var imageView: UIImageView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        circleView.layer.cornerRadius = 130
-        let incircleView = LottieAnimationView(animation: LottieAnimation.named("TurtleAirpod"))
-        self.view.addSubview(incircleView)
-        incircleView.frame = (CGRect(x: 1, y: 1, width: 286, height: 286))
-        incircleView.center = self.view.center
-        incircleView.contentMode = .scaleAspectFit
-        incircleView.play()
-        incircleView.loopMode = .loop
+        navigationController?.isNavigationBarHidden = true
+        titleLabel.text = "에어팟을 연결해주세요"
+        self.changeTextColor()
         
+        circleView.layer.cornerRadius = circleView.bounds.width / 2
         circleView.clipsToBounds = true
-        circleView.setGradient(color1: .white, color2: UIColor(hexCode: "ECF2FF")) //
+        circleView.setGradient(color1: .white, color2: UIColor(hexCode: "ECF2FF"))
+        
+       let turtleAirpodView = LottieAnimationView(name: "TurtleAirpod")
+        
+        turtleAirpodView.contentMode = .scaleAspectFit
+        turtleAirpodView.frame = circleView.bounds
+        
+        circleView.addSubview(turtleAirpodView)
+        
+        turtleAirpodView.play()
+        turtleAirpodView.loopMode = .loop
     }
-    
-//    static func viewController() -> UIViewController {
-//
-//        guard let vc = UIStoryboard(name: "Onboarding", bundle: .main).instantiateViewController(withIdentifier: "NoAirpodViewController") as? NoAirpodViewController else {
-//
-//            print("Hello")
-//            return UIViewController()
-//        }
-//
-//        print("Hello")
-//
-//        return vc
-//
-//    }
+    func changeTextColor() {
+        guard let text = self.titleLabel.text else {return}
+        let attributeString = NSMutableAttributedString(string: text)
+        attributeString.addAttribute(.foregroundColor, value: UIColor.pointBlue ?? .black, range: (text as NSString).range(of: "에어팟"))
+        self.titleLabel.attributedText = attributeString
+    }
 }
-
 extension UIView {
     func setGradient(color1:UIColor,color2:UIColor){
         

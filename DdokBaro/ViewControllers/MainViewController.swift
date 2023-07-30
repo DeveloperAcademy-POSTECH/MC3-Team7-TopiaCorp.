@@ -13,6 +13,9 @@ import Lottie
 import UserNotifications
 
 
+var currentWeight = (0.0, 0) // 현재 측정 각도
+var userWeight = (0.0, 0) // 사용자 설정 가중치
+
 class MainViewController: UIViewController, CMHeadphoneMotionManagerDelegate {
     var showhour = "00"
     var showminute = "00"
@@ -27,6 +30,7 @@ class MainViewController: UIViewController, CMHeadphoneMotionManagerDelegate {
     
     var currentWeight = (0.0, 0) // 현재 측정 각도
     var userWeight = (0.0, 0) // 사용자 설정 가중치
+
     
     let screenWidth = UIScreen.main.bounds.size.width
     let waterWaveView = WaterWaveView()
@@ -213,18 +217,18 @@ class MainViewController: UIViewController, CMHeadphoneMotionManagerDelegate {
                 self?.animationView2.setProgress(currentProgress: AnimationProgressTime(0))
             }
             else {
-                self?.animationView2.setProgress(currentProgress: AnimationProgressTime(max(-(pitch - self!.userWeight.0)/40, 0)))
+                self?.animationView2.setProgress(currentProgress: AnimationProgressTime(max(-(pitch - userWeight.0)/40, 0)))
             }
-            
-            //
-            //만약 목 각도가 정해진 기준 이상이면(notgood - 1단계, bad - 2단계, danger - 3단계)
-            if self!.intPitch - self!.userWeight.1 < angle.notgood.rawValue {
+                                  
+        //만약 목 각도가 정해진 기준 이상이면(notgood - 1단계, bad - 2단계, danger - 3단계)
+            if self!.intPitch - userWeight.1 < angle.notgood.rawValue {
+
                 self?.animationView3.setPlay()
                 
                 self!.currentProgress -= self!.dropWhenBad * 0.00001
                 self!.waterWaveView.setupProgress(self!.currentProgress)
                 
-                if self!.intPitch - self!.userWeight.1 < angle.bad.rawValue {
+                if self!.intPitch - userWeight.1 < angle.bad.rawValue {
                     self?.animationView3.setStop()
                     self?.animationView4.setPlay()
                     

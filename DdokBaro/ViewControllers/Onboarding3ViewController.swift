@@ -6,40 +6,42 @@
 //
 
 import UIKit
+import Lottie
 
 class Onboarding3ViewController: UIViewController {
-
     
-    @IBOutlet weak var descriptionLabel4: UILabel!
-    @IBOutlet weak var imageView4: UIImageView!
+    @IBOutlet weak var titleLabel: UILabel!
     
-    @IBOutlet weak var nextButton2: UIButton!
+    @IBOutlet weak var descriptionLabel: UILabel!
+    
+    @IBOutlet weak var turtleImage: UIImageView!
+    @IBOutlet weak var nextButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupCircleView()
+        navigationController?.isNavigationBarHidden = true
         
-        // Do any additional setup after loading the view.
-        func setupCircleView() {
-            let incircleView4 = UIImageView(image: UIImage(named: "Grass"))
-            incircleView4.contentMode = .scaleAspectFit
-            incircleView4.translatesAutoresizingMaskIntoConstraints = false
-            self.view.addSubview(incircleView4)
-            //circleView3.layer.cornerRadius = 130
-            let imageSize: CGFloat = 260
-            let imageFrame = CGRect(x: 0, y: 0, width: imageSize, height: imageSize)
-            
-            // Add constraints to center the image view
-            NSLayoutConstraint.activate([
-                incircleView4.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
-                incircleView4.centerYAnchor.constraint(equalTo: self.view.centerYAnchor),
-                incircleView4.widthAnchor.constraint(equalToConstant: imageSize),
-                incircleView4.heightAnchor.constraint(equalToConstant: imageSize)
-            ])
-            
-//            circleView3.clipsToBounds = true
-//            circleView3.setGradient(color1: .white, color2: UIColor(hexCode: "ECF2FF"))
+        titleLabel.text = "매일매일\n잔디에 물을 주어요"
+        titleLabel.numberOfLines = 0
+        descriptionLabel.text = "바른 자세로 지킨 양동이의 물은\n잔디가 무럭무럭 자라게 해요"
+        descriptionLabel.numberOfLines = 0
+        changeTextColor()
+        
+        turtleImage.image = UIImage(named: "Grass")
+    }
+    func changeTextColor() {
+        guard let text = self.titleLabel.text else {return}
+        let attributeString = NSMutableAttributedString(string: text)
+        attributeString.addAttribute(.foregroundColor, value: UIColor.pointBlue ?? .black, range: (text as NSString).range(of: "매일매일"))
+        self.titleLabel.attributedText = attributeString
+    }
+    
+    @IBAction func goToZeroButton(_ sender: Any) {
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            if let zeroPointViewController = storyboard.instantiateViewController(withIdentifier: "ZeroPointViewController") as? ZeroPointViewController {
+                // Perform the segue programmatically
+                navigationController?.pushViewController(zeroPointViewController, animated: true)
+            }
         }
     }
-}
-            
+
