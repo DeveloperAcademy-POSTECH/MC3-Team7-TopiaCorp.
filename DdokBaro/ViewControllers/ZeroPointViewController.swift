@@ -52,6 +52,7 @@ class ZeroPointViewController: UIViewController {
         userWeight = currentWeight
         print(userWeight)
     }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "OnboardingToMainSegue" {
        
