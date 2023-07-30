@@ -9,30 +9,18 @@ import UIKit
 import Lottie
 
 class ViewController: UIViewController {
-    private let animationView: LottieAnimationView = {
-        let lottieAnimationView = LottieAnimationView(name: "DdokLogo")
-        return lottieAnimationView
-    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // 1
-        view.addSubview(animationView)
-
-        // 2
-        animationView.frame = view.bounds
-        animationView.center = view.center
-        animationView.alpha = 1
-
-        // 3
-        animationView.play { _ in
-          UIView.animate(withDuration: 0.3, animations: {
-            self.animationView.alpha = 0
-          }, completion: { _ in
-            self.animationView.isHidden = true
-            self.animationView.removeFromSuperview()
-          })
-        }
+        
+        let launchView = LottieAnimationView(name: "DdokLogo")
+        self.view.addSubview(launchView)
+        launchView.frame = CGRect(x: 80, y: 391, width: 231, height: 63)
+        launchView.contentMode = .scaleAspectFit
+        launchView.play()
+        launchView.loopMode = .loop
+        print("런치")
+        
     }
 }
     
