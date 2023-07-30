@@ -7,6 +7,7 @@
 
 import Foundation
 import AVFoundation
+import AudioToolbox
 
 private var player: AVAudioPlayer?
 
@@ -43,4 +44,8 @@ func stopSound() {
     }
 }
 
-
+func zeroSound() {
+    let soundID: SystemSoundID = 1000 // 1000은 표준 사운드
+    
+    AudioServicesPlaySystemSound(soundID)
+}

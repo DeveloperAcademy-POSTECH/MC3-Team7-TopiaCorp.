@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import UserNotifications
 
 let screenWidth = UIScreen.main.bounds.size.width
 
@@ -27,6 +28,11 @@ class WaterWaveView: UIView {
     
     var progress: CGFloat = 0.0
     var waveHeight: CGFloat = 0.0
+    
+    var check50:Bool = true
+    var check20:Bool = true
+    var check10:Bool = true
+    var check0:Bool = false
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -113,7 +119,43 @@ extension WaterWaveView {
         progress = pr
         percentLabel.text = "\(Int(100 * progress))L"
         percentLabel.textColor = .white
-        
+        if Int(100 * progress) == 50 {
+            if check50 == true {
+                NotificationManager().scheduleNotification50()
+                check50 = false
+                check0 = true
+            }
+            else{
+                
+            }
+        }
+        if Int(100 * progress) == 20 {
+            if check20 == true {
+                NotificationManager().scheduleNotification20()
+                check20 = false
+            }
+            else{
+                
+            }
+        }
+        if Int(100 * progress) == 10 {
+            if check10 == true {
+                NotificationManager().scheduleNotification10()
+                check10 = false
+            }
+            else{
+                
+            }
+        }
+        if Int(100 * progress) == 0 {
+            if check0 == true {
+                NotificationManager().scheduleNotification0()
+                check0 = false
+            }
+            else{
+                
+            }
+        }
         let top: CGFloat = pr * bounds.size.height
         //print(top)
         firstWave.setValue((width - top + 72) * 0.6, forKeyPath: "position.y")
