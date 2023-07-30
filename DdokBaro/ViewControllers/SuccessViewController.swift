@@ -33,6 +33,7 @@ class SuccessViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.setGradient3(color1: .white, color2: UIColor(hexCode: "ECF3FF"))
         titleLabel.text = "오늘도 바른 자세 유지 성공!\n잔디가 무럭무럭 자라요"
         titleLabel.numberOfLines = 0
         

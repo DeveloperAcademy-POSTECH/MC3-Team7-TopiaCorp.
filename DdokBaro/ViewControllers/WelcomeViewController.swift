@@ -29,6 +29,7 @@ class WelcomeViewController: UIViewController {
 //        navigationController?.isNavigationBarHidden = true
 //        let backBarButtonItem = UIBarButtonItem(title: "자세 측정", style: .plain, target: self, action: nil)
 //        self.navigationItem.backBarButtonItem = backBarButtonItem
+        view.setGradient3(color1: .white, color2: UIColor(hexCode: "ECF3FF"))
         
         chartButton.circleButton = true
         chartButton.setImage(UIImage(systemName: "chart.bar.xaxis"), for: .normal)
@@ -66,7 +67,11 @@ class WelcomeViewController: UIViewController {
 //            navigationController?.pushViewController(settingViewController, animated: true)
 //        }
 //    }
-
+    
+    @IBAction func GoToMain(_ sender: UIButton) {
+        timer.invalidate()
+    }
+    
     func changeTextColor() {
         guard let text = self.titleLabel.text else {return}
         let attributeString = NSMutableAttributedString(string: text)
@@ -86,14 +91,19 @@ class WelcomeViewController: UIViewController {
         startTime = Date()
         timer = Timer.scheduledTimer(timeInterval: 0.01, target: self,selector: #selector(updateTimer),userInfo: nil, repeats: true)
         RunLoop.current.add(timer,forMode: .common)
+        print("Welcome시작")
+        print(accumulatedTime)
     }
     
     @objc private func updateTimer(){
         let currentTime = Date()
-        let elapsedTime = accumulatedTime + currentTime.timeIntervalSince(startTime)
+        var elapsedTime: Double = 0.0
+        elapsedTime = accumulatedTime + currentTime.timeIntervalSince(startTime)
         
         _ = Int(elapsedTime / 60)
         _ = Int((elapsedTime).truncatingRemainder(dividingBy: 60))
+        print("welcomeview")
+        print(elapsedTime)
     }
 }
 extension UIButton {

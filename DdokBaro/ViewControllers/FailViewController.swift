@@ -30,6 +30,7 @@ class FailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.setGradient3(color1: .white, color2: UIColor(hexCode: "ECF3FF"))
         titleLabel.text = "물을 전부 쏟아버렸군요!\n다시 도전해볼까요?"
         titleLabel.numberOfLines = 0
         

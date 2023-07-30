@@ -213,7 +213,7 @@ class MainViewController: UIViewController, CMHeadphoneMotionManagerDelegate {
         let pitch = degrees(motion.attitude.pitch)
         intPitch = degreeInt(pitch)
         currentWeight = (pitch, degreeInt(pitch))
-        print(intPitch)
+//        print(intPitch)
         DispatchQueue.main.async { [weak self] in
             if pitch > 0 {
                 self?.animationView2.setProgress(currentProgress: AnimationProgressTime(0))

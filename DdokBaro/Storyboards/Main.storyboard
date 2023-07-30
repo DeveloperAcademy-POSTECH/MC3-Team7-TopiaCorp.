@@ -35,6 +35,7 @@
                                     <fontDescription key="titleFontDescription" name="AppleSDGothicNeo-Bold" family="Apple SD Gothic Neo" pointSize="17"/>
                                 </buttonConfiguration>
                                 <connections>
+                                    <action selector="GoToMain:" destination="dFi-qe-lHF" eventType="touchUpInside" id="6vF-u9-hoH"/>
                                     <action selector="timerStartButton:" destination="dFi-qe-lHF" eventType="touchUpInside" id="qHX-ec-NHC"/>
                                     <segue destination="7HS-jg-uuU" kind="show" identifier="startStopwatchSegue" id="kQ4-O9-iCB"/>
                                 </connections>
@@ -234,7 +235,7 @@
                             </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="gqu-ET-SEo"/>
-                        <color key="backgroundColor" red="0.94509803920000002" green="0.96470588239999999" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </view>
                     <navigationItem key="navigationItem" id="CDD-GE-FeC"/>
                     <connections>
@@ -498,7 +499,7 @@
                             </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="OWY-Sf-LcK"/>
-                        <color key="backgroundColor" red="0.94509803920000002" green="0.96470588239999999" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </view>
                     <navigationItem key="navigationItem" id="ns9-dk-dPT"/>
                     <connections>
@@ -564,7 +565,7 @@
                                 </buttonConfiguration>
                                 <connections>
                                     <action selector="SetupPointButton:" destination="kpM-3F-nlH" eventType="touchUpInside" id="FBa-20-He6"/>
-                                    <segue destination="dFi-qe-lHF" kind="show" id="scS-8T-ymx"/>
+                                    <segue destination="dFi-qe-lHF" kind="show" identifier="ToWelcomeSegue" id="scS-8T-ymx"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aBc-qm-a8q">

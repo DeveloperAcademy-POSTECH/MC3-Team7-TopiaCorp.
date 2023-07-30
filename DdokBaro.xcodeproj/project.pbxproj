@@ -36,6 +36,7 @@
 		B9CC5EBC2A7574080055151C /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9CC5EBB2A7574080055151C /* Storage.swift */; };
 		B9CC5EBE2A758ECF0055151C /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9CC5EBD2A758ECF0055151C /* SettingViewController.swift */; };
 		B9F658DA2A76952000AFC4D6 /* RightPostureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9F658D92A76952000AFC4D6 /* RightPostureViewController.swift */; };
+		B9F658DC2A76A72000AFC4D6 /* DdokLogo.json in Resources */ = {isa = PBXBuildFile; fileRef = B9F658DB2A76A71F00AFC4D6 /* DdokLogo.json */; };
 		D329808D2A60DB9B004C2632 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D329808C2A60DB9B004C2632 /* Main.storyboard */; };
 		D35DFA262A5F7E7B0043B644 /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D35DFA252A5F7E7B0043B644 /* TestViewController.swift */; };
 		D35DFA282A5F7F100043B644 /* TimerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D35DFA272A5F7F100043B644 /* TimerViewController.swift */; };
@@ -109,6 +110,7 @@
 		B9CC5EBB2A7574080055151C /* Storage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storage.swift; sourceTree = "<group>"; };
 		B9CC5EBD2A758ECF0055151C /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		B9F658D92A76952000AFC4D6 /* RightPostureViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RightPostureViewController.swift; sourceTree = "<group>"; };
+		B9F658DB2A76A71F00AFC4D6 /* DdokLogo.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = DdokLogo.json; sourceTree = "<group>"; };
 		D329808C2A60DB9B004C2632 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		D35DFA252A5F7E7B0043B644 /* TestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestViewController.swift; sourceTree = "<group>"; };
 		D35DFA272A5F7F100043B644 /* TimerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerViewController.swift; sourceTree = "<group>"; };
@@ -180,6 +182,7 @@
 		0E5CC5492A69492300A3903F /* Lottie */ = {
 			isa = PBXGroup;
 			children = (
+				B9F658DB2A76A71F00AFC4D6 /* DdokLogo.json */,
 				0E8342212A66191D00922168 /* TurtleBody.json */,
 				B99E21B92A7381BD0064F81F /* TurtleResultA.json */,
 				0E8342232A66212C00922168 /* TurtleHead.json */,
@@ -437,6 +440,7 @@
 				0E5CC5772A6E15D200A3903F /* Drop2.mp3 in Resources */,
 				0E5CC54D2A694AC000A3903F /* Rain.mp3 in Resources */,
 				D38DFAE62A5CE0AC0041C6E4 /* LaunchScreen.storyboard in Resources */,
+				B9F658DC2A76A72000AFC4D6 /* DdokLogo.json in Resources */,
 				B99E21BA2A7381BD0064F81F /* TurtleResultA.json in Resources */,
 				D38DFAE32A5CE0AC0041C6E4 /* Assets.xcassets in Resources */,
 			);

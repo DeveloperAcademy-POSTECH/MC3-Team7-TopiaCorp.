@@ -21,10 +21,13 @@ class ZeroPointViewController: UIViewController {
     
     @IBOutlet weak var textTwo: UILabel!
     @IBOutlet weak var setupButton: UIButton!
+    
+    var airPodCheck:Bool = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.isNavigationBarHidden = true
-        
+
         titleLabel.text = "나에게 딱 맞는 측정을 위해\n조정이 필요해요"
         titleLabel.numberOfLines = 0
         self.changeTextColor()
@@ -57,6 +60,12 @@ class ZeroPointViewController: UIViewController {
         if segue.identifier == "OnboardingToMainSegue" {
        
         }
+    }
+    override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
+        if identifier == "ToWelcomeSegue" && !airPodCheck {
+            return false
+        }
+        return true
     }
 }
 
