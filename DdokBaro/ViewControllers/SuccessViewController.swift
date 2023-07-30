@@ -21,11 +21,8 @@ class SuccessViewController: UIViewController {
     
     @IBOutlet weak var waterView: UIView!
     
-    @IBOutlet weak var toGrassButton: UIButton!
-    
-    @IBOutlet weak var toMainButton: UIButton!
-    
     @IBOutlet weak var timeSubLabel: UILabel!
+    
     @IBOutlet weak var waterSubLabel: UILabel!
     
     @IBOutlet weak var timeLabel: UILabel!
@@ -51,10 +48,6 @@ class SuccessViewController: UIViewController {
         
         self.view.sendSubviewToBack(turtleResultA)
     
-
-        toGrassButton.titleLabel?.font = UIFont.systemFont(ofSize: 17, weight: .bold)
-        toMainButton.titleLabel?.font = UIFont.systemFont(ofSize: 17, weight: .bold)
-        
         timeSubLabel.setupLabelAndButton(view: timeSubLabel, systemName: "clock.fill", text: " 작업 시간", imageColor: .black, textColor: .black, font: .boldSystemFont(ofSize: 15), pointSize: 15, weight: .bold)
         
         waterSubLabel.setupLabelAndButton(view: waterSubLabel, systemName: "drop.fill", text: " 지켜낸 물", imageColor: .pointBlue ?? .blue, textColor: .pointBlue ?? .blue, font: .boldSystemFont(ofSize: 15), pointSize: 15, weight: .bold)

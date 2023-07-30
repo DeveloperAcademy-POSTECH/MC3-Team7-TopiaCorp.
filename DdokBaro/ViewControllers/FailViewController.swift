@@ -21,9 +21,6 @@ class FailViewController: UIViewController {
     
     @IBOutlet weak var waterView: UIView!
     
-
-    @IBOutlet weak var toMainButton: UIButton!
-    
     @IBOutlet weak var timeSubLabel: UILabel!
     @IBOutlet weak var waterSubLabel: UILabel!
     
@@ -65,19 +62,4 @@ class FailViewController: UIViewController {
         attributeString.addAttribute(.foregroundColor, value: UIColor.pointBlue ?? .black, range: (text as NSString).range(of: "다시 도전해볼까요?"))
         self.titleLabel.attributedText = attributeString
     }
-    
-    @IBAction func goToMainButton(_ sender: UIButton) {
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        if let welcomeViewController = storyboard.instantiateViewController(withIdentifier: "WelcomeViewController") as? WelcomeViewController {
-            navigationController?.pushViewController(welcomeViewController, animated: true)
-        }
-    }
-    
-    @IBAction func goToZeroPoint(_ sender: UIButton) {
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        if let zeroPointViewController = storyboard.instantiateViewController(withIdentifier: "ZeroPointViewController") as? ZeroPointViewController {
-            navigationController?.pushViewController(zeroPointViewController, animated: true)
-        }
-    }
-    
 }
