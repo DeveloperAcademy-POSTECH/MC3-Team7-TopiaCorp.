@@ -401,7 +401,7 @@ private func startTimer() {
         formatter.dateFormat = "yyyy-MM-dd-E"
         formatter.locale = Locale(identifier: "ko_kr")
         formatter.timeZone = TimeZone(abbreviation: "KST")
-        var today = formatter.string(from: Date())
+        let today = formatter.string(from: Date())
         
         do {
             let data = try context.fetch(DdokBaroData.fetchRequest())
@@ -410,33 +410,11 @@ private func startTimer() {
                     context.delete(datum)
                 }
             }
+
             let newData = DdokBaroData(context: context)
             newData.createdAt = today
             newData.remainWater = Int16(50)
             newData.totalTime = 100
-
-            do {
-                try context.save()
-            } catch {
-                // error
-            }
-        } catch {
-            // error
-        }
-        
-        do {
-            let data = try context.fetch(GrassGraphData.fetchRequest())
-            today.removeLast()
-            today.removeLast()
-            
-            for datum in data {
-                if datum.createdAt == today {
-                    context.delete(datum)
-                }
-            }
-            let newData = GrassGraphData(context: context)
-            newData.createdAt = today
-            newData.grassLevel = Int16(3.9 * currentProgress + 1)
 
             do {
                 try context.save()

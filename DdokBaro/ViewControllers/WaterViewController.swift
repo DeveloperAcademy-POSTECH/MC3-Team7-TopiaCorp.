@@ -8,13 +8,10 @@
 import UIKit
 
 class WaterViewController: UIViewController {
-    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        
-        getAllData()
         
         let width = Int(screenWidth) / 2 + 128
         for i in 0..<17 {
@@ -39,19 +36,6 @@ class WaterViewController: UIViewController {
         let today = formatter.string(from: Date())
         
         return day.firstIndex(of: today)!
-    }
-    
-    func getAllData() {
-        do {
-            let data = try context.fetch(GrassGraphData.fetchRequest())
-            print(data)
-            
-            for datum in data {
-                print(datum.createdAt, datum.grassLevel)
-            }
-        } catch {
-            // error
-        }
     }
 }
 

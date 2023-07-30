@@ -5,8 +5,4 @@
         <attribute name="remainWater" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="totalTime" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
     </entity>
-    <entity name="GrassGraphData" representedClassName="GrassGraphData" syncable="YES">
-        <attribute name="createdAt" attributeType="String" defaultValueString=""/>
-        <attribute name="grassLevel" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
-    </entity>
 </model>
