@@ -6,12 +6,16 @@
 //
 
 import UIKit
+import Lottie
 
 class SuccessViewController: UIViewController {
+    var showhour = "00"
+    var showminute = "00"
+    let labelHour = " 시간 "
+    let labelMinute = " 분"
 
     
     @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var turtleResultImage: UIImageView!
     
     @IBOutlet weak var timeView: UIView!
     
@@ -30,27 +34,24 @@ class SuccessViewController: UIViewController {
     
     
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        titleLabel.font = UIFont.boldSystemFont(ofSize: 28)
         titleLabel.text = "오늘도 바른 자세 유지 성공!\n잔디가 무럭무럭 자라요"
         titleLabel.numberOfLines = 0
         
         timeView.layer.cornerRadius = 14
         waterView.layer.cornerRadius = 14
         
-        
-        let turtleResultA = LottieWrapperView(animationName: "turtleResultA")
+        let turtleResultA = LottieAnimationView(name: "TurtleResultA")
         self.view.addSubview(turtleResultA)
-        turtleResultA.frame = self.view.bounds
-        turtleResultA.center = self.view.center
-        turtleResultA.setPlay()
+        turtleResultA.frame = CGRect(x: 45, y: 181, width: 300, height: 300)
+        turtleResultA.contentMode = .scaleAspectFit
+        turtleResultA.play()
+        turtleResultA.loopMode = .loop
         
         self.view.sendSubviewToBack(turtleResultA)
-        
-        
-        
+    
+
         toGrassButton.titleLabel?.font = UIFont.systemFont(ofSize: 17, weight: .bold)
         toMainButton.titleLabel?.font = UIFont.systemFont(ofSize: 17, weight: .bold)
         
@@ -58,20 +59,30 @@ class SuccessViewController: UIViewController {
         
         waterSubLabel.setupLabelAndButton(view: waterSubLabel, systemName: "drop.fill", text: " 지켜낸 물", imageColor: .pointBlue ?? .blue, textColor: .pointBlue ?? .blue, font: .boldSystemFont(ofSize: 15), pointSize: 15, weight: .bold)
        
-        
-        timeLabel.text = "0시간 0분"
-        timeLabel.font = UIFont.boldSystemFont(ofSize: 28)
-        
-        waterLabel.font = UIFont.boldSystemFont(ofSize: 28)
+        let savedTime = UserDefaults.standard.double(forKey: "accumulatedTime")
+        let hour = Int(savedTime / 3600)
+        let minute = Int((savedTime / 60).truncatingRemainder(dividingBy: 60))
+        let formattedTime = String(format: "%02d:%02d", hour, minute)
+        timeLabel.text = formattedTime
+//        timeLabel.text = "0시간 0분"
         
         self.changeTextColor()
     }
     func changeTextColor() {
         guard let text = self.titleLabel.text else {return}
         let attributeString = NSMutableAttributedString(string: text)
-        attributeString.addAttribute(.foregroundColor, value: UIColor.pointBlue, range: (text as NSString).range(of: "잔디가 무럭무럭 자라요"))
+        attributeString.addAttribute(.foregroundColor, value: UIColor.pointBlue ?? .black, range: (text as NSString).range(of: "잔디가 무럭무럭 자라요"))
         self.titleLabel.attributedText = attributeString
     }
     
+    @IBAction func goToMainButton(_ sender: UIButton) {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        if let welcomeViewController = storyboard.instantiateViewController(withIdentifier: "WelcomeViewController") as? WelcomeViewController {
+            // Perform the segue programmatically
+            navigationController?.pushViewController(welcomeViewController, animated: true)
+        }
+        
+        
+    }
 }
 
