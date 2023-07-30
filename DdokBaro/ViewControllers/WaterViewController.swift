@@ -8,54 +8,34 @@
 import UIKit
 
 class WaterViewController: UIViewController {
-    let screenWidth = UIScreen.main.bounds.size.width
-    
-    let waterWaveView = WaterWaveView()
-    
-    var currentProgress: CGFloat = 0.5
-    @IBAction func waterWaveSlider(_ sender: UISlider) {
-        currentProgress = CGFloat(sender.value)
-        self.waterWaveView.setupProgress(currentProgress)
-    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         
-        view.addSubview(waterWaveView)
-        waterWaveView.setupProgress(waterWaveView.progress)
-        
-        NSLayoutConstraint.activate([
-            waterWaveView.widthAnchor.constraint(equalToConstant: screenWidth * 0.5),
-            waterWaveView.heightAnchor.constraint(equalToConstant: screenWidth * 0.5),
-            waterWaveView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            waterWaveView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
-        ])
-        
-        let totalPath = UIBezierPath()
-
-        let width = screenWidth*0.5
-        let height = screenWidth*0.5
-
-        let center = CGPoint(x: width / 2, y: height / 2)
-        let startPoint = CGPoint(x: width / 2, y: height / 20)
-
-        totalPath.move(to: startPoint)
-        totalPath.addArc(withCenter: center, radius: width * 9 / (20 * sqrt(2.0)),
-                       startAngle: 5 * (.pi / 4), endAngle: 7 * (.pi / 4), clockwise: false)
-        totalPath.addLine(to: startPoint)
-        totalPath.close()
-
-        let maskLayer = CAShapeLayer()
-        maskLayer.path = totalPath.cgPath
-        waterWaveView.layer.mask = maskLayer
+        let width = Int(screenWidth) / 2 + 128
+        for i in 0..<17 {
+            for j in 0..<7 {
+//                let grassGraphView = GrassGraphView(frame: CGRect(x: 306 - (18 * i), y: 108 - (18 * j), width: 15, height: 15))
+                let grassGraphView = GrassGraphView(frame: CGRect(x: width - (18 * i), y: 300 + 108 - (18 * j), width: 15, height: 15), level: 0)
+                view.addSubview(grassGraphView)
+            }
+        }
+        for i in 0...getDayOfWeek() {
+            let grassGraphView = GrassGraphView(frame: CGRect(x: width + 18, y: 300 + 18 * (getDayOfWeek() - i), width: 15, height: 15), level: 3)
+            view.addSubview(grassGraphView)
+        }
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        self.waterWaveView.setupProgress(currentProgress)
+    func getDayOfWeek() -> Int {
+        let day = ["일", "월", "화", "수", "목", "금", "토"]
+        let formatter = DateFormatter()
+        formatter.dateFormat = "E"
+        formatter.locale = Locale(identifier: "ko_kr")
+        formatter.timeZone = TimeZone(abbreviation: "KST")
+        let today = formatter.string(from: Date())
+        
+        return day.firstIndex(of: today)!
     }
-
-
 }
 

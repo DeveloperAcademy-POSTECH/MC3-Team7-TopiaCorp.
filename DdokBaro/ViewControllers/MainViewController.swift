@@ -17,6 +17,8 @@ var userWeight = (0.0, 0) // 사용자 설정 가중치
 var intPitch: Int = 0
 
 class MainViewController: UIViewController, CMHeadphoneMotionManagerDelegate {
+    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    
     var showhour = "00"
     var showminute = "00"
     let labelHour = " 시간 "
@@ -25,7 +27,7 @@ class MainViewController: UIViewController, CMHeadphoneMotionManagerDelegate {
     var timer = Timer()
     var startTime = Date()
     var isPaused: Bool = false
-    var accumulatedTime: TimeInterval = 0.0
+    var accumulatedTime = 0.0
     var notFirstConnect:Bool = false
     
 //    var currentWeight = (0.0, 0) // 현재 측정 각도
@@ -99,7 +101,8 @@ class MainViewController: UIViewController, CMHeadphoneMotionManagerDelegate {
         self.view.addSubview(backGroundColor)
         self.view.sendSubviewToBack(backGroundColor)
         
-        // timer view controller
+        getAllData()
+        
         let circleView = CircleViewController()
         
         titleLabel.font = UIFont.boldSystemFont(ofSize: 28)
@@ -309,6 +312,7 @@ class MainViewController: UIViewController, CMHeadphoneMotionManagerDelegate {
             isPaused = false
             startPauseButton.setupLabelAndButton(view: startPauseButton, systemName: "pause.circle.fill", text: " 일시 정지", imageColor: .white, textColor: .white, font: UIFont.boldSystemFont(ofSize: 17) , pointSize: 17, weight: .bold)
             audioPlayer.play()
+            createData()
         } else {
             animationView1.setStop()
             
@@ -341,18 +345,18 @@ class MainViewController: UIViewController, CMHeadphoneMotionManagerDelegate {
             isPaused = true
             startPauseButton.setupLabelAndButton(view: startPauseButton, systemName: "pause.circle.fill", text: " 다시 시작", imageColor: .white, textColor: .white, font: UIFont.boldSystemFont(ofSize: 17) , pointSize: 17, weight: .bold)
             audioPlayer.pause()
+            createData()
         }
     }
     
     @IBAction func resetTapped(_ sender: UIButton) {
         self.timer.invalidate()
-        showhour = "00"
-        showminute = "00"
+        accumulatedTime += Date().timeIntervalSince(startTime)
         timeLabel.setupLabelAndButton(view: timeLabel, systemName: "clock", text: emptyString + showhour + labelHour + showminute + labelMinute, imageColor: .pointBlue ?? .black, textColor: .pointBlue ?? .black, font: .boldSystemFont(ofSize: 28), pointSize: 28, weight: .bold)
         startPauseButton.setupLabelAndButton(view: startPauseButton, systemName: "pause.circle.fill", text: " 다시 시작", imageColor: .white, textColor: .white, font: UIFont.boldSystemFont(ofSize: 17), pointSize: 17, weight: .bold)
         self.startTime = Date()
         isPaused = true
-        accumulatedTime = 0.0
+        createData()
     }
     
     @objc private func updateTimer(){
@@ -540,12 +544,66 @@ class MainViewController: UIViewController, CMHeadphoneMotionManagerDelegate {
 //        userWeight = currentWeight
 //    }
     
-//    override func motionEnded(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
-//        if event?.subtype == .motionShake {
-//            setUserWeight(currentWeight: currentWeight)
-//            //print("shake: \(userWeight)")
-//        }
-//    }
+    func getAllData() {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd"
+        formatter.locale = Locale(identifier: "ko_kr")
+        formatter.timeZone = TimeZone(abbreviation: "KST")
+        let today = formatter.string(from: Date())
+        print(today)
+        
+        do {
+            let data = try context.fetch(DdokBaroData.fetchRequest())
+            print(data)
+            for datum in data {
+                if datum.createdAt == today {
+                    print(datum.remainWater)
+                    currentProgress = CGFloat(datum.remainWater) * 0.01
+                    accumulatedTime = Double(datum.totalTime)
+                }
+            }
+        } catch {
+            // error
+        }
+    }
+
+    func createData() {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd"
+        formatter.locale = Locale(identifier: "ko_kr")
+        formatter.timeZone = TimeZone(abbreviation: "KST")
+        let today = formatter.string(from: Date())
+        
+        do {
+            let data = try context.fetch(DdokBaroData.fetchRequest())
+            for datum in data {
+                if datum.createdAt == today {
+                    context.delete(datum)
+                }
+            }
+
+            let newData = DdokBaroData(context: context)
+            newData.createdAt = today
+            newData.remainWater = Int16(currentProgress * 100)
+            newData.totalTime = Int16(accumulatedTime)
+            print(newData)
+
+            do {
+                try context.save()
+            } catch {
+                // error
+            }
+        } catch {
+            // error
+        }
+    }
+
+    override func motionEnded(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
+        if event?.subtype == .motionShake {
+            setUserWeight(currentWeight: currentWeight)
+            //print("shake: \(userWeight)")
+        }
+    }
     
     override func motionCancelled(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
         //print("motionCancelled")
