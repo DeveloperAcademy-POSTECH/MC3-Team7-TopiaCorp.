@@ -142,10 +142,10 @@ class MotionViewController: UIViewController, CMHeadphoneMotionManagerDelegate {
             
             //만약 목 각도가 정해진 기준 이상이면(notgood - 1단계, bad - 2단계, danger - 3단계)
             if self!.intPitch < angle.notgood.rawValue {
-                self?.animationView3.play()
+                //self?.animationView3.play()
                 
                 if self!.intPitch < angle.bad.rawValue {
-                    self?.animationView3.stop()
+                    //self?.animationView3.stop()
                     self?.animationView4.play()
                     
                     if self!.intPitch < angle.danger.rawValue {
