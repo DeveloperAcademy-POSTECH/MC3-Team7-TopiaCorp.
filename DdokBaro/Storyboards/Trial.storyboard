@@ -70,15 +70,6 @@
                     <view key="view" contentMode="scaleToFill" id="26L-FK-n77">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="y5n-0y-0Y0">
-                                <rect key="frame" x="75" y="685" width="242" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <connections>
-                                    <action selector="waterWaveSlider:" destination="m6O-oS-lJR" eventType="valueChanged" id="ThU-YX-hMZ"/>
-                                </connections>
-                            </slider>
-                        </subviews>
                         <viewLayoutGuide key="safeArea" id="nZ5-Kw-Vqx"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>

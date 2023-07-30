@@ -29,7 +29,7 @@ class MainViewController: UIViewController, CMHeadphoneMotionManagerDelegate {
     var timer = Timer()
     var startTime = Date()
     var isPaused: Bool = false
-    var accumulatedTime: TimeInterval = 0.0
+    var accumulatedTime = 0.0
     
     var currentWeight = (0.0, 0) // 현재 측정 각도
     var userWeight = (0.0, 0) // 사용자 설정 가중치
@@ -76,7 +76,9 @@ class MainViewController: UIViewController, CMHeadphoneMotionManagerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // timer view controller
+        getAllData()
+        createData()
+        
         let circleView = CircleViewController()
         
         titleLabel.font = UIFont.boldSystemFont(ofSize: 28)
@@ -371,6 +373,59 @@ private func startTimer() {
         userWeight = currentWeight
     }
     
+    func getAllData() {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd-E"
+        formatter.locale = Locale(identifier: "ko_kr")
+        formatter.timeZone = TimeZone(abbreviation: "KST")
+        let today = formatter.string(from: Date())
+        print(today)
+        
+        do {
+            let data = try context.fetch(DdokBaroData.fetchRequest())
+            print(data)
+            for datum in data {
+                if datum.createdAt == today {
+                    print(datum.remainWater)
+                    currentProgress = CGFloat(datum.remainWater) * 0.01
+                    accumulatedTime = Double(datum.totalTime)
+                }
+            }
+        } catch {
+            // error
+        }
+    }
+
+    func createData() {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd-E"
+        formatter.locale = Locale(identifier: "ko_kr")
+        formatter.timeZone = TimeZone(abbreviation: "KST")
+        let today = formatter.string(from: Date())
+        
+        do {
+            let data = try context.fetch(DdokBaroData.fetchRequest())
+            for datum in data {
+                if datum.createdAt == today {
+                    context.delete(datum)
+                }
+            }
+
+            let newData = DdokBaroData(context: context)
+            newData.createdAt = today
+            newData.remainWater = Int16(50)
+            newData.totalTime = 100
+
+            do {
+                try context.save()
+            } catch {
+                // error
+            }
+        } catch {
+            // error
+        }
+    }
+
     override func motionEnded(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
         if event?.subtype == .motionShake {
             setUserWeight(currentWeight: currentWeight)

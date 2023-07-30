@@ -57,6 +57,7 @@
 		D3ED8F9B2A6B4530005E02DB /* UIColorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3ED8F9A2A6B4530005E02DB /* UIColorManager.swift */; };
 		D3FF2B8A2A761876006B5758 /* DdokBaroData+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3FF2B882A761876006B5758 /* DdokBaroData+CoreDataClass.swift */; };
 		D3FF2B8B2A761876006B5758 /* DdokBaroData+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3FF2B892A761876006B5758 /* DdokBaroData+CoreDataProperties.swift */; };
+		D3FF2B8D2A76514D006B5758 /* GrassGraphView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3FF2B8C2A76514D006B5758 /* GrassGraphView.swift */; };
 		D3FF8F4F2A72721F00A3CC43 /* noSound.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D3FF8F4E2A72721F00A3CC43 /* noSound.mp3 */; };
 /* End PBXBuildFile section */
 
@@ -131,6 +132,7 @@
 		D3ED8F9A2A6B4530005E02DB /* UIColorManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorManager.swift; sourceTree = "<group>"; };
 		D3FF2B882A761876006B5758 /* DdokBaroData+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DdokBaroData+CoreDataClass.swift"; sourceTree = "<group>"; };
 		D3FF2B892A761876006B5758 /* DdokBaroData+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DdokBaroData+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		D3FF2B8C2A76514D006B5758 /* GrassGraphView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GrassGraphView.swift; sourceTree = "<group>"; };
 		D3FF8F4E2A72721F00A3CC43 /* noSound.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = noSound.mp3; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -286,6 +288,7 @@
 				D39AE0A52A6BFAFC003D072D /* DropletView.swift */,
 				D3CFE9C72A6ED27900CB3358 /* LottieWrapperView.swift */,
 				B983ACB32A70C6BE0084A9DC /* SetupLabel&Button.swift */,
+				D3FF2B8C2A76514D006B5758 /* GrassGraphView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -459,6 +462,7 @@
 				0E5CC5512A6A6D3B00A3903F /* Sound.swift in Sources */,
 				B9990A802A71520A0094F32C /* ZeroPointViewController.swift in Sources */,
 				D39820BF2A67798B004FE798 /* WelcomeViewController.swift in Sources */,
+				D3FF2B8D2A76514D006B5758 /* GrassGraphView.swift in Sources */,
 				0E5CC54F2A6A6D2D00A3903F /* Vibrate.swift in Sources */,
 				B983ACB42A70C6BE0084A9DC /* SetupLabel&Button.swift in Sources */,
 				D3ED8F9B2A6B4530005E02DB /* UIColorManager.swift in Sources */,
