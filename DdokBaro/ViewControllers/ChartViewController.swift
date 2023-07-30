@@ -10,8 +10,30 @@ import UIKit
 class ChartViewController: UIViewController {
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     var grassLevels: [Int: Int] = [:]
+    var graphLevels: [Int: Int] = [:]
     var frontCounter = 0
     var backCounter = 0
+    
+    var dataPoints = [Double]()
+    var barColor = UIColor.systemBlue
+    
+    var maxY : Double {
+        return dataPoints.sorted(by: >).first ?? 0
+    }
+    
+    var barGapPctOfTotal : CGFloat {
+        return CGFloat(0.2) / CGFloat(dataPoints.count - 1)
+    }
+    
+    var barWidthPctOfTotal : CGFloat {
+        return CGFloat(0.8) / CGFloat(dataPoints.count)
+    }
+    
+    var barCornerRadius : CGFloat {
+        return CGFloat(30 / dataPoints.count)
+    }
+    
+    @IBOutlet weak var barChartView: BarChartView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,13 +43,19 @@ class ChartViewController: UIViewController {
         backCounter = getDayOfWeek() + 1
         let width = Int(screenWidth) / 2 + 128
         
+        let chartSquareView = ChartSquareView(frame: CGRect(x: 20, y: 245, width: screenWidth - 40, height: screenWidth / 2 - 20))
+        view.addSubview(chartSquareView)
+        
+        let chartSquareView2 = ChartSquareView(frame: CGRect(x: 20, y: 520, width: screenWidth - 40, height: screenWidth / 2))
+        view.addSubview(chartSquareView2)
+        
         for i in 0..<17 {
             for j in 0..<7 {
                 if grassLevels[self.backCounter] == nil {
-                    let grassGraphView = GrassGraphView(frame: CGRect(x: width - (18 * i), y: 200 + 108 - (18 * j), width: 15, height: 15), level: 0)
+                    let grassGraphView = GrassGraphView(frame: CGRect(x: width - (18 * i), y: 280 + 108 - (18 * j), width: 15, height: 15), level: 0)
                     view.addSubview(grassGraphView)
                 } else {
-                    let grassGraphView = GrassGraphView(frame: CGRect(x: width - (18 * i), y: 200 + 108 - (18 * j), width: 15, height: 15), level: grassLevels[self.backCounter]!)
+                    let grassGraphView = GrassGraphView(frame: CGRect(x: width - (18 * i), y: 280 + 108 - (18 * j), width: 15, height: 15), level: grassLevels[self.backCounter]!)
                     view.addSubview(grassGraphView)
                 }
                 backCounter = backCounter + 1
@@ -35,14 +63,32 @@ class ChartViewController: UIViewController {
         }
         for i in 0...getDayOfWeek() {
             if grassLevels[self.frontCounter] == nil {
-                let grassGraphView = GrassGraphView(frame: CGRect(x: width + 18, y: 200 + 18 * (getDayOfWeek() - i), width: 15, height: 15), level: 0)
+                let grassGraphView = GrassGraphView(frame: CGRect(x: width + 18, y: 280 + 18 * (getDayOfWeek() - i), width: 15, height: 15), level: 0)
                 view.addSubview(grassGraphView)
             } else {
-                let grassGraphView = GrassGraphView(frame: CGRect(x: width + 18, y: 200 + 18 * (getDayOfWeek() - i), width: 15, height: 15), level: grassLevels[self.frontCounter]!)
+                let grassGraphView = GrassGraphView(frame: CGRect(x: width + 18, y: 280 + 18 * (getDayOfWeek() - i), width: 15, height: 15), level: grassLevels[self.frontCounter]!)
                 view.addSubview(grassGraphView)
             }
             frontCounter = frontCounter + 1
         }
+        
+        var max = 0
+        for index in 0..<7 {
+            if graphLevels[6 - index] != nil {
+                if max < graphLevels[6 - index]! { max = graphLevels[6 - index]! }
+            }
+        }
+        for index in 0..<7 {
+            if graphLevels[6 - index] == nil {
+                dataPoints.append(3.0)
+            } else {
+                dataPoints.append(100 * Double(graphLevels[6 - index]!) / Double(max))
+            }
+        }
+        
+        barChartView.setData(dataPoints)
+        self.view.sendSubviewToBack(chartSquareView)
+        self.view.sendSubviewToBack(chartSquareView2)
     }
     
     func getAllData() {
@@ -59,6 +105,7 @@ class ChartViewController: UIViewController {
                 let calendar = Calendar.current
                 let days = calendar.numberOfDays((datum.createdAt?.toDate())!, and: Date())
                 grassLevels[days] = Int(datum.grassLevel)
+                graphLevels[days] = Int(datum.totalMinutes)
             }
         } catch {
             // error
