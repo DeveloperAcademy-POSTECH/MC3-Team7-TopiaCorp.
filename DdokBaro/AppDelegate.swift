@@ -12,33 +12,10 @@ import CoreData
 class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.        
+        // Override point for customization after application launch.
         UNUserNotificationCenter.current().delegate = self
-        
         return true
     }
-    func saveContext() {
-        let context = persistentContainer.viewContext
-        if context.hasChanges {
-            do {
-                try context.save()
-            } catch {
-                // Replace this with proper error handling
-                let nserror = error as NSError
-                fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
-            }
-        }
-    }
-}
-
-// Add UNUserNotificationCenterDelegate conformance (if not already added) to handle notifications
-//extension AppDelegate: UNUserNotificationCenterDelegate {
-//    // Add the required delegate methods here (optional, depending on your notification handling needs)
-//}
-//이 변경으로 'window' 속성에 액세스할 수 있어야 하며 코드가 예상대로 작동해야 합니다. UIApplication.shared.windows.first는 기본 창에 대한 액세스를 제공하며 이에 따라 루트 뷰 컨트롤러를 설정할 수 있습니다.
-
-
-
 
     // MARK: UISceneSession Lifecycle
 
@@ -56,7 +33,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     // MARK: - Core Data stack
 
-var persistentContainer: NSPersistentCloudKitContainer = {
+    lazy var persistentContainer: NSPersistentCloudKitContainer = {
         /*
          The persistent container for the application. This implementation
          creates and returns a container, having loaded the store for the
@@ -98,6 +75,8 @@ var persistentContainer: NSPersistentCloudKitContainer = {
             }
         }
     }
+
+}
 
 extension AppDelegate : UNUserNotificationCenterDelegate {
     
