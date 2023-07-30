@@ -23,6 +23,5 @@ class SettingViewController: UIViewController {
     @IBAction func slChangeVolume(_ sender: UISlider) {
         player?.volume = soundSlider.value
         print(player)
-        
     }
 }

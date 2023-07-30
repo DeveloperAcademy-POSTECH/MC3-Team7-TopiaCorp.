@@ -59,8 +59,12 @@ class SuccessViewController: UIViewController {
         
         waterSubLabel.setupLabelAndButton(view: waterSubLabel, systemName: "drop.fill", text: " 지켜낸 물", imageColor: .pointBlue ?? .blue, textColor: .pointBlue ?? .blue, font: .boldSystemFont(ofSize: 15), pointSize: 15, weight: .bold)
        
-        
-        timeLabel.text = "0시간 0분"
+        let savedTime = UserDefaults.standard.double(forKey: "accumulatedTime")
+        let hour = Int(savedTime / 3600)
+        let minute = Int((savedTime / 60).truncatingRemainder(dividingBy: 60))
+        let formattedTime = String(format: "%02d:%02d", hour, minute)
+        timeLabel.text = formattedTime
+//        timeLabel.text = "0시간 0분"
         
         self.changeTextColor()
     }
