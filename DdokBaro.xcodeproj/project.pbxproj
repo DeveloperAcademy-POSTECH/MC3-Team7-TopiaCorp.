@@ -32,6 +32,8 @@
 		B9990A802A71520A0094F32C /* ZeroPointViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9990A7F2A71520A0094F32C /* ZeroPointViewController.swift */; };
 		B9B3548D2A693D4C008FFBC2 /* welcomeTurtle.json in Resources */ = {isa = PBXBuildFile; fileRef = B9B3548C2A693D4C008FFBC2 /* welcomeTurtle.json */; };
 		D329808D2A60DB9B004C2632 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D329808C2A60DB9B004C2632 /* Main.storyboard */; };
+		D35845372A7673F90002B89C /* GrassGraphData+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = D35845352A7673F90002B89C /* GrassGraphData+CoreDataClass.swift */; };
+		D35845382A7673F90002B89C /* GrassGraphData+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = D35845362A7673F90002B89C /* GrassGraphData+CoreDataProperties.swift */; };
 		D35DFA262A5F7E7B0043B644 /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D35DFA252A5F7E7B0043B644 /* TestViewController.swift */; };
 		D35DFA282A5F7F100043B644 /* TimerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D35DFA272A5F7F100043B644 /* TimerViewController.swift */; };
 		D35DFA2A2A5F7F2C0043B644 /* MotionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D35DFA292A5F7F2C0043B644 /* MotionViewController.swift */; };
@@ -103,6 +105,8 @@
 		B9990A7F2A71520A0094F32C /* ZeroPointViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZeroPointViewController.swift; sourceTree = "<group>"; };
 		B9B3548C2A693D4C008FFBC2 /* welcomeTurtle.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = welcomeTurtle.json; sourceTree = "<group>"; };
 		D329808C2A60DB9B004C2632 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		D35845352A7673F90002B89C /* GrassGraphData+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GrassGraphData+CoreDataClass.swift"; sourceTree = "<group>"; };
+		D35845362A7673F90002B89C /* GrassGraphData+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GrassGraphData+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		D35DFA252A5F7E7B0043B644 /* TestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestViewController.swift; sourceTree = "<group>"; };
 		D35DFA272A5F7F100043B644 /* TimerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerViewController.swift; sourceTree = "<group>"; };
 		D35DFA292A5F7F2C0043B644 /* MotionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MotionViewController.swift; sourceTree = "<group>"; };
@@ -299,6 +303,8 @@
 				D3ED8F9A2A6B4530005E02DB /* UIColorManager.swift */,
 				D3FF2B882A761876006B5758 /* DdokBaroData+CoreDataClass.swift */,
 				D3FF2B892A761876006B5758 /* DdokBaroData+CoreDataProperties.swift */,
+				D35845352A7673F90002B89C /* GrassGraphData+CoreDataClass.swift */,
+				D35845362A7673F90002B89C /* GrassGraphData+CoreDataProperties.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -466,6 +472,7 @@
 				0E5CC54F2A6A6D2D00A3903F /* Vibrate.swift in Sources */,
 				B983ACB42A70C6BE0084A9DC /* SetupLabel&Button.swift in Sources */,
 				D3ED8F9B2A6B4530005E02DB /* UIColorManager.swift in Sources */,
+				D35845382A7673F90002B89C /* GrassGraphData+CoreDataProperties.swift in Sources */,
 				D39820C32A677A41004FE798 /* CircleViewController.swift in Sources */,
 				D35DFA262A5F7E7B0043B644 /* TestViewController.swift in Sources */,
 				D3FF2B8B2A761876006B5758 /* DdokBaroData+CoreDataProperties.swift in Sources */,
@@ -485,6 +492,7 @@
 				D38DFAE12A5CE0AB0041C6E4 /* DdokBaro.xcdatamodeld in Sources */,
 				D39AE0A32A6BE03A003D072D /* WaterViewController.swift in Sources */,
 				D39820C12A677A0C004FE798 /* MainViewController.swift in Sources */,
+				D35845372A7673F90002B89C /* GrassGraphData+CoreDataClass.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
