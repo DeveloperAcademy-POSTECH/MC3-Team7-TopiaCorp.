@@ -90,6 +90,7 @@ class MainViewController: UIViewController, CMHeadphoneMotionManagerDelegate {
         super.viewDidLoad()
 
         navigationController?.isNavigationBarHidden = true
+        //self.navigationController?.popViewController(animated: true)
         //self.view.setGradient(color1: .blue, color2: .black)
         
         backGroundColor.setGradient2(color1: .white, color2: UIColor(hexCode: "ECF2FF"))
@@ -351,6 +352,7 @@ class MainViewController: UIViewController, CMHeadphoneMotionManagerDelegate {
     
     @IBAction func resetTapped(_ sender: UIButton) {
         self.timer.invalidate()
+        isStart = false
         accumulatedTime += Date().timeIntervalSince(startTime)
         timeLabel.setupLabelAndButton(view: timeLabel, systemName: "clock", text: emptyString + showhour + labelHour + showminute + labelMinute, imageColor: .pointBlue ?? .black, textColor: .pointBlue ?? .black, font: .boldSystemFont(ofSize: 28), pointSize: 28, weight: .bold)
         startPauseButton.setupLabelAndButton(view: startPauseButton, systemName: "pause.circle.fill", text: " 다시 시작", imageColor: .white, textColor: .white, font: UIFont.boldSystemFont(ofSize: 17), pointSize: 17, weight: .bold)
@@ -439,6 +441,7 @@ class MainViewController: UIViewController, CMHeadphoneMotionManagerDelegate {
         titleLabel.text = "바른 자세를 유지해\n양동이의 물을 지켜주세요!"
         titleLabel.textColor = .black
         titleLabel.numberOfLines = 0
+        titleLabel.isHidden = false
         
         if notFirstConnect {
             startTime = Date() //현재 시간으로 업데이트
@@ -500,6 +503,7 @@ class MainViewController: UIViewController, CMHeadphoneMotionManagerDelegate {
         //titleLabel.text = "측정을 시작할려면 에어팟을 연결해 주세요"
         //titleLabel.textColor = .white
         titleLabel.numberOfLines = 0
+        titleLabel.isHidden = true
         titleSubLabel.isHidden = true
         
         timer.invalidate()
@@ -598,12 +602,12 @@ class MainViewController: UIViewController, CMHeadphoneMotionManagerDelegate {
         }
     }
 
-    override func motionEnded(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
-        if event?.subtype == .motionShake {
-            setUserWeight(currentWeight: currentWeight)
-            //print("shake: \(userWeight)")
-        }
-    }
+//    override func motionEnded(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
+//        if event?.subtype == .motionShake {
+//            setUserWeight(currentWeight: currentWeight)
+//            //print("shake: \(userWeight)")
+//        }
+//    }
     
     override func motionCancelled(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
         //print("motionCancelled")
