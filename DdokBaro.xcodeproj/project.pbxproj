@@ -57,6 +57,8 @@
 		D39820C32A677A41004FE798 /* CircleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D39820C22A677A41004FE798 /* CircleViewController.swift */; };
 		D39AE0A32A6BE03A003D072D /* WaterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D39AE0A22A6BE03A003D072D /* WaterViewController.swift */; };
 		D39AE0A62A6BFAFC003D072D /* DropletView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D39AE0A52A6BFAFC003D072D /* DropletView.swift */; };
+		D3B570122A76E92B001DE024 /* ChartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B570112A76E92B001DE024 /* ChartViewController.swift */; };
+		D3B570142A77007F001DE024 /* BarChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B570132A77007F001DE024 /* BarChartView.swift */; };
 		D3CFE9C82A6ED27900CB3358 /* LottieWrapperView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3CFE9C72A6ED27900CB3358 /* LottieWrapperView.swift */; };
 		D3ED8F982A6B41DD005E02DB /* WaterWaveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3ED8F972A6B41DD005E02DB /* WaterWaveView.swift */; };
 		D3ED8F9B2A6B4530005E02DB /* UIColorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3ED8F9A2A6B4530005E02DB /* UIColorManager.swift */; };
@@ -137,6 +139,8 @@
 		D39820C22A677A41004FE798 /* CircleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleViewController.swift; sourceTree = "<group>"; };
 		D39AE0A22A6BE03A003D072D /* WaterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaterViewController.swift; sourceTree = "<group>"; };
 		D39AE0A52A6BFAFC003D072D /* DropletView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropletView.swift; sourceTree = "<group>"; };
+		D3B570112A76E92B001DE024 /* ChartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartViewController.swift; sourceTree = "<group>"; };
+		D3B570132A77007F001DE024 /* BarChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarChartView.swift; sourceTree = "<group>"; };
 		D3CFE9C72A6ED27900CB3358 /* LottieWrapperView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LottieWrapperView.swift; sourceTree = "<group>"; };
 		D3ED8F972A6B41DD005E02DB /* WaterWaveView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaterWaveView.swift; sourceTree = "<group>"; };
 		D3ED8F9A2A6B4530005E02DB /* UIColorManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorManager.swift; sourceTree = "<group>"; };
@@ -223,6 +227,7 @@
 				D39AE0A22A6BE03A003D072D /* WaterViewController.swift */,
 				B9CC5EBD2A758ECF0055151C /* SettingViewController.swift */,
 				B99D44E32A763334000160C1 /* NoConnectViewController.swift */,
+				D3B570112A76E92B001DE024 /* ChartViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -303,6 +308,7 @@
 				D3CFE9C72A6ED27900CB3358 /* LottieWrapperView.swift */,
 				B983ACB32A70C6BE0084A9DC /* SetupLabel&Button.swift */,
 				D3FF2B8C2A76514D006B5758 /* GrassGraphView.swift */,
+				D3B570132A77007F001DE024 /* BarChartView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -480,6 +486,7 @@
 				B9990A802A71520A0094F32C /* ZeroPointViewController.swift in Sources */,
 				D39820BF2A67798B004FE798 /* WelcomeViewController.swift in Sources */,
 				D3FF2B8D2A76514D006B5758 /* GrassGraphView.swift in Sources */,
+				D3B570142A77007F001DE024 /* BarChartView.swift in Sources */,
 				0E5CC54F2A6A6D2D00A3903F /* Vibrate.swift in Sources */,
 				B983ACB42A70C6BE0084A9DC /* SetupLabel&Button.swift in Sources */,
 				D3ED8F9B2A6B4530005E02DB /* UIColorManager.swift in Sources */,
@@ -505,6 +512,7 @@
 				D38DFAE12A5CE0AB0041C6E4 /* DdokBaro.xcdatamodeld in Sources */,
 				D39AE0A32A6BE03A003D072D /* WaterViewController.swift in Sources */,
 				D39820C12A677A0C004FE798 /* MainViewController.swift in Sources */,
+				D3B570122A76E92B001DE024 /* ChartViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
