@@ -59,6 +59,14 @@ class WelcomeViewController: UIViewController {
         self.view.sendSubviewToBack(welcomeTurtleView)
     }
     
+    
+    @IBAction func goChartButton(_ sender: UIButton) {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        if let chartViewController = storyboard.instantiateViewController(withIdentifier: "ChartViewController") as? ChartViewController {
+            navigationController?.pushViewController(chartViewController, animated: true)
+        }
+    }
+    
     @IBAction func goSettingButton(_ sender: UIButton) {
         
         let storyboard = UIStoryboard(name: "Main", bundle: nil)

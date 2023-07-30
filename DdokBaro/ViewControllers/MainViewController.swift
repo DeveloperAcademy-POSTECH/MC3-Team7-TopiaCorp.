@@ -544,7 +544,7 @@ class MainViewController: UIViewController, CMHeadphoneMotionManagerDelegate {
                 if datum.createdAt == today {
                     print(datum.remainWater)
                     currentProgress = CGFloat(datum.remainWater) * 0.01
-                    accumulatedTime = Double(datum.totalTime)
+                    accumulatedTime = Double(datum.totalMinutes)
                 }
             }
         } catch {
@@ -569,9 +569,9 @@ class MainViewController: UIViewController, CMHeadphoneMotionManagerDelegate {
 
             let newData = DdokBaroData(context: context)
             newData.createdAt = today
+            newData.grassLevel = Int16(3.9 * currentProgress + 1)
             newData.remainWater = Int16(currentProgress * 100)
-            newData.totalTime = Int16(accumulatedTime)
-            print(newData)
+            newData.totalMinutes = Int16(accumulatedTime)
 
             do {
                 try context.save()
