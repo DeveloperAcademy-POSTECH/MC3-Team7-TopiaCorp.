@@ -24,4 +24,15 @@ class SettingViewController: UIViewController {
         player?.volume = soundSlider.value
         print(player)
     }
+
+    @IBAction func goToZeroPoint(_ sender: Any) {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        if let zeroPointViewController = storyboard.instantiateViewController(withIdentifier: "ZeroPointViewController") as? ZeroPointViewController {
+            // Perform the segue programmatically
+            navigationController?.pushViewController(zeroPointViewController, animated: true)
+        }
+
+        
+    }
+    
 }
