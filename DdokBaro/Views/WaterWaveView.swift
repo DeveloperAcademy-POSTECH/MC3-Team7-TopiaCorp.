@@ -114,7 +114,7 @@ extension WaterWaveView {
         percentLabel.text = "\(Int(100 * progress))L"
         
         let top: CGFloat = pr * bounds.size.height
-        print(top)
+        //print(top)
         firstWave.setValue((width - top + 72) * 0.6, forKeyPath: "position.y")
         secondWave.setValue((width - top + 72) * 0.6, forKeyPath: "position.y")
         

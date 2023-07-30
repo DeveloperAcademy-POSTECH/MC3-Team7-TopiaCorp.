@@ -12,11 +12,6 @@ import CoreMotion
 import Lottie
 import UserNotifications
 
-enum SFSymbolKey: String {
-    case pause = "pause.circle"
-    case stop = "xmark.circle.fill"
-    case clock = "clock"
-}
 
 class MainViewController: UIViewController, CMHeadphoneMotionManagerDelegate {
     var showhour = "00"
@@ -28,6 +23,7 @@ class MainViewController: UIViewController, CMHeadphoneMotionManagerDelegate {
     var startTime = Date()
     var isPaused: Bool = false
     var accumulatedTime: TimeInterval = 0.0
+    var notFirstConnect:Bool = false
     
     var currentWeight = (0.0, 0) // 현재 측정 각도
     var userWeight = (0.0, 0) // 사용자 설정 가중치
@@ -41,8 +37,7 @@ class MainViewController: UIViewController, CMHeadphoneMotionManagerDelegate {
     @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var startPauseButton: UIButton!
     @IBOutlet weak var resetButton: UIButton!
-    @IBOutlet weak var circleView: CircleViewController!
-
+    
     var intPitch: Int = 0
     
     //AirPods Pro => manager :) 헤드폰 모니터 매니저 담는 상수
@@ -71,8 +66,27 @@ class MainViewController: UIViewController, CMHeadphoneMotionManagerDelegate {
     let animationView4 = LottieWrapperView(animationName: "WaterDrops2")
     var audioPlayer = AVAudioPlayer()
     
+    let restView: UIImageView = {
+        let restView = UIImageView()
+        restView.image = UIImage(named: "TurtleRest")
+        restView.contentMode = .scaleAspectFit
+        return restView
+    }()
+    
+    let backGroundColor = UIView()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //self.view.setGradient(color1: .blue, color2: .black)
+        
+        backGroundColor.setGradient2(color1: .white, color2: UIColor(hexCode: "ECF2FF"))
+        backGroundColor.frame = self.view.bounds
+        backGroundColor.center = self.view.center
+        backGroundColor.contentMode = .scaleAspectFit
+        backGroundColor.layer.zPosition = -1
+        self.view.addSubview(backGroundColor)
+        self.view.sendSubviewToBack(backGroundColor)
         
         // timer view controller
         let circleView = CircleViewController()
@@ -101,7 +115,6 @@ class MainViewController: UIViewController, CMHeadphoneMotionManagerDelegate {
             startTimer()
             updateTimer()
             isStart = true
-            
         }
         
         // water view controller
@@ -166,10 +179,10 @@ class MainViewController: UIViewController, CMHeadphoneMotionManagerDelegate {
         self.view.sendSubviewToBack(animationView3)
         self.view.sendSubviewToBack(animationView4)
         
-//        DispatchQueue.main.async { [weak self] in
-//            //거북이 몸통을 위에 겹치기 위해 여기에 작성
-//            self?.animationView1.setPlay()
-//        }
+        //        DispatchQueue.main.async { [weak self] in
+        //            //거북이 몸통을 위에 겹치기 위해 여기에 작성
+        //            self?.animationView1.setPlay()
+        //        }
         let noSound = Bundle.main.path(forResource: "noSound", ofType: "mp3")
         do {
             audioPlayer = try AVAudioPlayer(contentsOf: URL(fileURLWithPath: noSound!))
@@ -190,7 +203,7 @@ class MainViewController: UIViewController, CMHeadphoneMotionManagerDelegate {
     
     func turtleMotion(_ motion: CMDeviceMotion)
     {
-
+        
         let pitch = degrees(motion.attitude.pitch)
         intPitch = degreeInt(pitch)
         currentWeight = (pitch, degreeInt(pitch))
@@ -202,11 +215,11 @@ class MainViewController: UIViewController, CMHeadphoneMotionManagerDelegate {
             else {
                 self?.animationView2.setProgress(currentProgress: AnimationProgressTime(max(-(pitch - self!.userWeight.0)/40, 0)))
             }
-
-        //만약 목 각도가 정해진 기준 이상이면(notgood - 1단계, bad - 2단계, danger - 3단계)
+            
+            //만약 목 각도가 정해진 기준 이상이면(notgood - 1단계, bad - 2단계, danger - 3단계)
             if self!.intPitch - self!.userWeight.1 < angle.notgood.rawValue {
                 self?.animationView3.setPlay()
-
+                
                 self!.currentProgress -= self!.dropWhenBad * 0.00001
                 self!.waterWaveView.setupProgress(self!.currentProgress)
                 
@@ -217,62 +230,96 @@ class MainViewController: UIViewController, CMHeadphoneMotionManagerDelegate {
                     self!.currentProgress -= self!.dropWhenWorst * 0.00001
                     self!.waterWaveView.setupProgress(self!.currentProgress)
                     
-//                    if self!.intPitch - self!.userWeight.1 < angle.danger.rawValue {
-//
-//                    }
+                    //                    if self!.intPitch - self!.userWeight.1 < angle.danger.rawValue {
+                    //
+                    //                    }
                     
                     if self!.motionTimer.isValid {
                         
                     }
                     else {
                         self!.motionTimer = Timer.scheduledTimer(timeInterval: 180, target: self, selector: #selector(self?.badSound), userInfo: nil, repeats: false)
-                        print("타이머 실행")
                         //timerCounting = true
                     }
                 }
             }
-        
-        //만약 목 각도가 기준선 이하로 돌아오면 타이머 삭제
-        else{
-            self!.motionTimer.invalidate()
-            stopSound()
-            self?.animationView4.setStop()
-            self?.animationView3.setStop()
+            
+            //만약 목 각도가 기준선 이하로 돌아오면 타이머 삭제
+            else{
+                self!.motionTimer.invalidate()
+                stopSound()
+                self?.animationView4.setStop()
+                self?.animationView3.setStop()
+            }
         }
     }
-}
-
-//MARK: timer view controller
-
-func changeTextColor() {
-    guard let text = self.titleLabel.text else {return}
-    let attributeString = NSMutableAttributedString(string: text)
-    attributeString.addAttribute(.foregroundColor, value: UIColor.pointBlue, range: (text as NSString).range(of: "아이폰을 흔들어 주세요!"))
-    self.titleLabel.attributedText = attributeString
-}
-
-private func startTimer() {
-    timer = Timer.scheduledTimer(timeInterval: 0.01, target: self, selector: #selector(updateTimer), userInfo: nil, repeats: true)
-    RunLoop.current.add(timer, forMode: .common)
-}
-
-@IBAction func pauseTapped(_ sender: UIButton) {
-    if isPaused {
-        startTime = Date() //현재 시간으로 업데이트
+    
+    //MARK: timer view controller
+    
+    func changeTextColor() {
+        guard let text = self.titleLabel.text else {return}
+        let attributeString = NSMutableAttributedString(string: text)
+        attributeString.addAttribute(.foregroundColor, value: UIColor.pointBlue, range: (text as NSString).range(of: "아이폰을 흔들어 주세요!"))
+        self.titleLabel.attributedText = attributeString
+    }
+    
+    private func startTimer() {
         timer = Timer.scheduledTimer(timeInterval: 0.01, target: self, selector: #selector(updateTimer), userInfo: nil, repeats: true)
         RunLoop.current.add(timer, forMode: .common)
-        isPaused = false
-        startPauseButton.setTitle("일시 정지", for: .normal)
-        audioPlayer.play()
-    } else {
-        timer.invalidate()
-        accumulatedTime += Date().timeIntervalSince(startTime)
-        isPaused = true
-        startPauseButton.setTitle("다시 시작", for: .normal)
-        audioPlayer.pause()
     }
-}
-
+    
+    @IBAction func pauseTapped(_ sender: UIButton) {
+        if isPaused {
+            backGroundColor.setGradient2(color1: .white, color2: UIColor(hexCode: "ECF2FF"))
+            
+            self.view.addSubview(animationView1)
+            self.view.addSubview(animationView2)
+            self.view.addSubview(animationView3)
+            self.view.addSubview(animationView4)
+            
+            self.view.sendSubviewToBack(animationView1)
+            self.view.sendSubviewToBack(animationView2)
+            self.view.sendSubviewToBack(animationView3)
+            self.view.sendSubviewToBack(animationView4)
+            
+            restView.removeFromSuperview()
+            
+            startTime = Date() //현재 시간으로 업데이트
+            timer = Timer.scheduledTimer(timeInterval: 0.01, target: self, selector: #selector(updateTimer), userInfo: nil, repeats: true)
+            RunLoop.current.add(timer, forMode: .common)
+            isPaused = false
+            startPauseButton.setupLabelAndButton(view: startPauseButton, systemName: "pause.circle.fill", text: " 일시 정지", imageColor: .white, textColor: .white, font: UIFont.boldSystemFont(ofSize: 17) , pointSize: 17, weight: .bold)
+            audioPlayer.play()
+        } else {
+            animationView1.setStop()
+            
+            backGroundColor.setGradient2(color1: .black, color2: UIColor(hexCode: "ECF2FF"))
+            
+            titleLabel.font = UIFont.boldSystemFont(ofSize: 28)
+            titleLabel.text = "측정을 시작할려면 에어팟을 연결해 주세요"
+            titleLabel.textColor = .white
+            titleLabel.numberOfLines = 0
+            titleSubLabel.isHidden = true
+            
+            restView.frame = self.view.bounds
+            restView.center = self.view.center
+            
+            self.view.addSubview(restView)
+            self.view.sendSubviewToBack(restView)
+            
+            animationView1.removeFromSuperview()
+            animationView2.removeFromSuperview()
+            animationView3.removeFromSuperview()
+            animationView4.removeFromSuperview()
+            
+            timer.invalidate()
+            accumulatedTime += Date().timeIntervalSince(startTime)
+            isPaused = true
+            startPauseButton.setupLabelAndButton(view: startPauseButton, systemName: "pause.circle.fill", text: " 다시 시작", imageColor: .white, textColor: .white, font: UIFont.boldSystemFont(ofSize: 17) , pointSize: 17, weight: .bold)
+            audioPlayer.pause()
+        }
+    }
+    
     @IBAction func resetTapped(_ sender: UIButton) {
         self.timer.invalidate()
         showhour = "00"
@@ -326,19 +373,80 @@ private func startTimer() {
     
     //에어팟 연결되었을때
     func headphoneMotionManagerDidConnect(_ manager: CMHeadphoneMotionManager) {
-        animationView1.setPlay()
+        
+        self.view.addSubview(animationView1)
+        self.view.addSubview(animationView2)
+        self.view.addSubview(animationView3)
+        self.view.addSubview(animationView4)
+        
+        self.view.sendSubviewToBack(animationView1)
+        self.view.sendSubviewToBack(animationView2)
+        self.view.sendSubviewToBack(animationView3)
+        self.view.sendSubviewToBack(animationView4)
+        
+        restView.removeFromSuperview()
+        
+        titleLabel.font = UIFont.boldSystemFont(ofSize: 28)
+        titleLabel.text = "자세를 바르게 하고\n아이폰을 흔들어 주세요!"
+        titleLabel.numberOfLines = 0
+        
+        if notFirstConnect {
+            startTime = Date() //현재 시간으로 업데이트
+            timer = Timer.scheduledTimer(timeInterval: 0.01, target: self, selector: #selector(updateTimer), userInfo: nil, repeats: true)
+            RunLoop.current.add(timer, forMode: .common)
+            isPaused = false
+            startPauseButton.setupLabelAndButton(view: startPauseButton, systemName: "pause.circle.fill", text: " 일시 정지", imageColor: .white, textColor: .white, font: UIFont.boldSystemFont(ofSize: 17) , pointSize: 17, weight: .bold)
+            audioPlayer.play()
+        }
+        
+        DispatchQueue.main.async { [weak self] in
+            self?.animationView1.setPlay()
+        }
         print("에어팟 연결 성공")
     }
     
     //에어팟 연결 끊겼을때
     func headphoneMotionManagerDidDisconnect(_ manager: CMHeadphoneMotionManager) {
         animationView1.setStop()
+        
+        backGroundColor.setGradient2(color1: .black, color2: UIColor(hexCode: "ECF2FF"))
+        
+        restView.frame = self.view.bounds
+        restView.center = self.view.center
+        
+//        backGroundColor.setGradient(color1: .blue, color2: .black)
+//        backGroundColor.frame = self.view.bounds
+//        backGroundColor.center = self.view.center
+        
+        self.view.addSubview(restView)
+        self.view.sendSubviewToBack(restView)
+        
+//        self.view.addSubview(backGroundColor)
+//        self.view.sendSubviewToBack(backGroundColor)
+        
+        animationView1.removeFromSuperview()
+        animationView2.removeFromSuperview()
+        animationView3.removeFromSuperview()
+        animationView4.removeFromSuperview()
+        
+        titleLabel.font = UIFont.boldSystemFont(ofSize: 20)
+        titleLabel.text = "측정을 시작할려면 에어팟을 연결해 주세요"
+        titleLabel.textColor = .white
+        titleLabel.numberOfLines = 0
+        titleSubLabel.isHidden = true
+        
+        timer.invalidate()
+        accumulatedTime += Date().timeIntervalSince(startTime)
+        isPaused = true
+        notFirstConnect = true
+        startPauseButton.setupLabelAndButton(view: startPauseButton, systemName: "pause.circle.fill", text: " 다시 시작", imageColor: .white, textColor: .white, font: UIFont.boldSystemFont(ofSize: 17) , pointSize: 17, weight: .bold)
+        audioPlayer.pause()
         print("에어팟 연결 끊김")
     }
     
     //우리가 아는 각도로 바꿔주는 함수
     func degrees(_ radians: Double) -> Double { return 180 / .pi * radians }
-
+    
     //willappear - 다른 뷰에서 다시 올때 해주고 싶은 작업
     override func viewWillAppear(_ animated: Bool) {
         self.viewDidLoad()
@@ -360,10 +468,10 @@ private func startTimer() {
     @objc func badSound(){
         playSound(soundName: "Drop", rate: 1.0)
     }
+    
     @objc func haptic(){
         hapticManager?.playPattern()
     }
-    
     
     func setUserWeight(currentWeight: (Double, Int)) {
         userWeight = currentWeight
