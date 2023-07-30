@@ -12,9 +12,9 @@ import CoreMotion
 import Lottie
 import UserNotifications
 
-
 var currentWeight = (0.0, 0) // 현재 측정 각도
 var userWeight = (0.0, 0) // 사용자 설정 가중치
+var intPitch: Int = 0
 
 class MainViewController: UIViewController, CMHeadphoneMotionManagerDelegate {
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
@@ -30,8 +30,13 @@ class MainViewController: UIViewController, CMHeadphoneMotionManagerDelegate {
     var accumulatedTime = 0.0
     var notFirstConnect:Bool = false
     
-    var currentWeight = (0.0, 0) // 현재 측정 각도
-    var userWeight = (0.0, 0) // 사용자 설정 가중치
+//    var currentWeight = (0.0, 0) // 현재 측정 각도
+//    var userWeight = (0.0, 0) // 사용자 설정 가중치
+//    var intPitch: Int = 0
+    
+    
+    //var currentWeight = (0.0, 0) // 현재 측정 각도
+    //var userWeight = (0.0, 0) // 사용자 설정 가중치
     
     let screenWidth = UIScreen.main.bounds.size.width
     let waterWaveView = WaterWaveView()
@@ -44,7 +49,7 @@ class MainViewController: UIViewController, CMHeadphoneMotionManagerDelegate {
     @IBOutlet weak var resetButton: UIButton!
     
     //목 각도 int값
-    var intPitch: Int = 0
+//    var intPitch: Int = 0
     
     //AirPods Pro => manager :) 헤드폰 모니터 매니저 담는 상수
     let manager = CMHeadphoneMotionManager()
@@ -212,28 +217,29 @@ class MainViewController: UIViewController, CMHeadphoneMotionManagerDelegate {
     
     func turtleMotion(_ motion: CMDeviceMotion)
     {
-        
+        print(currentWeight)
+        print(userWeight)
         let pitch = degrees(motion.attitude.pitch)
         intPitch = degreeInt(pitch)
-        currentWeight = (pitch, degreeInt(pitch))
-        print(intPitch)
+        //currentWeight = (pitch, degreeInt(pitch))
+        //print(intPitch)
         DispatchQueue.main.async { [weak self] in
             if pitch > 0 {
                 self?.animationView2.setProgress(currentProgress: AnimationProgressTime(0))
             }
             else {
-                self?.animationView2.setProgress(currentProgress: AnimationProgressTime(max(-(pitch - self!.userWeight.0)/40, 0)))
+                self?.animationView2.setProgress(currentProgress: AnimationProgressTime(max(-(pitch - userWeight.0)/40, 0)))
             }
                                   
         //만약 목 각도가 정해진 기준 이상이면(notgood - 1단계, bad - 2단계, danger - 3단계)
-            if self!.intPitch - self!.userWeight.1 < angle.notgood.rawValue {
+            if intPitch - userWeight.1 < angle.notgood.rawValue {
 
                 self?.animationView3.setPlay()
                 
                 self!.currentProgress -= self!.dropWhenBad * 0.00001
                 self!.waterWaveView.setupProgress(self!.currentProgress)
                 
-                if self!.intPitch - self!.userWeight.1 < angle.bad.rawValue {
+                if intPitch - userWeight.1 < angle.bad.rawValue {
                     self?.animationView3.setStop()
                     self?.animationView4.setPlay()
                     
@@ -257,7 +263,7 @@ class MainViewController: UIViewController, CMHeadphoneMotionManagerDelegate {
             //만약 목 각도가 기준선 이하로 돌아오면 타이머 삭제
             else{
                 self!.motionTimer.invalidate()
-                stopSound()
+                //stopSound()
                 self?.animationView4.setStop()
                 self?.animationView3.setStop()
             }
@@ -408,6 +414,14 @@ class MainViewController: UIViewController, CMHeadphoneMotionManagerDelegate {
 //            presentedVC.dismiss(animated: true, completion: nil)
 //        }
     
+        backGroundColor.setGradient2(color1: .white, color2: UIColor(hexCode: "ECF2FF"))
+        //backGroundColor.frame = self.view.bounds
+        //backGroundColor.center = self.view.center
+        //backGroundColor.contentMode = .scaleAspectFit
+        backGroundColor.layer.zPosition = -1
+        
+        self.view.addSubview(backGroundColor)
+        self.view.sendSubviewToBack(backGroundColor)
         
         self.view.addSubview(animationView1)
         self.view.addSubview(animationView2)
@@ -422,7 +436,8 @@ class MainViewController: UIViewController, CMHeadphoneMotionManagerDelegate {
         restView.removeFromSuperview()
         
         titleLabel.font = UIFont.boldSystemFont(ofSize: 28)
-        titleLabel.text = "자세를 바르게 하고\n아이폰을 흔들어 주세요!"
+        titleLabel.text = "바른 자세를 유지해\n양동이의 물을 지켜주세요!"
+        titleLabel.textColor = .black
         titleLabel.numberOfLines = 0
         
         if notFirstConnect {
@@ -482,8 +497,8 @@ class MainViewController: UIViewController, CMHeadphoneMotionManagerDelegate {
         animationView4.removeFromSuperview()
         
         titleLabel.font = UIFont.boldSystemFont(ofSize: 20)
-        titleLabel.text = "측정을 시작할려면 에어팟을 연결해 주세요"
-        titleLabel.textColor = .white
+        //titleLabel.text = "측정을 시작할려면 에어팟을 연결해 주세요"
+        //titleLabel.textColor = .white
         titleLabel.numberOfLines = 0
         titleSubLabel.isHidden = true
         
@@ -525,9 +540,9 @@ class MainViewController: UIViewController, CMHeadphoneMotionManagerDelegate {
         hapticManager?.playPattern()
     }
     
-    func setUserWeight(currentWeight: (Double, Int)) {
-        userWeight = currentWeight
-    }
+//    func setUserWeight(currentWeight: (Double, Int)) {
+//        userWeight = currentWeight
+//    }
     
     func getAllData() {
         let formatter = DateFormatter()
