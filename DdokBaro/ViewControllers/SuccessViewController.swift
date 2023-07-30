@@ -44,7 +44,7 @@ class SuccessViewController: UIViewController {
         
         let turtleResultA = LottieAnimationView(name: "TurtleResultA")
         self.view.addSubview(turtleResultA)
-        turtleResultA.frame = CGRect(x: 40, y: 221, width: 300, height: 300)
+        turtleResultA.frame = CGRect(x: 45, y: 181, width: 300, height: 300)
         turtleResultA.contentMode = .scaleAspectFit
         turtleResultA.play()
         turtleResultA.loopMode = .loop
@@ -75,5 +75,14 @@ class SuccessViewController: UIViewController {
         self.titleLabel.attributedText = attributeString
     }
     
+    @IBAction func goToMainButton(_ sender: UIButton) {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        if let welcomeViewController = storyboard.instantiateViewController(withIdentifier: "WelcomeViewController") as? WelcomeViewController {
+            // Perform the segue programmatically
+            navigationController?.pushViewController(welcomeViewController, animated: true)
+        }
+        
+        
+    }
 }
 

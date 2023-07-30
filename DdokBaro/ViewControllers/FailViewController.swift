@@ -21,8 +21,7 @@ class FailViewController: UIViewController {
     
     @IBOutlet weak var waterView: UIView!
     
-    @IBOutlet weak var toGrassButton: UIButton!
-    
+
     @IBOutlet weak var toMainButton: UIButton!
     
     @IBOutlet weak var timeSubLabel: UILabel!
@@ -42,22 +41,17 @@ class FailViewController: UIViewController {
         
         let turtleResultB = LottieAnimationView(name: "TurtleResultB")
         self.view.addSubview(turtleResultB)
-        turtleResultB.frame = CGRect(x: 40, y: 221, width: 300, height: 300)
+        turtleResultB.frame = CGRect(x: 45, y: 192, width: 300, height: 300)
         turtleResultB.contentMode = .scaleAspectFit
         turtleResultB.play()
         turtleResultB.loopMode = .loop
         
         self.view.sendSubviewToBack(turtleResultB)
         
-
-        toGrassButton.titleLabel?.font = UIFont.systemFont(ofSize: 17, weight: .bold)
-        toMainButton.titleLabel?.font = UIFont.systemFont(ofSize: 17, weight: .bold)
-        
         timeSubLabel.setupLabelAndButton(view: timeSubLabel, systemName: "clock.fill", text: " 작업 시간", imageColor: .black, textColor: .black, font: .boldSystemFont(ofSize: 15), pointSize: 15, weight: .bold)
         
         waterSubLabel.setupLabelAndButton(view: waterSubLabel, systemName: "drop.fill", text: " 지켜낸 물", imageColor: .pointRed ?? .blue, textColor: .pointRed ?? .blue, font: .boldSystemFont(ofSize: 15), pointSize: 15, weight: .bold)
        
-        
         timeLabel.text = "0시간 0분"
         timeLabel.font = UIFont.boldSystemFont(ofSize: 28)
         
@@ -70,6 +64,20 @@ class FailViewController: UIViewController {
         let attributeString = NSMutableAttributedString(string: text)
         attributeString.addAttribute(.foregroundColor, value: UIColor.pointBlue ?? .black, range: (text as NSString).range(of: "다시 도전해볼까요?"))
         self.titleLabel.attributedText = attributeString
+    }
+    
+    @IBAction func goToMainButton(_ sender: UIButton) {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        if let welcomeViewController = storyboard.instantiateViewController(withIdentifier: "WelcomeViewController") as? WelcomeViewController {
+            navigationController?.pushViewController(welcomeViewController, animated: true)
+        }
+    }
+    
+    @IBAction func goToZeroPoint(_ sender: UIButton) {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        if let zeroPointViewController = storyboard.instantiateViewController(withIdentifier: "ZeroPointViewController") as? ZeroPointViewController {
+            navigationController?.pushViewController(zeroPointViewController, animated: true)
+        }
     }
     
 }

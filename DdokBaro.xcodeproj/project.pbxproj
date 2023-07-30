@@ -30,6 +30,7 @@
 		B98FE4EE2A72A13100E13890 /* SuccessViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B98FE4ED2A72A13100E13890 /* SuccessViewController.swift */; };
 		B98FE4F02A72A13C00E13890 /* FailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B98FE4EF2A72A13C00E13890 /* FailViewController.swift */; };
 		B9990A802A71520A0094F32C /* ZeroPointViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9990A7F2A71520A0094F32C /* ZeroPointViewController.swift */; };
+		B99D44E42A763334000160C1 /* NoConnectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B99D44E32A763334000160C1 /* NoConnectViewController.swift */; };
 		B99E21BA2A7381BD0064F81F /* TurtleResultA.json in Resources */ = {isa = PBXBuildFile; fileRef = B99E21B92A7381BD0064F81F /* TurtleResultA.json */; };
 		B9B3548D2A693D4C008FFBC2 /* welcomeTurtle.json in Resources */ = {isa = PBXBuildFile; fileRef = B9B3548C2A693D4C008FFBC2 /* welcomeTurtle.json */; };
 		B9CC5EBC2A7574080055151C /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9CC5EBB2A7574080055151C /* Storage.swift */; };
@@ -101,6 +102,7 @@
 		B98FE4ED2A72A13100E13890 /* SuccessViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuccessViewController.swift; sourceTree = "<group>"; };
 		B98FE4EF2A72A13C00E13890 /* FailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FailViewController.swift; sourceTree = "<group>"; };
 		B9990A7F2A71520A0094F32C /* ZeroPointViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZeroPointViewController.swift; sourceTree = "<group>"; };
+		B99D44E32A763334000160C1 /* NoConnectViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoConnectViewController.swift; sourceTree = "<group>"; };
 		B99E21B92A7381BD0064F81F /* TurtleResultA.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = TurtleResultA.json; sourceTree = "<group>"; };
 		B9B3548C2A693D4C008FFBC2 /* welcomeTurtle.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = welcomeTurtle.json; sourceTree = "<group>"; };
 		B9CC5EBB2A7574080055151C /* Storage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storage.swift; sourceTree = "<group>"; };
@@ -211,6 +213,7 @@
 				0E5CC5522A6BA5AA00A3903F /* Haptics.swift */,
 				D39AE0A22A6BE03A003D072D /* WaterViewController.swift */,
 				B9CC5EBD2A758ECF0055151C /* SettingViewController.swift */,
+				B99D44E32A763334000160C1 /* NoConnectViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -477,6 +480,7 @@
 				B9CC5EBE2A758ECF0055151C /* SettingViewController.swift in Sources */,
 				0EDFC3B12A64076D005B1C68 /* Notification.swift in Sources */,
 				D3CFE9C82A6ED27900CB3358 /* LottieWrapperView.swift in Sources */,
+				B99D44E42A763334000160C1 /* NoConnectViewController.swift in Sources */,
 				D3ED8F982A6B41DD005E02DB /* WaterWaveView.swift in Sources */,
 				D39AE0A62A6BFAFC003D072D /* DropletView.swift in Sources */,
 				D38DFAD92A5CE0AB0041C6E4 /* SceneDelegate.swift in Sources */,
