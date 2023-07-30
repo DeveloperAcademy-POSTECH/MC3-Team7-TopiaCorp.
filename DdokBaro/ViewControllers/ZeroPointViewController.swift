@@ -23,6 +23,7 @@ class ZeroPointViewController: UIViewController {
     @IBOutlet weak var setupButton: UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationController?.isNavigationBarHidden = true
         
         titleLabel.text = "나에게 딱 맞는 측정을 위해\n조정이 필요해요"
         titleLabel.numberOfLines = 0

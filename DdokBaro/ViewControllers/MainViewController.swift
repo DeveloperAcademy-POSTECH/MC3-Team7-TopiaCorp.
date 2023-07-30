@@ -81,7 +81,6 @@ class MainViewController: UIViewController, CMHeadphoneMotionManagerDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         //self.view.setGradient(color1: .blue, color2: .black)
         
         backGroundColor.setGradient2(color1: .white, color2: UIColor(hexCode: "ECF2FF"))
@@ -211,24 +210,24 @@ class MainViewController: UIViewController, CMHeadphoneMotionManagerDelegate {
         let pitch = degrees(motion.attitude.pitch)
         intPitch = degreeInt(pitch)
         currentWeight = (pitch, degreeInt(pitch))
-        
+        print(intPitch)
         DispatchQueue.main.async { [weak self] in
             if pitch > 0 {
                 self?.animationView2.setProgress(currentProgress: AnimationProgressTime(0))
             }
             else {
-                self?.animationView2.setProgress(currentProgress: AnimationProgressTime(max(-(pitch - userWeight.0)/40, 0)))
+                self?.animationView2.setProgress(currentProgress: AnimationProgressTime(max(-(pitch - self!.userWeight.0)/40, 0)))
             }
                                   
         //만약 목 각도가 정해진 기준 이상이면(notgood - 1단계, bad - 2단계, danger - 3단계)
-            if self!.intPitch - userWeight.1 < angle.notgood.rawValue {
+            if self!.intPitch - self!.userWeight.1 < angle.notgood.rawValue {
 
                 self?.animationView3.setPlay()
                 
                 self!.currentProgress -= self!.dropWhenBad * 0.00001
                 self!.waterWaveView.setupProgress(self!.currentProgress)
                 
-                if self!.intPitch - userWeight.1 < angle.bad.rawValue {
+                if self!.intPitch - self!.userWeight.1 < angle.bad.rawValue {
                     self?.animationView3.setStop()
                     self?.animationView4.setPlay()
                     
@@ -378,6 +377,19 @@ class MainViewController: UIViewController, CMHeadphoneMotionManagerDelegate {
     
     //에어팟 연결되었을때
     func headphoneMotionManagerDidConnect(_ manager: CMHeadphoneMotionManager) {
+        for childViewController in children {
+            if let noConnectViewController = childViewController as? NoConnectViewController {
+                noConnectViewController.willMove(toParent: nil)
+                noConnectViewController.view.removeFromSuperview()
+                noConnectViewController.removeFromParent()
+                break
+            }
+        }
+        
+//        if let presentedVC = presentedViewController, presentedVC is NoConnectViewController {
+//            presentedVC.dismiss(animated: true, completion: nil)
+//        }
+    
         
         self.view.addSubview(animationView1)
         self.view.addSubview(animationView2)
@@ -412,6 +424,23 @@ class MainViewController: UIViewController, CMHeadphoneMotionManagerDelegate {
     
     //에어팟 연결 끊겼을때
     func headphoneMotionManagerDidDisconnect(_ manager: CMHeadphoneMotionManager) {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        guard let noConnectViewController = storyboard.instantiateViewController(withIdentifier: "NoConnectViewController") as? NoConnectViewController else {
+            return
+        }
+        
+        // Add NoConnectViewController as a child view controller
+        addChild(noConnectViewController)
+        noConnectViewController.view.frame = view.bounds
+        view.addSubview(noConnectViewController.view)
+        noConnectViewController.didMove(toParent: self)
+
+//        guard let noConnectViewController = storyboard.instantiateViewController(withIdentifier: "NoConnectViewController") as? NoConnectViewController else {
+//            return
+//        }
+//        if let topViewController = UIApplication.shared.keyWindow?.rootViewController {
+//            topViewController.present(noConnectViewController, animated: true, completion: nil)
+//        }
         animationView1.setStop()
         
         backGroundColor.setGradient2(color1: .black, color2: UIColor(hexCode: "ECF2FF"))
