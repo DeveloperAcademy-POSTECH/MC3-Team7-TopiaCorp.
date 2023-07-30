@@ -97,7 +97,6 @@ class MainViewController: UIViewController, CMHeadphoneMotionManagerDelegate {
         self.view.sendSubviewToBack(backGroundColor)
         
         getAllData()
-        createData()
         
         let circleView = CircleViewController()
         
@@ -307,6 +306,7 @@ class MainViewController: UIViewController, CMHeadphoneMotionManagerDelegate {
             isPaused = false
             startPauseButton.setupLabelAndButton(view: startPauseButton, systemName: "pause.circle.fill", text: " 일시 정지", imageColor: .white, textColor: .white, font: UIFont.boldSystemFont(ofSize: 17) , pointSize: 17, weight: .bold)
             audioPlayer.play()
+            createData()
         } else {
             animationView1.setStop()
             
@@ -339,18 +339,18 @@ class MainViewController: UIViewController, CMHeadphoneMotionManagerDelegate {
             isPaused = true
             startPauseButton.setupLabelAndButton(view: startPauseButton, systemName: "pause.circle.fill", text: " 다시 시작", imageColor: .white, textColor: .white, font: UIFont.boldSystemFont(ofSize: 17) , pointSize: 17, weight: .bold)
             audioPlayer.pause()
+            createData()
         }
     }
     
     @IBAction func resetTapped(_ sender: UIButton) {
         self.timer.invalidate()
-        showhour = "00"
-        showminute = "00"
+        accumulatedTime += Date().timeIntervalSince(startTime)
         timeLabel.setupLabelAndButton(view: timeLabel, systemName: "clock", text: emptyString + showhour + labelHour + showminute + labelMinute, imageColor: .pointBlue ?? .black, textColor: .pointBlue ?? .black, font: .boldSystemFont(ofSize: 28), pointSize: 28, weight: .bold)
         startPauseButton.setupLabelAndButton(view: startPauseButton, systemName: "pause.circle.fill", text: " 다시 시작", imageColor: .white, textColor: .white, font: UIFont.boldSystemFont(ofSize: 17), pointSize: 17, weight: .bold)
         self.startTime = Date()
         isPaused = true
-        accumulatedTime = 0.0
+        createData()
     }
     
     @objc private func updateTimer(){
@@ -531,7 +531,7 @@ class MainViewController: UIViewController, CMHeadphoneMotionManagerDelegate {
     
     func getAllData() {
         let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy-MM-dd-E"
+        formatter.dateFormat = "yyyy-MM-dd"
         formatter.locale = Locale(identifier: "ko_kr")
         formatter.timeZone = TimeZone(abbreviation: "KST")
         let today = formatter.string(from: Date())
@@ -554,7 +554,7 @@ class MainViewController: UIViewController, CMHeadphoneMotionManagerDelegate {
 
     func createData() {
         let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy-MM-dd-E"
+        formatter.dateFormat = "yyyy-MM-dd"
         formatter.locale = Locale(identifier: "ko_kr")
         formatter.timeZone = TimeZone(abbreviation: "KST")
         let today = formatter.string(from: Date())
@@ -569,8 +569,9 @@ class MainViewController: UIViewController, CMHeadphoneMotionManagerDelegate {
 
             let newData = DdokBaroData(context: context)
             newData.createdAt = today
-            newData.remainWater = Int16(50)
-            newData.totalTime = 100
+            newData.remainWater = Int16(currentProgress * 100)
+            newData.totalTime = Int16(accumulatedTime)
+            print(newData)
 
             do {
                 try context.save()
