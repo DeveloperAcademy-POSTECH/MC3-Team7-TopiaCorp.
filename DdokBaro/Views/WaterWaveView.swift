@@ -112,6 +112,7 @@ extension WaterWaveView {
     func setupProgress(_ pr: CGFloat) {
         progress = pr
         percentLabel.text = "\(Int(100 * progress))L"
+        percentLabel.textColor = .white
         
         let top: CGFloat = pr * bounds.size.height
         //print(top)
