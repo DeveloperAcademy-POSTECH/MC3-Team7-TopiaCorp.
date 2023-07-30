@@ -19,6 +19,8 @@ enum SFSymbolKey: String {
 }
 
 class MainViewController: UIViewController, CMHeadphoneMotionManagerDelegate {
+    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    
     var showhour = "00"
     var showminute = "00"
     let labelHour = " 시간 "
