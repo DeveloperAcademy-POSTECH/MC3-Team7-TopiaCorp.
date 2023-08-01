@@ -357,6 +357,7 @@ class MainViewController: UIViewController, CMHeadphoneMotionManagerDelegate {
         startPauseButton.setupLabelAndButton(view: startPauseButton, systemName: "pause.circle.fill", text: " 다시 시작", imageColor: .white, textColor: .white, font: UIFont.boldSystemFont(ofSize: 17), pointSize: 17, weight: .bold)
         self.startTime = Date()
         isPaused = true
+        createData()
     }
     
     @objc private func updateTimer(){
@@ -502,7 +503,6 @@ class MainViewController: UIViewController, CMHeadphoneMotionManagerDelegate {
         //titleLabel.textColor = .white
         titleLabel.numberOfLines = 0
         titleLabel.isHidden = true
-        titleSubLabel.isHidden = true
         
         timer.invalidate()
         accumulatedTime += Date().timeIntervalSince(startTime)
