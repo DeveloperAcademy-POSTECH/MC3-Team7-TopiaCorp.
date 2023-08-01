@@ -29,7 +29,7 @@ class RightPostureViewController: UIViewController {
         
         textTwo.setupLabelAndButton(view: textTwo, systemName: "2.circle.fill", text: " 턱을 당겨주세요!", imageColor: .pointBlue ?? .blue, textColor: .pointBlue ?? .blue, font: .boldSystemFont(ofSize: 22), pointSize: 28, weight: .bold)
         
-        turtleGuideImage.image = UIImage(named: "TurtleGuide")
+        turtleGuideImage.image = UIImage(named: "TurtleGuide2")
            
              view.setGradient3(color1: .white, color2: UIColor(hexCode: "ECF3FF"))
             

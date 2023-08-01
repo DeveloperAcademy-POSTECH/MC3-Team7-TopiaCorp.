@@ -11,6 +11,7 @@ import CoreHaptics
 import CoreMotion
 import Lottie
 import UserNotifications
+import CoreData
 
 var currentWeight = (0.0, 0) // 현재 측정 각도
 var userWeight = (0.0, 0) // 사용자 설정 가중치
@@ -21,8 +22,8 @@ class MainViewController: UIViewController, CMHeadphoneMotionManagerDelegate {
     
     var showhour = "00"
     var showminute = "00"
-    let labelHour = " 시간 "
-    let labelMinute = " 분"
+    let labelHour = "시간 "
+    let labelMinute = "분"
     let emptyString = " "
     var timer = Timer()
     var startTime = Date()
@@ -108,7 +109,6 @@ class MainViewController: UIViewController, CMHeadphoneMotionManagerDelegate {
         titleLabel.font = UIFont.boldSystemFont(ofSize: 28)
         titleLabel.text = "바른 자세를 유지해\n양동이의 물을 지켜주세요!"
         titleLabel.numberOfLines = 0
-        titleSubLabel.font = UIFont.boldSystemFont(ofSize: 17)
         timeLabel.setupLabelAndButton(view: timeLabel, systemName: "clock", text: emptyString + showhour + labelHour + showminute + labelMinute, imageColor: .pointBlue ?? .black, textColor: .pointBlue ?? .black, font: .boldSystemFont(ofSize: 28), pointSize: 28, weight: .bold)
         
         startPauseButton.setupLabelAndButton(view: startPauseButton, systemName: "pause.circle.fill", text: " 일시 정지", imageColor: .white, textColor: .white, font: UIFont.boldSystemFont(ofSize: 17) , pointSize: 17, weight: .bold)
@@ -217,8 +217,8 @@ class MainViewController: UIViewController, CMHeadphoneMotionManagerDelegate {
     
     func turtleMotion(_ motion: CMDeviceMotion)
     {
-        print(currentWeight)
-        print(userWeight)
+        //print(currentWeight)
+        //print(userWeight)
         let pitch = degrees(motion.attitude.pitch)
         intPitch = degreeInt(pitch)
         //currentWeight = (pitch, degreeInt(pitch))
@@ -275,7 +275,7 @@ class MainViewController: UIViewController, CMHeadphoneMotionManagerDelegate {
     func changeTextColor() {
         guard let text = self.titleLabel.text else {return}
         let attributeString = NSMutableAttributedString(string: text)
-        attributeString.addAttribute(.foregroundColor, value: UIColor.pointBlue, range: (text as NSString).range(of: "아이폰을 흔들어 주세요!"))
+        attributeString.addAttribute(.foregroundColor, value: UIColor.pointBlue, range: (text as NSString).range(of: "양동이의 물을 지켜주세요!"))
         self.titleLabel.attributedText = attributeString
     }
     
@@ -326,7 +326,6 @@ class MainViewController: UIViewController, CMHeadphoneMotionManagerDelegate {
             titleLabel.text = "휴식 시간!"
             titleLabel.textColor = .white
             titleLabel.numberOfLines = 0
-            titleSubLabel.isHidden = true
             titleLabel.layer.zPosition = 1
             
             restView.frame = self.view.bounds
@@ -356,7 +355,6 @@ class MainViewController: UIViewController, CMHeadphoneMotionManagerDelegate {
         startPauseButton.setupLabelAndButton(view: startPauseButton, systemName: "pause.circle.fill", text: " 다시 시작", imageColor: .white, textColor: .white, font: UIFont.boldSystemFont(ofSize: 17), pointSize: 17, weight: .bold)
         self.startTime = Date()
         isPaused = true
-        createData()
     }
     
     @objc private func updateTimer(){
@@ -500,7 +498,6 @@ class MainViewController: UIViewController, CMHeadphoneMotionManagerDelegate {
         //titleLabel.text = "측정을 시작할려면 에어팟을 연결해 주세요"
         //titleLabel.textColor = .white
         titleLabel.numberOfLines = 0
-        titleSubLabel.isHidden = true
         
         timer.invalidate()
         accumulatedTime += Date().timeIntervalSince(startTime)
@@ -598,12 +595,12 @@ class MainViewController: UIViewController, CMHeadphoneMotionManagerDelegate {
         }
     }
 
-    override func motionEnded(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
-        if event?.subtype == .motionShake {
-            setUserWeight(currentWeight: currentWeight)
-            //print("shake: \(userWeight)")
-        }
-    }
+//    override func motionEnded(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
+//        if event?.subtype == .motionShake {
+//            setUserWeight(currentWeight: currentWeight)
+//            //print("shake: \(userWeight)")
+//        }
+//    }
     
     override func motionCancelled(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
         //print("motionCancelled")
