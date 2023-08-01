@@ -11,18 +11,20 @@ import CoreHaptics
 import CoreMotion
 import Lottie
 import UserNotifications
+import CoreData
 
 var currentWeight = (0.0, 0) // 현재 측정 각도
 var userWeight = (0.0, 0) // 사용자 설정 가중치
 var intPitch: Int = 0
+var isZero = false
 
 class MainViewController: UIViewController, CMHeadphoneMotionManagerDelegate {
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
     var showhour = "00"
     var showminute = "00"
-    let labelHour = " 시간 "
-    let labelMinute = " 분"
+    let labelHour = "시간 "
+    let labelMinute = "분"
     let emptyString = " "
     var timer = Timer()
     var startTime = Date()
@@ -109,7 +111,6 @@ class MainViewController: UIViewController, CMHeadphoneMotionManagerDelegate {
         titleLabel.font = UIFont.boldSystemFont(ofSize: 28)
         titleLabel.text = "바른 자세를 유지해\n양동이의 물을 지켜주세요!"
         titleLabel.numberOfLines = 0
-        titleSubLabel.font = UIFont.boldSystemFont(ofSize: 17)
         timeLabel.setupLabelAndButton(view: timeLabel, systemName: "clock", text: emptyString + showhour + labelHour + showminute + labelMinute, imageColor: .pointBlue ?? .black, textColor: .pointBlue ?? .black, font: .boldSystemFont(ofSize: 28), pointSize: 28, weight: .bold)
         
         startPauseButton.setupLabelAndButton(view: startPauseButton, systemName: "pause.circle.fill", text: " 일시 정지", imageColor: .white, textColor: .white, font: UIFont.boldSystemFont(ofSize: 17) , pointSize: 17, weight: .bold)
@@ -218,8 +219,8 @@ class MainViewController: UIViewController, CMHeadphoneMotionManagerDelegate {
     
     func turtleMotion(_ motion: CMDeviceMotion)
     {
-        print(currentWeight)
-        print(userWeight)
+        //print(currentWeight)
+        //print(userWeight)
         let pitch = degrees(motion.attitude.pitch)
         intPitch = degreeInt(pitch)
         //currentWeight = (pitch, degreeInt(pitch))
@@ -238,6 +239,21 @@ class MainViewController: UIViewController, CMHeadphoneMotionManagerDelegate {
                 self?.animationView3.setPlay()
                 
                 self!.currentProgress -= self!.dropWhenBad * 0.00001
+                if self!.currentProgress <= 0 {
+                    isZero = true
+                    self!.currentProgress = 0
+                    self!.createData()
+                }
+                
+                if isZero {
+                    isZero = false
+                    let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                    if let failViewController = storyboard.instantiateViewController(withIdentifier: "FailViewController") as? FailViewController {
+                        // Perform the segue programmatically
+                        self?.navigationController?.pushViewController(failViewController, animated: true)
+                    }
+                }
+                
                 self!.waterWaveView.setupProgress(self!.currentProgress)
                 
                 if intPitch - userWeight.1 < angle.bad.rawValue {
@@ -245,6 +261,21 @@ class MainViewController: UIViewController, CMHeadphoneMotionManagerDelegate {
                     self?.animationView4.setPlay()
                     
                     self!.currentProgress -= self!.dropWhenWorst * 0.00001
+                    if self!.currentProgress <= 0 {
+                        isZero = true
+                        self!.currentProgress = 0
+                        self!.createData()
+                    }
+                    
+                    if isZero {
+                        isZero = false
+                        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                        if let failViewController = storyboard.instantiateViewController(withIdentifier: "FailViewController") as? FailViewController {
+                            // Perform the segue programmatically
+                            self?.navigationController?.pushViewController(failViewController, animated: true)
+                        }
+                    }
+                    
                     self!.waterWaveView.setupProgress(self!.currentProgress)
                     
                     //                    if self!.intPitch - self!.userWeight.1 < angle.danger.rawValue {
@@ -276,7 +307,7 @@ class MainViewController: UIViewController, CMHeadphoneMotionManagerDelegate {
     func changeTextColor() {
         guard let text = self.titleLabel.text else {return}
         let attributeString = NSMutableAttributedString(string: text)
-        attributeString.addAttribute(.foregroundColor, value: UIColor.pointBlue, range: (text as NSString).range(of: "아이폰을 흔들어 주세요!"))
+        attributeString.addAttribute(.foregroundColor, value: UIColor.pointBlue, range: (text as NSString).range(of: "양동이의 물을 지켜주세요!"))
         self.titleLabel.attributedText = attributeString
     }
     
@@ -327,7 +358,6 @@ class MainViewController: UIViewController, CMHeadphoneMotionManagerDelegate {
             titleLabel.text = "휴식 시간!"
             titleLabel.textColor = .white
             titleLabel.numberOfLines = 0
-            titleSubLabel.isHidden = true
             titleLabel.layer.zPosition = 1
             
             restView.frame = self.view.bounds
@@ -509,7 +539,6 @@ class MainViewController: UIViewController, CMHeadphoneMotionManagerDelegate {
         //titleLabel.textColor = .white
         titleLabel.numberOfLines = 0
         titleLabel.isHidden = true
-        titleSubLabel.isHidden = true
         
         timer.invalidate()
         accumulatedTime += Date().timeIntervalSince(startTime)
@@ -568,7 +597,7 @@ class MainViewController: UIViewController, CMHeadphoneMotionManagerDelegate {
                 if datum.createdAt == today {
                     print(datum.remainWater)
                     currentProgress = CGFloat(datum.remainWater) * 0.01
-                    accumulatedTime = Double(datum.totalTime)
+                    accumulatedTime = Double(datum.totalMinutes)
                 }
             }
         } catch {
@@ -593,9 +622,9 @@ class MainViewController: UIViewController, CMHeadphoneMotionManagerDelegate {
 
             let newData = DdokBaroData(context: context)
             newData.createdAt = today
+            newData.grassLevel = Int16(3.9 * currentProgress + 1)
             newData.remainWater = Int16(currentProgress * 100)
-            newData.totalTime = Int16(accumulatedTime)
-            print(newData)
+            newData.totalMinutes = Int16(accumulatedTime)
 
             do {
                 try context.save()

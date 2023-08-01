@@ -82,7 +82,7 @@ extension SceneDelegate {
             window.rootViewController = navigationController
             self.window = window
             window.makeKeyAndVisible()
-            
+  
         }
     }
     private func setMainViewController(_ scene: UIScene) {

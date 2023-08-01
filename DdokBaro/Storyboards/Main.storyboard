@@ -35,6 +35,7 @@
                                     <fontDescription key="titleFontDescription" name="AppleSDGothicNeo-Bold" family="Apple SD Gothic Neo" pointSize="17"/>
                                 </buttonConfiguration>
                                 <connections>
+                                    <action selector="GoToMain:" destination="dFi-qe-lHF" eventType="touchUpInside" id="6vF-u9-hoH"/>
                                     <action selector="timerStartButton:" destination="dFi-qe-lHF" eventType="touchUpInside" id="qHX-ec-NHC"/>
                                     <segue destination="7HS-jg-uuU" kind="show" identifier="startStopwatchSegue" id="kQ4-O9-iCB"/>
                                 </connections>
@@ -60,6 +61,9 @@
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="circleButton" value="YES"/>
                                 </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="goChartButton:" destination="dFi-qe-lHF" eventType="touchUpInside" id="4ac-FR-voc"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bXH-lb-50E">
                                 <rect key="frame" x="318" y="70" width="50" height="50"/>
@@ -71,9 +75,6 @@
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="circleButton" value="YES"/>
                                 </userDefinedRuntimeAttributes>
-                                <connections>
-                                    <action selector="goSettingButton:" destination="dFi-qe-lHF" eventType="touchUpInside" id="GeZ-SL-Ph5"/>
-                                </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="nzt-ed-3Fs"/>
@@ -103,7 +104,7 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="바른 자세를 유지해" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FaU-rU-vrk">
                                 <rect key="frame" x="41" y="108" width="308" height="68"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
+                                <fontDescription key="fontDescription" name="AppleSDGothicNeo-Bold" family="Apple SD Gothic Neo" pointSize="28"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -129,16 +130,9 @@
                                 </buttonConfiguration>
                                 <connections>
                                     <action selector="resetTapped:" destination="7HS-jg-uuU" eventType="touchUpInside" id="L9r-jx-mjh"/>
-                                    <segue destination="090-9p-FOj" kind="show" id="V1S-f8-B8o"/>
+                                    <segue destination="090-9p-FOj" kind="show" id="hNu-1R-0hm"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="나에게 딱 맞는 측정을 위해 조정 중이에요" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uRS-Le-eQi">
-                                <rect key="frame" x="53" y="183" width="276" height="22"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="00 시간 00 분" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TJC-zt-JKf">
                                 <rect key="frame" x="86" y="700" width="210" height="34"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -156,7 +150,6 @@
                         <outlet property="startPauseButton" destination="g65-cC-Mc6" id="Sgt-UB-aIK"/>
                         <outlet property="timeLabel" destination="TJC-zt-JKf" id="qeu-BP-l55"/>
                         <outlet property="titleLabel" destination="FaU-rU-vrk" id="tiZ-WY-KO0"/>
-                        <outlet property="titleSubLabel" destination="uRS-Le-eQi" id="8d3-iP-ubz"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nvt-ql-g1w" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -166,9 +159,9 @@
         <!--Fail View Controller-->
         <scene sceneID="Uhl-Q2-cWL">
             <objects>
-                <viewController id="nBN-Ef-JfM" customClass="FailViewController" customModule="DdokBaro" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="FailViewController" id="nBN-Ef-JfM" customClass="FailViewController" customModule="DdokBaro" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="jUy-S0-GHZ" customClass="Success">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9UM-Ne-V3z">
@@ -211,26 +204,14 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gQ7-P3-QAC">
-                                <rect key="frame" x="16" y="700" width="358" height="50"/>
+                                <rect key="frame" x="16" y="758" width="358" height="50"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="filled" title="바른자세 학습하기" cornerStyle="capsule">
-                                    <fontDescription key="titleFontDescription" style="UICTFontTextStyleBody"/>
+                                    <fontDescription key="titleFontDescription" name="AppleSDGothicNeo-Bold" family="Apple SD Gothic Neo" pointSize="17"/>
                                 </buttonConfiguration>
                                 <connections>
-                                    <action selector="goToZeroPoint:" destination="nBN-Ef-JfM" eventType="touchUpInside" id="m1g-Xp-nGf"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fao-8B-INi">
-                                <rect key="frame" x="16" y="760" width="358" height="50"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="tintColor" name="pointBlue"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="메인으로 돌아가기" cornerStyle="capsule">
-                                    <fontDescription key="titleFontDescription" style="UICTFontTextStyleBody"/>
-                                </buttonConfiguration>
-                                <connections>
-                                    <action selector="goToMainButton:" destination="nBN-Ef-JfM" eventType="touchUpInside" id="gk2-Jd-PnS"/>
+                                    <segue destination="eht-Xu-IC0" kind="show" id="cph-Ka-dxC"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1CQ-XQ-VfF">
@@ -240,9 +221,16 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="바른 자세를 학습하면 물 100L가 다시 채워져요!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kBN-ST-CSN">
+                                <rect key="frame" x="105" y="695" width="180" height="46"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="AppleSDGothicNeo-Bold" family="Apple SD Gothic Neo" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="gqu-ET-SEo"/>
-                        <color key="backgroundColor" red="0.94509803920000002" green="0.96470588239999999" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </view>
                     <navigationItem key="navigationItem" id="CDD-GE-FeC"/>
                     <connections>
@@ -250,7 +238,6 @@
                         <outlet property="timeSubLabel" destination="IWl-Ky-lxL" id="oYk-rP-ieF"/>
                         <outlet property="timeView" destination="9UM-Ne-V3z" id="i7v-QQ-GAC"/>
                         <outlet property="titleLabel" destination="1CQ-XQ-VfF" id="IBj-KO-FHZ"/>
-                        <outlet property="toMainButton" destination="Fao-8B-INi" id="EAf-CR-RL9"/>
                         <outlet property="waterLabel" destination="1rj-Mh-zdu" id="8Ix-HK-FQE"/>
                         <outlet property="waterSubLabel" destination="dOM-Mh-aGz" id="cRq-3L-x5E"/>
                         <outlet property="waterView" destination="X8t-oN-axj" id="3lf-bz-aMu"/>
@@ -258,7 +245,75 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Bha-fh-vUK" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6002.2900763358775" y="-714.08450704225356"/>
+            <point key="canvasLocation" x="5253" y="-1094"/>
+        </scene>
+        <!--Right Posture View Controller-->
+        <scene sceneID="ZsJ-6j-FC3">
+            <objects>
+                <viewController storyboardIdentifier="RightPostureViewController" id="eht-Xu-IC0" customClass="RightPostureViewController" customModule="DdokBaro" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="cw7-DA-UYX">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="842"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="자세를 바르게 해 볼까요?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mfe-cu-t5E">
+                                <rect key="frame" x="47" y="125" width="294" height="34"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="AppleSDGothicNeo-Bold" family="Apple SD Gothic Neo" pointSize="28"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x3O-Ad-hjA">
+                                <rect key="frame" x="90" y="620" width="210" height="29"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="AppleSDGothicNeo-Bold" family="Apple SD Gothic Neo" pointSize="22"/>
+                                <color key="textColor" name="pointBlue"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="818-xV-Pi1">
+                                <rect key="frame" x="90" y="670" width="191" height="29"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="AppleSDGothicNeo-Bold" family="Apple SD Gothic Neo" pointSize="22"/>
+                                <color key="textColor" name="pointBlue"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sVx-7B-8Uo">
+                                <rect key="frame" x="16" y="758" width="358" height="50"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="filled" title="학습 완료" cornerStyle="capsule">
+                                    <fontDescription key="titleFontDescription" name="AppleSDGothicNeo-Bold" family="Apple SD Gothic Neo" pointSize="17"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="goToWelcomeButton:" destination="eht-Xu-IC0" eventType="touchUpInside" id="c30-EJ-sRV"/>
+                                </connections>
+                            </button>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nMb-Id-wvJ">
+                                <rect key="frame" x="11" y="166" width="370" height="370"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="기지개를 켜고 몸을 일으켜봐요" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TqE-07-d16">
+                                <rect key="frame" x="55" y="569" width="282" height="28"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="AppleSDGothicNeo-Bold" family="Apple SD Gothic Neo" pointSize="22"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="mL7-cN-91u"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="5Xn-JN-MZ2"/>
+                    <connections>
+                        <outlet property="middleTitleLabel" destination="TqE-07-d16" id="bt1-Pk-ugB"/>
+                        <outlet property="textOne" destination="x3O-Ad-hjA" id="YZz-mi-abL"/>
+                        <outlet property="textTwo" destination="818-xV-Pi1" id="o6g-uL-LWb"/>
+                        <outlet property="titleLabel" destination="mfe-cu-t5E" id="hn7-5N-zaK"/>
+                        <outlet property="turtleGuideImage" destination="nMb-Id-wvJ" id="Wwh-iF-CmC"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="QFW-JK-NSN" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5972" y="-1094"/>
         </scene>
         <!--Setting View Controller-->
         <scene sceneID="Lxc-JF-0tK">
@@ -358,12 +413,108 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Rb0-NB-wHy" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6817.5572519083971" y="-714.08450704225356"/>
+            <point key="canvasLocation" x="3650" y="256"/>
+        </scene>
+        <!--Chart View Controller-->
+        <scene sceneID="RVE-eb-Ifc">
+            <objects>
+                <viewController storyboardIdentifier="ChartViewController" id="4hT-A1-9kj" customClass="ChartViewController" customModule="DdokBaro" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="BHH-xR-HiC">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="자세 기록" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YiP-fK-ZkB">
+                                <rect key="frame" x="32" y="124" width="127" height="41"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="AppleSDGothicNeo-Bold" family="Apple SD Gothic Neo" pointSize="34"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="나의 잔디밭" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4qH-2a-WZx">
+                                <rect key="frame" x="32" y="186" width="101" height="27"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="AppleSDGothicNeo-Bold" family="Apple SD Gothic Neo" pointSize="22"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="바른 자세로 지킨 물의 양을 한 눈에 확인할 수 있어요" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4jO-yP-nMK">
+                                <rect key="frame" x="32" y="214" width="249" height="15"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="나의 바른 자세" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9yw-ft-uij">
+                                <rect key="frame" x="32" y="468" width="126" height="27"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="AppleSDGothicNeo-Bold" family="Apple SD Gothic Neo" pointSize="22"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="자세의 변화를 한 눈에 확인할 수 있어요" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eso-rR-cQw">
+                                <rect key="frame" x="32" y="496" width="187" height="15"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Mar" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TS1-jy-nTI">
+                                <rect key="frame" x="37" y="257" width="22" height="15"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Apr" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NGj-Qa-o0F">
+                                <rect key="frame" x="113" y="257" width="20" height="15"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="May" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BmI-MD-hKM">
+                                <rect key="frame" x="184" y="257" width="24" height="15"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Jun" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ygv-v1-Lrk">
+                                <rect key="frame" x="260" y="257" width="21" height="15"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Jul" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R7s-fA-G43">
+                                <rect key="frame" x="337" y="257" width="17" height="15"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="49j-Do-RO2" customClass="BarChartView" customModule="DdokBaro" customModuleProvider="target">
+                                <rect key="frame" x="44" y="537" width="305" height="161"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="n6a-4m-MJN"/>
+                        <color key="backgroundColor" red="0.92941176889999999" green="0.9529411793" blue="0.99607843159999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <color key="tintColor" red="0.92941176889999999" green="0.9529411793" blue="0.99607843159999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                    </view>
+                    <connections>
+                        <outlet property="barChartView" destination="49j-Do-RO2" id="hDm-78-djf"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="FFs-Ei-PL8" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="6817.5572519083971" y="-20.422535211267608"/>
         </scene>
         <!--Success View Controller-->
         <scene sceneID="kup-j6-3Vu">
             <objects>
-                <viewController id="090-9p-FOj" customClass="SuccessViewController" customModule="DdokBaro" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SuccessViewController" id="090-9p-FOj" customClass="SuccessViewController" customModule="DdokBaro" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Rox-qa-W61">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -390,11 +541,8 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="filled" title="잔디 보러가기" cornerStyle="capsule">
-                                    <fontDescription key="titleFontDescription" style="UICTFontTextStyleBody"/>
+                                    <fontDescription key="titleFontDescription" name="AppleSDGothicNeo-Bold" family="Apple SD Gothic Neo" pointSize="17"/>
                                 </buttonConfiguration>
-                                <connections>
-                                    <segue destination="nBN-Ef-JfM" kind="show" id="reE-mw-9NZ"/>
-                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="R7u-V0-sV6">
                                 <rect key="frame" x="16" y="760" width="358" height="50"/>
@@ -402,7 +550,7 @@
                                 <color key="tintColor" name="pointBlue"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="메인으로 돌아가기" cornerStyle="capsule">
-                                    <fontDescription key="titleFontDescription" style="UICTFontTextStyleBody"/>
+                                    <fontDescription key="titleFontDescription" name="AppleSDGothicNeo-Bold" family="Apple SD Gothic Neo" pointSize="17"/>
                                 </buttonConfiguration>
                                 <connections>
                                     <action selector="goToMainButton:" destination="090-9p-FOj" eventType="touchUpInside" id="Omh-49-5lh"/>
@@ -439,7 +587,7 @@
                             </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="OWY-Sf-LcK"/>
-                        <color key="backgroundColor" red="0.94509803920000002" green="0.96470588239999999" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </view>
                     <navigationItem key="navigationItem" id="ns9-dk-dPT"/>
                     <connections>
@@ -447,8 +595,6 @@
                         <outlet property="timeSubLabel" destination="bkf-SJ-I4U" id="wxZ-jT-gef"/>
                         <outlet property="timeView" destination="C5A-5u-hw0" id="hT3-wW-Pb7"/>
                         <outlet property="titleLabel" destination="cT7-Br-ck1" id="kGY-ml-5dv"/>
-                        <outlet property="toGrassButton" destination="A1m-qQ-08p" id="SfH-Pt-zEr"/>
-                        <outlet property="toMainButton" destination="R7u-V0-sV6" id="2Q3-9q-HvT"/>
                         <outlet property="waterLabel" destination="O98-vc-4FT" id="BKh-7Q-jbN"/>
                         <outlet property="waterSubLabel" destination="Rhc-Bo-NxK" id="8Z8-1u-x3f"/>
                         <outlet property="waterView" destination="TMd-OS-e0b" id="gvU-h5-Ajf"/>
@@ -456,7 +602,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dSj-YO-uTb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5329.0076335877857" y="-714.08450704225356"/>
+            <point key="canvasLocation" x="5254" y="-423"/>
         </scene>
         <!--Zero Point View Controller-->
         <scene sceneID="iex-Y3-VU6">
@@ -507,7 +653,7 @@
                                 </buttonConfiguration>
                                 <connections>
                                     <action selector="SetupPointButton:" destination="kpM-3F-nlH" eventType="touchUpInside" id="FBa-20-He6"/>
-                                    <segue destination="dFi-qe-lHF" kind="show" id="scS-8T-ymx"/>
+                                    <segue destination="dFi-qe-lHF" kind="show" identifier="ToWelcomeSegue" id="scS-8T-ymx"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aBc-qm-a8q">

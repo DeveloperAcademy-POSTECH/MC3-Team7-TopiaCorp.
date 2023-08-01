@@ -19,7 +19,6 @@ class WelcomeViewController: UIViewController {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var turtleImage: UIImageView!
     @IBOutlet weak var descriptionLabel: UILabel!
-    @IBOutlet weak var startingButton: UIButton!
     
     @IBOutlet weak var chartButton: UIButton!
     
@@ -27,8 +26,10 @@ class WelcomeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let backBarButtonItem = UIBarButtonItem(title: "자세 측정", style: .plain, target: self, action: nil)
-        self.navigationItem.backBarButtonItem = backBarButtonItem
+//        navigationController?.isNavigationBarHidden = true
+//        let backBarButtonItem = UIBarButtonItem(title: "자세 측정", style: .plain, target: self, action: nil)
+//        self.navigationItem.backBarButtonItem = backBarButtonItem
+        view.setGradient3(color1: .white, color2: UIColor(hexCode: "ECF3FF"))
         
         chartButton.circleButton = true
         chartButton.setImage(UIImage(systemName: "chart.bar.xaxis"), for: .normal)
@@ -59,14 +60,25 @@ class WelcomeViewController: UIViewController {
         self.view.sendSubviewToBack(welcomeTurtleView)
     }
     
-    @IBAction func goSettingButton(_ sender: UIButton) {
-        
+//    @IBAction func goSettingButton(_ sender: UIButton) {
+//        
+//        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+//        if let settingViewController = storyboard.instantiateViewController(withIdentifier: "SettingViewController") as? SettingViewController {
+//            navigationController?.pushViewController(settingViewController, animated: true)
+//        }
+//    }
+    
+    @IBAction func GoToMain(_ sender: UIButton) {
+        timer.invalidate()
+    }
+    
+    @IBAction func goChartButton(_ sender: UIButton) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        if let settingViewController = storyboard.instantiateViewController(withIdentifier: "SettingViewController") as? SettingViewController {
-            navigationController?.pushViewController(settingViewController, animated: true)
+        if let chartViewController = storyboard.instantiateViewController(withIdentifier: "ChartViewController") as? ChartViewController {
+            navigationController?.pushViewController(chartViewController, animated: true)
         }
     }
-
+    
     func changeTextColor() {
         guard let text = self.titleLabel.text else {return}
         let attributeString = NSMutableAttributedString(string: text)
@@ -90,7 +102,8 @@ class WelcomeViewController: UIViewController {
     
     @objc private func updateTimer(){
         let currentTime = Date()
-        let elapsedTime = accumulatedTime + currentTime.timeIntervalSince(startTime)
+        var elapsedTime: Double = 0.0
+        elapsedTime = accumulatedTime + currentTime.timeIntervalSince(startTime)
         
         _ = Int(elapsedTime / 60)
         _ = Int((elapsedTime).truncatingRemainder(dividingBy: 60))

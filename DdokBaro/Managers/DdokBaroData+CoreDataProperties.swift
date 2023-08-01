@@ -17,8 +17,9 @@ extension DdokBaroData {
     }
 
     @NSManaged public var createdAt: String?
+    @NSManaged public var grassLevel: Int16
     @NSManaged public var remainWater: Int16
-    @NSManaged public var totalTime: Int16
+    @NSManaged public var totalMinutes: Int16
 
 }
 

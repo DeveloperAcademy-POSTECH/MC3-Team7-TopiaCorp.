@@ -153,6 +153,7 @@ class ZeroPointViewController: UIViewController, CMHeadphoneMotionManagerDelegat
     }
 }
 
+
 // 값을 변경하는 함수
 func changeValueAndNotify() {
     // true로 변경후 notification에서 감지하도록
