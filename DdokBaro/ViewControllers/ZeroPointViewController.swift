@@ -15,10 +15,8 @@ class AirPodCheckModel {
 
     @objc dynamic var airPodCheck:Bool = false {
         didSet {
-            
             // airPodChec의 값이 변경될 때마다 호출되는 코드
             // NotificationCenter를 이용하여 값을 알린다
-            
             NotificationCenter.default.post(name: NSNotification.Name("airpodcheck"), object: nil)
         }
     }
@@ -74,23 +72,21 @@ class ZeroPointViewController: UIViewController, CMHeadphoneMotionManagerDelegat
         )
         // NotificationCenter이용해서 true false 감지
         NotificationCenter.default.addObserver(self, selector: #selector(checkModal), name: NSNotification.Name("airpodcheck"), object: nil)
-        showYourView()
+        showModalView()
     }
 
     // Notification이 발생하면 호출
     @objc func checkModal() {
-        print("여기는 objc")
         // if else로 모달뷰 띄울지
         if AirPodCheckModel.shared.airPodCheck {
             closeYourView()
         } else {
-            showYourView()
+            showModalView()
         }
     }
 
     // 뷰를 띄우는 메서드
-    func showYourView() {
-        print("여기는 show your view")
+    func showModalView() {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let noConnectionViewController = storyboard.instantiateViewController(withIdentifier: "NoConnectViewController")
         noConnectionViewController.modalPresentationStyle = .formSheet
@@ -100,7 +96,6 @@ class ZeroPointViewController: UIViewController, CMHeadphoneMotionManagerDelegat
 
     // 뷰를 닫는 메서드
     func closeYourView() {
-        print("여기는 close your view")
         dismiss(animated: true)
     }
 
@@ -110,8 +105,6 @@ class ZeroPointViewController: UIViewController, CMHeadphoneMotionManagerDelegat
         intPitch = degreeInt(pitch)
         currentWeight = (pitch, degreeInt(pitch))
         changeValueAndNotify()
-        //print(airPodCheck)
-        //print(intPitch)
     }
     
     func setUserWeight(currentWeight: (Double, Int)) {
@@ -148,7 +141,6 @@ class ZeroPointViewController: UIViewController, CMHeadphoneMotionManagerDelegat
     //에어팟 연결 끊겼을때
     func headphoneMotionManagerDidDisconnect(_ manager: CMHeadphoneMotionManager) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        
         let noConnectionViewController = storyboard.instantiateViewController(withIdentifier: "NoConnectViewController")
         noConnectionViewController.modalPresentationStyle = .formSheet
         noConnectionViewController.isModalInPresentation = true
@@ -161,8 +153,8 @@ class ZeroPointViewController: UIViewController, CMHeadphoneMotionManagerDelegat
     }
 }
 
-// 값을 변경하는 예제
+// 값을 변경하는 함수
 func changeValueAndNotify() {
-    // yourValue를 변경하고 NotificationCenter에 해당 Notification을 전송합니다.
+    // true로 변경후 notification에서 감지하도록
     AirPodCheckModel.shared.updateValue(newValue: true)
 }
