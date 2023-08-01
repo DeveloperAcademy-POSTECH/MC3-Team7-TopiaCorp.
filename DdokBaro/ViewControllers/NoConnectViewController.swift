@@ -17,6 +17,7 @@ class NoConnectViewController: UIViewController {
     
     
     override func viewDidLoad() {
+        
         super.viewDidLoad()
         navigationController?.isNavigationBarHidden = true
         titleLabel.text = "에어팟을 연결해주세요"
@@ -42,5 +43,20 @@ class NoConnectViewController: UIViewController {
         let attributeString = NSMutableAttributedString(string: text)
         attributeString.addAttribute(.foregroundColor, value: UIColor.pointBlue ?? .black, range: (text as NSString).range(of: "에어팟"))
         self.titleLabel.attributedText = attributeString
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+//        disableDismissGesture()
+        
+    }
+//    func disableDismissGesture() {
+//        if let gestures = self.view.gestureRecognizers {
+//            for gesture in gestures {
+//                gesture.isEnabled = false
+//            }
+//        }
+//    }
+    override func dismiss(animated flag: Bool, completion: (() -> Void)? = nil) {
+
     }
 }

@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0E18681D2A76B1020057F7FC /* ZeroSound.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 0E18681C2A76B1010057F7FC /* ZeroSound.mp3 */; };
+		0E1868212A7884B20057F7FC /* Modal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E1868202A7884B20057F7FC /* Modal.swift */; };
 		0E5CC54D2A694AC000A3903F /* Rain.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 0E5CC54B2A694AC000A3903F /* Rain.mp3 */; };
 		0E5CC54F2A6A6D2D00A3903F /* Vibrate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E5CC54E2A6A6D2D00A3903F /* Vibrate.swift */; };
 		0E5CC5512A6A6D3B00A3903F /* Sound.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E5CC5502A6A6D3B00A3903F /* Sound.swift */; };
@@ -91,6 +92,7 @@
 
 /* Begin PBXFileReference section */
 		0E18681C2A76B1010057F7FC /* ZeroSound.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = ZeroSound.mp3; sourceTree = "<group>"; };
+		0E1868202A7884B20057F7FC /* Modal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Modal.swift; sourceTree = "<group>"; };
 		0E5CC54B2A694AC000A3903F /* Rain.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Rain.mp3; sourceTree = "<group>"; };
 		0E5CC54E2A6A6D2D00A3903F /* Vibrate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Vibrate.swift; sourceTree = "<group>"; };
 		0E5CC5502A6A6D3B00A3903F /* Sound.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sound.swift; sourceTree = "<group>"; };
@@ -236,6 +238,7 @@
 				D39AE0A22A6BE03A003D072D /* WaterViewController.swift */,
 				B9CC5EBD2A758ECF0055151C /* SettingViewController.swift */,
 				B99D44E32A763334000160C1 /* NoConnectViewController.swift */,
+				0E1868202A7884B20057F7FC /* Modal.swift */,
 				B9F658D92A76952000AFC4D6 /* RightPostureViewController.swift */,
 				B9F658E12A76F61C00AFC4D6 /* LaunchScreen.swift */,
 				D3B570112A76E92B001DE024 /* ChartViewController.swift */,
@@ -527,6 +530,7 @@
 				D38DFAE12A5CE0AB0041C6E4 /* DdokBaro.xcdatamodeld in Sources */,
 				D39AE0A32A6BE03A003D072D /* WaterViewController.swift in Sources */,
 				D39820C12A677A0C004FE798 /* MainViewController.swift in Sources */,
+				0E1868212A7884B20057F7FC /* Modal.swift in Sources */,
 				B9F658DA2A76952000AFC4D6 /* RightPostureViewController.swift in Sources */,
 				D3B570122A76E92B001DE024 /* ChartViewController.swift in Sources */,
 			);
