@@ -15,7 +15,7 @@ import CoreData
 
 var currentWeight = (0.0, 0) // 현재 측정 각도
 var userWeight = (0.0, 0) // 사용자 설정 가중치
-var intPitch: Int = 0
+var intPitch: Int = 0 // 목 기울기(정수)
 var isZero = false
 
 class MainViewController: UIViewController, CMHeadphoneMotionManagerDelegate {
@@ -31,15 +31,12 @@ class MainViewController: UIViewController, CMHeadphoneMotionManagerDelegate {
     var isPaused: Bool = false
     var accumulatedTime = 0.0
     var notFirstConnect:Bool = false
+    var isPause:Bool = false
     
 //    var currentWeight = (0.0, 0) // 현재 측정 각도
 //    var userWeight = (0.0, 0) // 사용자 설정 가중치
-//    var intPitch: Int = 0
-    
-    
-    //var currentWeight = (0.0, 0) // 현재 측정 각도
-    //var userWeight = (0.0, 0) // 사용자 설정 가중치
-    
+//    var intPitch: Int = 0  //목 각도 int값
+
     let screenWidth = UIScreen.main.bounds.size.width
     let waterWaveView = WaterWaveView()
     var currentProgress: CGFloat = 1.0 // 현재 물의 양 0.0 ~ 1.0
@@ -49,9 +46,6 @@ class MainViewController: UIViewController, CMHeadphoneMotionManagerDelegate {
     @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var startPauseButton: UIButton!
     @IBOutlet weak var resetButton: UIButton!
-    
-    //목 각도 int값
-//    var intPitch: Int = 0
     
     //AirPods Pro => manager :) 헤드폰 모니터 매니저 담는 상수
     let manager = CMHeadphoneMotionManager()
@@ -318,6 +312,7 @@ class MainViewController: UIViewController, CMHeadphoneMotionManagerDelegate {
     
     @IBAction func pauseTapped(_ sender: UIButton) {
         if isPaused {
+            isPause = false
             backGroundColor.setGradient2(color1: .white, color2: UIColor(hexCode: "ECF2FF"))
             backGroundColor.layer.zPosition = -1
             
@@ -346,6 +341,7 @@ class MainViewController: UIViewController, CMHeadphoneMotionManagerDelegate {
             audioPlayer.play()
             createData()
         } else {
+            isPause = true
             animationView1.setStop()
             
             backGroundColor.setGradient2(color1: UIColor(hexCode: "#02070B"), color2: UIColor(hexCode: "#02070B"))
@@ -388,6 +384,10 @@ class MainViewController: UIViewController, CMHeadphoneMotionManagerDelegate {
         startPauseButton.setupLabelAndButton(view: startPauseButton, systemName: "pause.circle.fill", text: " 다시 시작", imageColor: .white, textColor: .white, font: UIFont.boldSystemFont(ofSize: 17), pointSize: 17, weight: .bold)
         self.startTime = Date()
         isPaused = true
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let noConnectionViewController = storyboard.instantiateViewController(withIdentifier: "NoConnectViewController")
+        //present(noConnectionViewController, animated: false)
+        dismiss(animated: true)
 //        if currentProgress == 0.0 {
 //            currentProgress = 1.0
 //        }
@@ -395,6 +395,7 @@ class MainViewController: UIViewController, CMHeadphoneMotionManagerDelegate {
         
         
     }
+    
     
     @objc private func updateTimer(){
         let currentTime = Date()
@@ -420,8 +421,8 @@ class MainViewController: UIViewController, CMHeadphoneMotionManagerDelegate {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         self.waterWaveView.setupProgress(currentProgress)
-        
         self.view.bringSubviewToFront(waterWaveView)
+           
     }
     
     //MARK: motion view controller
@@ -438,80 +439,88 @@ class MainViewController: UIViewController, CMHeadphoneMotionManagerDelegate {
     
     //에어팟 연결되었을때
     func headphoneMotionManagerDidConnect(_ manager: CMHeadphoneMotionManager) {
-        for childViewController in children {
-            if let noConnectViewController = childViewController as? NoConnectViewController {
-                noConnectViewController.willMove(toParent: nil)
-                noConnectViewController.view.removeFromSuperview()
-                noConnectViewController.removeFromParent()
-                break
-            }
-        }
-        
-//        if let presentedVC = presentedViewController, presentedVC is NoConnectViewController {
-//            presentedVC.dismiss(animated: true, completion: nil)
-//        }
-    
-        backGroundColor.setGradient2(color1: .white, color2: UIColor(hexCode: "ECF2FF"))
-        //backGroundColor.frame = self.view.bounds
-        //backGroundColor.center = self.view.center
-        //backGroundColor.contentMode = .scaleAspectFit
-        backGroundColor.layer.zPosition = -1
-        
-        self.view.addSubview(backGroundColor)
-        self.view.sendSubviewToBack(backGroundColor)
-        
-        self.view.addSubview(animationView1)
-        self.view.addSubview(animationView2)
-        self.view.addSubview(animationView3)
-        self.view.addSubview(animationView4)
-        
-        self.view.sendSubviewToBack(animationView1)
-        self.view.sendSubviewToBack(animationView2)
-        self.view.sendSubviewToBack(animationView3)
-        self.view.sendSubviewToBack(animationView4)
-        
-        restView.removeFromSuperview()
-        
+        dismiss(animated: true)
         titleLabel.font = UIFont.boldSystemFont(ofSize: 28)
         titleLabel.text = "바른 자세를 유지해\n양동이의 물을 지켜주세요!"
         titleLabel.textColor = .black
         titleLabel.numberOfLines = 0
         titleLabel.isHidden = false
         
-        if notFirstConnect {
-            startTime = Date() //현재 시간으로 업데이트
-            timer = Timer.scheduledTimer(timeInterval: 0.01, target: self, selector: #selector(updateTimer), userInfo: nil, repeats: true)
-            RunLoop.current.add(timer, forMode: .common)
-            isPaused = false
-            startPauseButton.setupLabelAndButton(view: startPauseButton, systemName: "pause.circle.fill", text: " 일시 정지", imageColor: .white, textColor: .white, font: UIFont.boldSystemFont(ofSize: 17) , pointSize: 17, weight: .bold)
-            audioPlayer.play()
+        if isPause {
+            print("일시정지 하고 빼고 꼈을때")
+            titleLabel.font = UIFont.boldSystemFont(ofSize: 28)
+            titleLabel.text = "아직은 휴식 시간!"
+            titleLabel.textColor = .white
+            titleLabel.numberOfLines = 0
+            titleLabel.layer.zPosition = 1
         }
-        
-        DispatchQueue.main.async { [weak self] in
-            self?.animationView1.setPlay()
+        else{
+            print("일시정지 안하고 빼고 꼈을때")
+            //        for childViewController in children {
+            //            if let noConnectViewController = childViewController as? NoConnectViewController {
+            //                noConnectViewController.willMove(toParent: nil)
+            //                noConnectViewController.view.removeFromSuperview()
+            //                noConnectViewController.removeFromParent()
+            //                break
+            //            }
+            //        }
+            
+            //        if let presentedVC = presentedViewController, presentedVC is NoConnectViewController {
+            //            presentedVC.dismiss(animated: true, completion: nil)
+            //        }
+            
+            backGroundColor.setGradient2(color1: .white, color2: UIColor(hexCode: "ECF2FF"))
+            //backGroundColor.frame = self.view.bounds
+            //backGroundColor.center = self.view.center
+            //backGroundColor.contentMode = .scaleAspectFit
+            backGroundColor.layer.zPosition = -1
+            
+            self.view.addSubview(backGroundColor)
+            self.view.sendSubviewToBack(backGroundColor)
+            
+            self.view.addSubview(animationView1)
+            self.view.addSubview(animationView2)
+            self.view.addSubview(animationView3)
+            self.view.addSubview(animationView4)
+            
+            self.view.sendSubviewToBack(animationView1)
+            self.view.sendSubviewToBack(animationView2)
+            self.view.sendSubviewToBack(animationView3)
+            self.view.sendSubviewToBack(animationView4)
+            
+            restView.removeFromSuperview()
+            
+//            titleLabel.font = UIFont.boldSystemFont(ofSize: 28)
+//            titleLabel.text = "바른 자세를 유지해\n양동이의 물을 지켜주세요!"
+//            titleLabel.textColor = .black
+//            titleLabel.numberOfLines = 0
+//            titleLabel.isHidden = false
+            
+            if notFirstConnect {
+                startTime = Date() //현재 시간으로 업데이트
+                timer = Timer.scheduledTimer(timeInterval: 0.01, target: self, selector: #selector(updateTimer), userInfo: nil, repeats: true)
+                RunLoop.current.add(timer, forMode: .common)
+                isPaused = false
+                startPauseButton.setupLabelAndButton(view: startPauseButton, systemName: "pause.circle.fill", text: " 일시 정지", imageColor: .white, textColor: .white, font: UIFont.boldSystemFont(ofSize: 17) , pointSize: 17, weight: .bold)
+                audioPlayer.play()
+            }
+            
+            DispatchQueue.main.async { [weak self] in
+                self?.animationView1.setPlay()
+            }
         }
         print("에어팟 연결 성공")
     }
     
     //에어팟 연결 끊겼을때
     func headphoneMotionManagerDidDisconnect(_ manager: CMHeadphoneMotionManager) {
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        guard let noConnectViewController = storyboard.instantiateViewController(withIdentifier: "NoConnectViewController") as? NoConnectViewController else {
-            return
-        }
-        
-        // Add NoConnectViewController as a child view controller
-        addChild(noConnectViewController)
-        noConnectViewController.view.frame = view.bounds
-        view.addSubview(noConnectViewController.view)
-        noConnectViewController.didMove(toParent: self)
 
-//        guard let noConnectViewController = storyboard.instantiateViewController(withIdentifier: "NoConnectViewController") as? NoConnectViewController else {
-//            return
-//        }
-//        if let topViewController = UIApplication.shared.keyWindow?.rootViewController {
-//            topViewController.present(noConnectViewController, animated: true, completion: nil)
-//        }
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let noConnectionViewController = storyboard.instantiateViewController(withIdentifier: "NoConnectViewController")
+        noConnectionViewController.modalPresentationStyle = .formSheet
+        noConnectionViewController.isModalInPresentation = true
+        self.present(noConnectionViewController, animated: true, completion: nil)
+
         animationView1.setStop()
         
         backGroundColor.setGradient2(color1: .black, color2: UIColor(hexCode: "ECF2FF"))
@@ -537,15 +546,28 @@ class MainViewController: UIViewController, CMHeadphoneMotionManagerDelegate {
         titleLabel.font = UIFont.boldSystemFont(ofSize: 20)
         //titleLabel.text = "측정을 시작할려면 에어팟을 연결해 주세요"
         //titleLabel.textColor = .white
+        
         titleLabel.numberOfLines = 0
         titleLabel.isHidden = true
         
-        timer.invalidate()
-        accumulatedTime += Date().timeIntervalSince(startTime)
-        isPaused = true
-        notFirstConnect = true
-        startPauseButton.setupLabelAndButton(view: startPauseButton, systemName: "pause.circle.fill", text: " 다시 시작", imageColor: .white, textColor: .white, font: UIFont.boldSystemFont(ofSize: 17) , pointSize: 17, weight: .bold)
-        audioPlayer.pause()
+        if isPause{
+            print("일시정지 하고 에어팟 연결 끊었을때")
+            
+        }else{
+            print("여기는 일시정지 안하고 에어팟 연결 끊었을떄")
+            timer.invalidate()
+            accumulatedTime += Date().timeIntervalSince(startTime)
+            isPaused = true
+            notFirstConnect = true
+            startPauseButton.setupLabelAndButton(view: startPauseButton, systemName: "pause.circle.fill", text: " 다시 시작", imageColor: .white, textColor: .white, font: UIFont.boldSystemFont(ofSize: 17) , pointSize: 17, weight: .bold)
+            audioPlayer.pause()
+        }
+//        timer.invalidate()
+//        accumulatedTime += Date().timeIntervalSince(startTime)
+//        isPaused = true
+//        notFirstConnect = true
+//        startPauseButton.setupLabelAndButton(view: startPauseButton, systemName: "pause.circle.fill", text: " 다시 시작", imageColor: .white, textColor: .white, font: UIFont.boldSystemFont(ofSize: 17) , pointSize: 17, weight: .bold)
+//        audioPlayer.pause()
         print("에어팟 연결 끊김")
     }
     
@@ -560,7 +582,18 @@ class MainViewController: UIViewController, CMHeadphoneMotionManagerDelegate {
     //뷰가 사라질때 하고 싶은 작업
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        manager.stopDeviceMotionUpdates()
+        //manager.stopDeviceMotionUpdates()
+//        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+//        let noConnectionViewController = storyboard.instantiateViewController(withIdentifier: "NoConnectViewController")
+//        present(noConnectionViewController, animated: false)
+//        dismiss(animated: true)
+//        manager.stopDeviceMotionUpdates()
+    }
+    func stopDeviceMotionUpdates(){
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let noConnectionViewController = storyboard.instantiateViewController(withIdentifier: "NoConnectViewController")
+        present(noConnectionViewController, animated: false)
+        dismiss(animated: true)
     }
     
     //설정한 시간동안 거북목일 경우 알람 울리게 한다

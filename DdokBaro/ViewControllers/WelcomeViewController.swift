@@ -7,14 +7,18 @@
 
 import UIKit
 import Lottie
+import CoreMotion
 
 var isStart: Bool = false
 
-class WelcomeViewController: UIViewController {
+class WelcomeViewController: UIViewController, CMHeadphoneMotionManagerDelegate {
+    
     var timer = Timer()
     var startTime = Date()
     var isPaused: Bool = false
     var accumulatedTime: TimeInterval = 0.0
+    var welcomeCheck:Bool = false
+    let welcomeManager = CMHeadphoneMotionManager()
     
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var turtleImage: UIImageView!
@@ -58,8 +62,20 @@ class WelcomeViewController: UIViewController {
         welcomeTurtleView.setPlay()
         
         self.view.sendSubviewToBack(welcomeTurtleView)
+        
+        welcomeManager.delegate = self
+        
+        welcomeManager.startDeviceMotionUpdates(
+            to: OperationQueue.current!, withHandler: { [weak self] deviceMotion, error in guard let motion = deviceMotion, error == nil else { return }
+                self?.welcomeMotion(motion)
+            }
+            )
+        print(welcomeCheck)
     }
-    
+    func welcomeMotion(_ motion: CMDeviceMotion)
+    {
+        welcomeCheck = true
+    }
 //    @IBAction func goSettingButton(_ sender: UIButton) {
 //        
 //        let storyboard = UIStoryboard(name: "Main", bundle: nil)
@@ -85,6 +101,7 @@ class WelcomeViewController: UIViewController {
         attributeString.addAttribute(.foregroundColor, value: UIColor.pointBlue ?? .black, range: (text as NSString).range(of: "시작해볼까요?"))
         self.titleLabel.attributedText = attributeString
     }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "startStopwatchSegue" {
             if let stopwatchVC = segue.destination as? TimerViewController {

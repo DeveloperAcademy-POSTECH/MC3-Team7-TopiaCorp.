@@ -28,7 +28,6 @@ class SuccessViewController: UIViewController {
     @IBOutlet weak var waterLabel: UILabel!
     
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
