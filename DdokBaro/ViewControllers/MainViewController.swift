@@ -16,6 +16,7 @@ import CoreData
 var currentWeight = (0.0, 0) // 현재 측정 각도
 var userWeight = (0.0, 0) // 사용자 설정 가중치
 var intPitch: Int = 0
+var isZero = false
 
 class MainViewController: UIViewController, CMHeadphoneMotionManagerDelegate {
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
@@ -238,6 +239,21 @@ class MainViewController: UIViewController, CMHeadphoneMotionManagerDelegate {
                 self?.animationView3.setPlay()
                 
                 self!.currentProgress -= self!.dropWhenBad * 0.00001
+                if self!.currentProgress <= 0 {
+                    isZero = true
+                    self!.currentProgress = 0
+                    self!.createData()
+                }
+                
+                if isZero {
+                    isZero = false
+                    let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                    if let failViewController = storyboard.instantiateViewController(withIdentifier: "FailViewController") as? FailViewController {
+                        // Perform the segue programmatically
+                        self?.navigationController?.pushViewController(failViewController, animated: true)
+                    }
+                }
+                
                 self!.waterWaveView.setupProgress(self!.currentProgress)
                 
                 if intPitch - userWeight.1 < angle.bad.rawValue {
@@ -245,6 +261,21 @@ class MainViewController: UIViewController, CMHeadphoneMotionManagerDelegate {
                     self?.animationView4.setPlay()
                     
                     self!.currentProgress -= self!.dropWhenWorst * 0.00001
+                    if self!.currentProgress <= 0 {
+                        isZero = true
+                        self!.currentProgress = 0
+                        self!.createData()
+                    }
+                    
+                    if isZero {
+                        isZero = false
+                        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                        if let failViewController = storyboard.instantiateViewController(withIdentifier: "FailViewController") as? FailViewController {
+                            // Perform the segue programmatically
+                            self?.navigationController?.pushViewController(failViewController, animated: true)
+                        }
+                    }
+                    
                     self!.waterWaveView.setupProgress(self!.currentProgress)
                     
                     //                    if self!.intPitch - self!.userWeight.1 < angle.danger.rawValue {

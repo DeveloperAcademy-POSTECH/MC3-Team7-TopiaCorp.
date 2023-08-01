@@ -50,6 +50,7 @@ extension WaterWaveView {
         clipsToBounds = true
         translatesAutoresizingMaskIntoConstraints = false
         dropLetView.layer.masksToBounds = true
+        dropLetView.backgroundColor = UIColor(hexCode: "DFE8FB")
 
         addSubview(dropLetView)
         dropLetView.translatesAutoresizingMaskIntoConstraints = false
