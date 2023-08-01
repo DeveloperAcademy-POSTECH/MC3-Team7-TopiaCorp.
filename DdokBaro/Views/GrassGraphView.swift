@@ -29,3 +29,22 @@ class GrassGraphView: UIView {
         path.close()
     }
 }
+
+class ChartSquareView: UIView {
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        backgroundColor = .clear
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    override func draw(_ rect: CGRect) {
+        let path = UIBezierPath(roundedRect: CGRect(x: 0, y: 0, width: rect.width, height: rect.height),
+                                byRoundingCorners:.allCorners, cornerRadii: CGSize(width: rect.width / 20, height: rect.width / 20))
+        UIColor.white.setFill()
+        path.fill()
+        path.close()
+    }
+}

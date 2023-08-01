@@ -70,6 +70,14 @@ class WelcomeViewController: UIViewController {
     
     @IBAction func GoToMain(_ sender: UIButton) {
         timer.invalidate()
+    
+    @IBAction func goChartButton(_ sender: UIButton) {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        if let chartViewController = storyboard.instantiateViewController(withIdentifier: "ChartViewController") as? ChartViewController {
+            navigationController?.pushViewController(chartViewController, animated: true)
+        }
+    }
+      
     }
     
     func changeTextColor() {
