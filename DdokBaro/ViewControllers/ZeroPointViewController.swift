@@ -158,6 +158,8 @@ class ZeroPointViewController: UIViewController, CMHeadphoneMotionManagerDelegat
             }
             return true // Segue를 허용합니다.
         }
-}
+        //return true
+    }
+
 
 

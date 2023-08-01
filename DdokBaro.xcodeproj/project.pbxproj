@@ -36,6 +36,10 @@
 		B9B3548D2A693D4C008FFBC2 /* welcomeTurtle.json in Resources */ = {isa = PBXBuildFile; fileRef = B9B3548C2A693D4C008FFBC2 /* welcomeTurtle.json */; };
 		B9CC5EBC2A7574080055151C /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9CC5EBB2A7574080055151C /* Storage.swift */; };
 		B9CC5EBE2A758ECF0055151C /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9CC5EBD2A758ECF0055151C /* SettingViewController.swift */; };
+		B9F658DA2A76952000AFC4D6 /* RightPostureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9F658D92A76952000AFC4D6 /* RightPostureViewController.swift */; };
+		B9F658DC2A76A72000AFC4D6 /* DdokLogo.json in Resources */ = {isa = PBXBuildFile; fileRef = B9F658DB2A76A71F00AFC4D6 /* DdokLogo.json */; };
+		B9F658E02A76F5BF00AFC4D6 /* LottieLaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B9F658DF2A76F5BF00AFC4D6 /* LottieLaunchScreen.storyboard */; };
+		B9F658E22A76F61C00AFC4D6 /* LaunchScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9F658E12A76F61C00AFC4D6 /* LaunchScreen.swift */; };
 		D329808D2A60DB9B004C2632 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D329808C2A60DB9B004C2632 /* Main.storyboard */; };
 		D35DFA262A5F7E7B0043B644 /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D35DFA252A5F7E7B0043B644 /* TestViewController.swift */; };
 		D35DFA282A5F7F100043B644 /* TimerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D35DFA272A5F7F100043B644 /* TimerViewController.swift */; };
@@ -114,6 +118,10 @@
 		B9B3548C2A693D4C008FFBC2 /* welcomeTurtle.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = welcomeTurtle.json; sourceTree = "<group>"; };
 		B9CC5EBB2A7574080055151C /* Storage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storage.swift; sourceTree = "<group>"; };
 		B9CC5EBD2A758ECF0055151C /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
+		B9F658D92A76952000AFC4D6 /* RightPostureViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RightPostureViewController.swift; sourceTree = "<group>"; };
+		B9F658DB2A76A71F00AFC4D6 /* DdokLogo.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = DdokLogo.json; sourceTree = "<group>"; };
+		B9F658DF2A76F5BF00AFC4D6 /* LottieLaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LottieLaunchScreen.storyboard; sourceTree = "<group>"; };
+		B9F658E12A76F61C00AFC4D6 /* LaunchScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchScreen.swift; sourceTree = "<group>"; };
 		D329808C2A60DB9B004C2632 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		D35DFA252A5F7E7B0043B644 /* TestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestViewController.swift; sourceTree = "<group>"; };
 		D35DFA272A5F7F100043B644 /* TimerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerViewController.swift; sourceTree = "<group>"; };
@@ -191,6 +199,7 @@
 		0E5CC5492A69492300A3903F /* Lottie */ = {
 			isa = PBXGroup;
 			children = (
+				B9F658DB2A76A71F00AFC4D6 /* DdokLogo.json */,
 				0E8342212A66191D00922168 /* TurtleBody.json */,
 				B99E21B92A7381BD0064F81F /* TurtleResultA.json */,
 				0E8342232A66212C00922168 /* TurtleHead.json */,
@@ -227,6 +236,8 @@
 				D39AE0A22A6BE03A003D072D /* WaterViewController.swift */,
 				B9CC5EBD2A758ECF0055151C /* SettingViewController.swift */,
 				B99D44E32A763334000160C1 /* NoConnectViewController.swift */,
+				B9F658D92A76952000AFC4D6 /* RightPostureViewController.swift */,
+				B9F658E12A76F61C00AFC4D6 /* LaunchScreen.swift */,
 				D3B570112A76E92B001DE024 /* ChartViewController.swift */,
 			);
 			path = ViewControllers;
@@ -240,6 +251,7 @@
 				D35DFA302A60D6A10043B644 /* Trial.storyboard */,
 				D35DFA2E2A60D6240043B644 /* Timer.storyboard */,
 				D35DFA322A60D7010043B644 /* Motion.storyboard */,
+				B9F658DF2A76F5BF00AFC4D6 /* LottieLaunchScreen.storyboard */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";
@@ -447,12 +459,14 @@
 				D35DFA332A60D7010043B644 /* Motion.storyboard in Resources */,
 				D329808D2A60DB9B004C2632 /* Main.storyboard in Resources */,
 				676BD2F72A677CFF00541BD9 /* Onboarding.storyboard in Resources */,
+				B9F658E02A76F5BF00AFC4D6 /* LottieLaunchScreen.storyboard in Resources */,
 				0E8342222A66191D00922168 /* TurtleBody.json in Resources */,
 				0E5CC5652A6C065900A3903F /* WaterDrops1.json in Resources */,
 				0E5CC5752A6E153100A3903F /* Drop.mp3 in Resources */,
 				0E5CC5772A6E15D200A3903F /* Drop2.mp3 in Resources */,
 				0E5CC54D2A694AC000A3903F /* Rain.mp3 in Resources */,
 				D38DFAE62A5CE0AC0041C6E4 /* LaunchScreen.storyboard in Resources */,
+				B9F658DC2A76A72000AFC4D6 /* DdokLogo.json in Resources */,
 				B99E21BA2A7381BD0064F81F /* TurtleResultA.json in Resources */,
 				D38DFAE32A5CE0AC0041C6E4 /* Assets.xcassets in Resources */,
 			);
@@ -498,6 +512,7 @@
 				D35DFA2A2A5F7F2C0043B644 /* MotionViewController.swift in Sources */,
 				D38DFADB2A5CE0AB0041C6E4 /* ViewController.swift in Sources */,
 				B9CC5EBC2A7574080055151C /* Storage.swift in Sources */,
+				B9F658E22A76F61C00AFC4D6 /* LaunchScreen.swift in Sources */,
 				D38DFAD72A5CE0AB0041C6E4 /* AppDelegate.swift in Sources */,
 				676BD2FB2A6789F000541BD9 /* NoAirpodViewController.swift in Sources */,
 				B9CC5EBE2A758ECF0055151C /* SettingViewController.swift in Sources */,
@@ -512,6 +527,7 @@
 				D38DFAE12A5CE0AB0041C6E4 /* DdokBaro.xcdatamodeld in Sources */,
 				D39AE0A32A6BE03A003D072D /* WaterViewController.swift in Sources */,
 				D39820C12A677A0C004FE798 /* MainViewController.swift in Sources */,
+				B9F658DA2A76952000AFC4D6 /* RightPostureViewController.swift in Sources */,
 				D3B570122A76E92B001DE024 /* ChartViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -681,7 +697,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = V7Z62V83Y6;
+				DEVELOPMENT_TEAM = U65UYKH3S3;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = DdokBaro/Info.plist;
 				INFOPLIST_KEY_NSMotionUsageDescription = "Used to acquire motion for AirPods.";
@@ -711,7 +727,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = V7Z62V83Y6;
+				DEVELOPMENT_TEAM = U65UYKH3S3;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = DdokBaro/Info.plist;
 				INFOPLIST_KEY_NSMotionUsageDescription = "Used to acquire motion for AirPods.";

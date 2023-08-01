@@ -7,22 +7,16 @@
 
 import UIKit
 import Lottie
+import CoreData
 
 class FailViewController: UIViewController {
-    var showhour = "00"
-    var showminute = "00"
-    let labelHour = " 시간 "
-    let labelMinute = " 분"
-
+    var fetchedData: DdokBaroData?
     
     @IBOutlet weak var titleLabel: UILabel!
     
     @IBOutlet weak var timeView: UIView!
     
     @IBOutlet weak var waterView: UIView!
-    
-
-    @IBOutlet weak var toMainButton: UIButton!
     
     @IBOutlet weak var timeSubLabel: UILabel!
     @IBOutlet weak var waterSubLabel: UILabel!
@@ -33,6 +27,36 @@ class FailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //core data
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        let context = appDelegate.persistentContainer.viewContext
+        let fetchRequest: NSFetchRequest<DdokBaroData> = DdokBaroData.fetchRequest()
+        do {
+            let data = try context.fetch(fetchRequest)
+            
+            if let firstData = data.first {
+                fetchedData = firstData
+            }
+        } catch {
+            print("Error fetching data: \(error)")
+        }
+        
+        if let remainingWater = fetchedData?.remainWater, let totalTime = fetchedData?.totalTime {
+            let hour = Int(totalTime / 60)
+            let totalTimeDouble = Double(totalTime)
+            let minute = Int((totalTimeDouble).truncatingRemainder(dividingBy: 60))
+            let formattedTime = String(format: "%02d시 %02d분", hour, minute)
+            waterLabel.text = "\(remainingWater)L"
+            timeLabel.text = formattedTime
+            print("이 밑은 formattedTime")
+            print(formattedTime)
+        } else {
+            waterLabel.text = "없음"
+            timeLabel.text = "없음"
+        }
+        
+        view.setGradient3(color1: .white, color2: UIColor(hexCode: "ECF3FF"))
         titleLabel.text = "물을 전부 쏟아버렸군요!\n다시 도전해볼까요?"
         titleLabel.numberOfLines = 0
         
@@ -52,10 +76,6 @@ class FailViewController: UIViewController {
         
         waterSubLabel.setupLabelAndButton(view: waterSubLabel, systemName: "drop.fill", text: " 지켜낸 물", imageColor: .pointRed ?? .blue, textColor: .pointRed ?? .blue, font: .boldSystemFont(ofSize: 15), pointSize: 15, weight: .bold)
        
-        timeLabel.text = "0시간 0분"
-        timeLabel.font = UIFont.boldSystemFont(ofSize: 28)
-        
-        waterLabel.font = UIFont.boldSystemFont(ofSize: 28)
         
         self.changeTextColor()
     }
@@ -65,19 +85,4 @@ class FailViewController: UIViewController {
         attributeString.addAttribute(.foregroundColor, value: UIColor.pointBlue ?? .black, range: (text as NSString).range(of: "다시 도전해볼까요?"))
         self.titleLabel.attributedText = attributeString
     }
-    
-    @IBAction func goToMainButton(_ sender: UIButton) {
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        if let welcomeViewController = storyboard.instantiateViewController(withIdentifier: "WelcomeViewController") as? WelcomeViewController {
-            navigationController?.pushViewController(welcomeViewController, animated: true)
-        }
-    }
-    
-    @IBAction func goToZeroPoint(_ sender: UIButton) {
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        if let zeroPointViewController = storyboard.instantiateViewController(withIdentifier: "ZeroPointViewController") as? ZeroPointViewController {
-            navigationController?.pushViewController(zeroPointViewController, animated: true)
-        }
-    }
-    
 }

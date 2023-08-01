@@ -1,13 +1,13 @@
 //
-//  ViewController.swift
+//  LaunchScreen.swift
 //  DdokBaro
 //
-//  Created by TopiaCorp. on 2023/07/11.
+//  Created by 신서연 on 2023/07/31.
 //
 import UIKit
 import Lottie
 
-class ViewController: UIViewController {
+class LaunchScreen: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -19,11 +19,5 @@ class ViewController: UIViewController {
         launchView.play()
         launchView.loopMode = .loop
         print("런치")
-        
     }
 }
-    
-    
-
- 
-
