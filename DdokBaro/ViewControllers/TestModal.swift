@@ -1,15 +1,14 @@
 //
-//  ConnectViewController.swift
+//  TestModal.swift
 //  DdokBaro
 //
-//  Created by 신서연 on 2023/07/30.
+//  Created by yusang on 2023/08/01.
 //
 
 import UIKit
 import Lottie
 
-class NoConnectViewController: UIViewController {
-    
+class TestModal: UIViewController {
     
     @IBOutlet weak var titleLabel: UILabel!
     
@@ -17,7 +16,6 @@ class NoConnectViewController: UIViewController {
     
     
     override func viewDidLoad() {
-        
         super.viewDidLoad()
         navigationController?.isNavigationBarHidden = true
         titleLabel.text = "에어팟을 연결해주세요"
@@ -27,7 +25,7 @@ class NoConnectViewController: UIViewController {
         circleView.clipsToBounds = true
         circleView.setGradient(color1: .white, color2: UIColor(hexCode: "ECF2FF"))
         
-        let turtleAirpodView = LottieAnimationView(name: "TurtleAirpod")
+       let turtleAirpodView = LottieAnimationView(name: "TurtleAirpod")
         
         turtleAirpodView.contentMode = .scaleAspectFit
         turtleAirpodView.frame = circleView.bounds
@@ -36,27 +34,13 @@ class NoConnectViewController: UIViewController {
         
         turtleAirpodView.play()
         turtleAirpodView.loopMode = .loop
-        
     }
+    
     func changeTextColor() {
         guard let text = self.titleLabel.text else {return}
         let attributeString = NSMutableAttributedString(string: text)
         attributeString.addAttribute(.foregroundColor, value: UIColor.pointBlue ?? .black, range: (text as NSString).range(of: "에어팟"))
         self.titleLabel.attributedText = attributeString
     }
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-//        disableDismissGesture()
-        
-    }
-//    func disableDismissGesture() {
-//        if let gestures = self.view.gestureRecognizers {
-//            for gesture in gestures {
-//                gesture.isEnabled = false
-//            }
-//        }
-//    }
-    override func dismiss(animated flag: Bool, completion: (() -> Void)? = nil) {
-
-    }
+    
 }
