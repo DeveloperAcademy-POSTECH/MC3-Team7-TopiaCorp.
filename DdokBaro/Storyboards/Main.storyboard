@@ -62,7 +62,7 @@
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="circleButton" value="YES"/>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
-                                    <action selector="goChartButton:" destination="dFi-qe-lHF" eventType="touchUpInside" id="UNm-gN-tcd"/>
+                                    <action selector="goChartButton:" destination="dFi-qe-lHF" eventType="touchUpInside" id="4ac-FR-voc"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bXH-lb-50E">

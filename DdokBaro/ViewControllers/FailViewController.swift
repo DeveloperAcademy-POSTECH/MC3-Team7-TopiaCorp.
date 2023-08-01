@@ -42,7 +42,7 @@ class FailViewController: UIViewController {
             print("Error fetching data: \(error)")
         }
         
-        if let remainingWater = fetchedData?.remainWater, let totalTime = fetchedData?.totalTime {
+        if let remainingWater = fetchedData?.remainWater, let totalTime = fetchedData?.totalMinutes {
             let hour = Int(totalTime / 60)
             let totalTimeDouble = Double(totalTime)
             let minute = Int((totalTimeDouble).truncatingRemainder(dividingBy: 60))
