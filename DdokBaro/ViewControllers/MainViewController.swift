@@ -18,6 +18,25 @@ var userWeight = (0.0, 0) // 사용자 설정 가중치
 var intPitch: Int = 0 // 목 기울기(정수)
 var isZero = false
 
+class ZeroCheckModel {
+    static let shared = ZeroCheckModel()
+
+    private init() {}
+
+    @objc dynamic var zeroCheck:Bool = false {
+        didSet {
+            // airPodChec의 값이 변경될 때마다 호출되는 코드
+            // NotificationCenter를 이용하여 값을 알린다
+            NotificationCenter.default.post(name: NSNotification.Name("zerocheck"), object: nil)
+        }
+    }
+
+    func updateValue(newValue: Bool) {
+        //print(airPodCheck)
+        zeroCheck = newValue
+    }
+}
+
 class MainViewController: UIViewController, CMHeadphoneMotionManagerDelegate {
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
@@ -208,6 +227,9 @@ class MainViewController: UIViewController, CMHeadphoneMotionManagerDelegate {
                 self?.turtleMotion(motion)
             }
         )
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(checkZero), name: NSNotification.Name("zerocheck"), object: nil)
+        
         //                if isZero {
         //                    isZero = false
         //                    let storyboard = UIStoryboard(name: "Main", bundle: nil)
@@ -217,6 +239,20 @@ class MainViewController: UIViewController, CMHeadphoneMotionManagerDelegate {
         //                    }
         //                }
         
+    }
+    
+    @objc func checkZero() {
+        // if else로 모달뷰 띄울지
+        if ZeroCheckModel.shared.zeroCheck {
+            ZeroCheckModel.shared.zeroCheck = false
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            if let failViewController = storyboard.instantiateViewController(withIdentifier: "FailViewController") as? FailViewController {
+                // Perform the segue programmatically
+                navigationController?.pushViewController(failViewController, animated: true)
+            }
+        } else {
+            //showModalView()
+        }
     }
     
     func turtleMotion(_ motion: CMDeviceMotion)
@@ -243,18 +279,19 @@ class MainViewController: UIViewController, CMHeadphoneMotionManagerDelegate {
                 self!.currentProgress -= self!.dropWhenBad * 0.00001
                 if self!.currentProgress <= 0 {
                     isZero = true
+                    ZeroCheckModel.shared.zeroCheck = true
                     self!.currentProgress = 0
                     self!.createData()
                 }
                 
-                if isZero {
-                    isZero = false
-                    let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                    if let failViewController = storyboard.instantiateViewController(withIdentifier: "FailViewController") as? FailViewController {
-                        // Perform the segue programmatically
-                        self?.navigationController?.pushViewController(failViewController, animated: true)
-                    }
-                }
+//                if isZero {
+//                    isZero = false
+//                    let storyboard = UIStoryboard(name: "Main", bundle: nil)
+//                    if let failViewController = storyboard.instantiateViewController(withIdentifier: "FailViewController") as? FailViewController {
+//                        // Perform the segue programmatically
+//                        self?.navigationController?.pushViewController(failViewController, animated: true)
+//                    }
+//                }
                 
                 self!.waterWaveView.setupProgress(self!.currentProgress)
                 
@@ -263,20 +300,21 @@ class MainViewController: UIViewController, CMHeadphoneMotionManagerDelegate {
                     self?.animationView4.setPlay()
                     
                     self!.currentProgress -= self!.dropWhenWorst * 0.00001
-                    if self!.currentProgress <= 0 {
-                        isZero = true
-                        self!.currentProgress = 0
-                        self!.createData()
-                    }
+//                    if self!.currentProgress <= 0 {
+//                        isZero = true
+//                        ZeroCheckModel.shared.zeroCheck = true
+//                        self!.currentProgress = 0
+//                        self!.createData()
+//                    }
                     
-                    if isZero {
-                        isZero = false
-                        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                        if let failViewController = storyboard.instantiateViewController(withIdentifier: "FailViewController") as? FailViewController {
-                            // Perform the segue programmatically
-                            self?.navigationController?.pushViewController(failViewController, animated: true)
-                        }
-                    }
+//                    if isZero {
+//                        isZero = false
+//                        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+//                        if let failViewController = storyboard.instantiateViewController(withIdentifier: "FailViewController") as? FailViewController {
+//                            // Perform the segue programmatically
+//                            self?.navigationController?.pushViewController(failViewController, animated: true)
+//                        }
+//                    }
                     
                     self!.waterWaveView.setupProgress(self!.currentProgress)
                     
@@ -522,12 +560,15 @@ class MainViewController: UIViewController, CMHeadphoneMotionManagerDelegate {
     
     //에어팟 연결 끊겼을때
     func headphoneMotionManagerDidDisconnect(_ manager: CMHeadphoneMotionManager) {
-
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let noConnectionViewController = storyboard.instantiateViewController(withIdentifier: "NoConnectViewController")
-        noConnectionViewController.modalPresentationStyle = .formSheet
-        noConnectionViewController.isModalInPresentation = true
-        self.present(noConnectionViewController, animated: true, completion: nil)
+        if isZero {
+            isZero = false
+        } else{
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let noConnectionViewController = storyboard.instantiateViewController(withIdentifier: "NoConnectViewController")
+            noConnectionViewController.modalPresentationStyle = .formSheet
+            noConnectionViewController.isModalInPresentation = true
+            self.present(noConnectionViewController, animated: true, completion: nil)
+        }
 
         animationView1.setStop()
         
@@ -582,7 +623,7 @@ class MainViewController: UIViewController, CMHeadphoneMotionManagerDelegate {
     //우리가 아는 각도로 바꿔주는 함수
     func degrees(_ radians: Double) -> Double { return 180 / .pi * radians }
     
-    //willappear - 다른 뷰에서 다시 올때 해주고 싶은 작업
+    //willappear
     override func viewWillAppear(_ animated: Bool) {
         self.viewDidLoad()
     }
@@ -590,18 +631,24 @@ class MainViewController: UIViewController, CMHeadphoneMotionManagerDelegate {
     //뷰가 사라질때 하고 싶은 작업
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        //manager.stopDeviceMotionUpdates()
-//        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-//        let noConnectionViewController = storyboard.instantiateViewController(withIdentifier: "NoConnectViewController")
-//        present(noConnectionViewController, animated: false)
-//        dismiss(animated: true)
+        manager.stopDeviceMotionUpdates()
+        //let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        //let noConnectionViewController = storyboard.instantiateViewController(withIdentifier: "NoConnectViewController")
+        //present(noConnectionViewController, animated: false)
+        //dismiss(animated: true)
 //        manager.stopDeviceMotionUpdates()
     }
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        //manager.stopDeviceMotionUpdates()
+        //dismiss(animated: true)
+        
+    }
     func stopDeviceMotionUpdates(){
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let noConnectionViewController = storyboard.instantiateViewController(withIdentifier: "NoConnectViewController")
-        present(noConnectionViewController, animated: false)
-        dismiss(animated: true)
+//        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+//        let noConnectionViewController = storyboard.instantiateViewController(withIdentifier: "NoConnectViewController")
+//        present(noConnectionViewController, animated: true)
+//        dismiss(animated: true)
     }
     
     //설정한 시간동안 거북목일 경우 알람 울리게 한다
