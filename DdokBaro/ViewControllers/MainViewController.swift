@@ -628,7 +628,7 @@ class MainViewController: UIViewController, CMHeadphoneMotionManagerDelegate {
         self.viewDidLoad()
     }
     
-    //뷰가 사라질때 하고 싶은 작업
+    //뷰가 사라질때 하고 싶은 작업들
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         manager.stopDeviceMotionUpdates()
