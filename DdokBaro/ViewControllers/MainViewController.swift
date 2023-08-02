@@ -278,7 +278,9 @@ class MainViewController: UIViewController, CMHeadphoneMotionManagerDelegate {
 
                 self?.animationView3.setPlay()
                 
-                self!.currentProgress -= self!.dropWhenBad * 0.00001
+                if !self!.isPause {
+                    self!.currentProgress -= self!.dropWhenBad * 0.00001
+                }
                 if self!.currentProgress <= 0 {
                     isZero = true
                     ZeroCheckModel.shared.zeroCheck = true
@@ -301,7 +303,9 @@ class MainViewController: UIViewController, CMHeadphoneMotionManagerDelegate {
                     self?.animationView3.setStop()
                     self?.animationView4.setPlay()
                     
-                    self!.currentProgress -= self!.dropWhenWorst * 0.00001
+                    if !self!.isPause {
+                        self!.currentProgress -= self!.dropWhenWorst * 0.00001
+                    }
 //                    if self!.currentProgress <= 0 {
 //                        isZero = true
 //                        ZeroCheckModel.shared.zeroCheck = true
