@@ -250,6 +250,8 @@ class MainViewController: UIViewController, CMHeadphoneMotionManagerDelegate {
         // if else로 모달뷰 띄울지
         if ZeroCheckModel.shared.zeroCheck {
             ZeroCheckModel.shared.zeroCheck = false
+            accumulatedTime += Date().timeIntervalSince(startTime)
+            createFailure()
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             if let failViewController = storyboard.instantiateViewController(withIdentifier: "FailViewController") as? FailViewController {
                 // Perform the segue programmatically
@@ -281,7 +283,9 @@ class MainViewController: UIViewController, CMHeadphoneMotionManagerDelegate {
 
                 self?.animationView3.setPlay()
                 
-                self!.currentProgress -= self!.dropWhenBad * 0.00001
+                if !self!.isPause {
+                    self!.currentProgress -= self!.dropWhenBad * 0.00001
+                }
                 if self!.currentProgress <= 0 {
                     isZero = true
                     ZeroCheckModel.shared.zeroCheck = true
@@ -304,7 +308,9 @@ class MainViewController: UIViewController, CMHeadphoneMotionManagerDelegate {
                     self?.animationView3.setStop()
                     self?.animationView4.setPlay()
                     
-                    self!.currentProgress -= self!.dropWhenWorst * 0.00001
+                    if !self!.isPause {
+                        self!.currentProgress -= self!.dropWhenWorst * 0.00001
+                    }
 //                    if self!.currentProgress <= 0 {
 //                        isZero = true
 //                        ZeroCheckModel.shared.zeroCheck = true
@@ -730,8 +736,42 @@ class MainViewController: UIViewController, CMHeadphoneMotionManagerDelegate {
             let newData = DdokBaroData(context: context)
             newData.createdAt = today
             newData.grassLevel = Int16(3.9 * currentProgress + 1)
+            newData.isFailure = (0 != 0)
             newData.remainWater = Int16(currentProgress * 100)
             newData.totalMinutes = Int16(accumulatedTime)
+
+            do {
+                try context.save()
+            } catch {
+                // error
+            }
+        } catch {
+            // error
+        }
+    }
+    
+    func createFailure() {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd"
+        formatter.locale = Locale(identifier: "ko_kr")
+        formatter.timeZone = TimeZone(abbreviation: "KST")
+        let today = formatter.string(from: Date())
+        
+        do {
+            let data = try context.fetch(DdokBaroData.fetchRequest())
+            for datum in data {
+                if datum.createdAt == today {
+                    context.delete(datum)
+                }
+            }
+
+            let newData = DdokBaroData(context: context)
+            newData.createdAt = today
+            newData.grassLevel = Int16(3.9 * currentProgress + 1)
+            newData.isFailure = (1 != 0)
+            newData.remainWater = Int16(currentProgress * 100)
+            newData.totalMinutes = Int16(accumulatedTime)
+            print("***** \(newData)")
 
             do {
                 try context.save()

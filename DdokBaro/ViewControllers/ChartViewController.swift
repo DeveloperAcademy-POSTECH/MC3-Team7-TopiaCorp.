@@ -93,17 +93,23 @@ class ChartViewController: UIViewController {
             frontCounter = frontCounter + 1
         }
         
+        print(graphLevels)
         var max = 0
         for index in 0..<7 {
             if graphLevels[6 - index] != nil {
                 if max < graphLevels[6 - index]! { max = graphLevels[6 - index]! }
             }
         }
-        for index in 0..<7 {
-            if graphLevels[6 - index] == nil {
-                dataPoints.append(3.0)
-            } else {
-                dataPoints.append(100 * Double(graphLevels[6 - index]!) / Double(max))
+        print("max: \(max)")
+        if max == 0 {
+            dataPoints = [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+        } else {
+            for index in 0..<7 {
+                if graphLevels[6 - index] == nil {
+                    dataPoints.append(2.0)
+                } else {
+                    dataPoints.append(100 * Double(graphLevels[6 - index]!) / Double(max))
+                }
             }
         }
         
@@ -111,7 +117,6 @@ class ChartViewController: UIViewController {
         self.view.sendSubviewToBack(chartSquareView)
         self.view.sendSubviewToBack(chartSquareView2)
         
-        print(currentMonth, month[currentMonth % 12 - 1])
         self.monthLabel01.text = month[(currentMonth - 5) % 12]
         self.monthLabel02.text = month[(currentMonth - 4) % 12]
         self.monthLabel03.text = month[(currentMonth - 3) % 12]
