@@ -278,7 +278,7 @@ class MainViewController: UIViewController, CMHeadphoneMotionManagerDelegate {
                 
                 self!.currentProgress -= self!.dropWhenBad * 0.00001
                 if self!.currentProgress <= 0 {
-                    //isZero = true
+                    isZero = true
                     ZeroCheckModel.shared.zeroCheck = true
                     self!.currentProgress = 0
                     self!.createData()
@@ -291,7 +291,7 @@ class MainViewController: UIViewController, CMHeadphoneMotionManagerDelegate {
 //                        // Perform the segue programmatically
 //                        self?.navigationController?.pushViewController(failViewController, animated: true)
 //                    }
-                }
+//                }
                 
                 self!.waterWaveView.setupProgress(self!.currentProgress)
                 
@@ -300,12 +300,12 @@ class MainViewController: UIViewController, CMHeadphoneMotionManagerDelegate {
                     self?.animationView4.setPlay()
                     
                     self!.currentProgress -= self!.dropWhenWorst * 0.00001
-                    if self!.currentProgress <= 0 {
-                        //isZero = true
-                        ZeroCheckModel.shared.zeroCheck = true
-                        self!.currentProgress = 0
-                        self!.createData()
-                    }
+//                    if self!.currentProgress <= 0 {
+//                        isZero = true
+//                        ZeroCheckModel.shared.zeroCheck = true
+//                        self!.currentProgress = 0
+//                        self!.createData()
+//                    }
                     
 //                    if isZero {
 //                        isZero = false
@@ -560,12 +560,15 @@ class MainViewController: UIViewController, CMHeadphoneMotionManagerDelegate {
     
     //에어팟 연결 끊겼을때
     func headphoneMotionManagerDidDisconnect(_ manager: CMHeadphoneMotionManager) {
-
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let noConnectionViewController = storyboard.instantiateViewController(withIdentifier: "NoConnectViewController")
-        noConnectionViewController.modalPresentationStyle = .formSheet
-        noConnectionViewController.isModalInPresentation = true
-        self.present(noConnectionViewController, animated: true, completion: nil)
+        if isZero {
+            isZero = false
+        } else{
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let noConnectionViewController = storyboard.instantiateViewController(withIdentifier: "NoConnectViewController")
+            noConnectionViewController.modalPresentationStyle = .formSheet
+            noConnectionViewController.isModalInPresentation = true
+            self.present(noConnectionViewController, animated: true, completion: nil)
+        }
 
         animationView1.setStop()
         
@@ -620,7 +623,7 @@ class MainViewController: UIViewController, CMHeadphoneMotionManagerDelegate {
     //우리가 아는 각도로 바꿔주는 함수
     func degrees(_ radians: Double) -> Double { return 180 / .pi * radians }
     
-    //willappear - 다른 뷰에서 다시 올때 해주고 싶은 작업
+    //willappear
     override func viewWillAppear(_ animated: Bool) {
         self.viewDidLoad()
     }
@@ -628,18 +631,24 @@ class MainViewController: UIViewController, CMHeadphoneMotionManagerDelegate {
     //뷰가 사라질때 하고 싶은 작업
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        //manager.stopDeviceMotionUpdates()
-//        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-//        let noConnectionViewController = storyboard.instantiateViewController(withIdentifier: "NoConnectViewController")
-//        present(noConnectionViewController, animated: false)
-//        dismiss(animated: true)
+        manager.stopDeviceMotionUpdates()
+        //let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        //let noConnectionViewController = storyboard.instantiateViewController(withIdentifier: "NoConnectViewController")
+        //present(noConnectionViewController, animated: false)
+        //dismiss(animated: true)
 //        manager.stopDeviceMotionUpdates()
     }
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        //manager.stopDeviceMotionUpdates()
+        //dismiss(animated: true)
+        
+    }
     func stopDeviceMotionUpdates(){
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let noConnectionViewController = storyboard.instantiateViewController(withIdentifier: "NoConnectViewController")
-        present(noConnectionViewController, animated: true)
-        dismiss(animated: true)
+//        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+//        let noConnectionViewController = storyboard.instantiateViewController(withIdentifier: "NoConnectViewController")
+//        present(noConnectionViewController, animated: true)
+//        dismiss(animated: true)
     }
     
     //설정한 시간동안 거북목일 경우 알람 울리게 한다
