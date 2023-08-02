@@ -60,6 +60,8 @@ class ChartViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         
+        navigationController?.isNavigationBarHidden = false
+        
         getAllData()
         backCounter = getDayOfWeek() + 1
         let width = Int(screenWidth) / 2 + 128

@@ -47,7 +47,7 @@ class FailViewController: UIViewController {
             let totalTimeDouble = Double(totalTime)
             let minute = Int((totalTimeDouble / 60).truncatingRemainder(dividingBy: 60))
             let formattedTime = String(format: "%02d시 %02d분", hour, minute)
-            waterLabel.text = "\(remainingWater)L"
+            waterLabel.text = "0L"
             timeLabel.text = formattedTime
             print("이 밑은 formattedTime")
             print(formattedTime)

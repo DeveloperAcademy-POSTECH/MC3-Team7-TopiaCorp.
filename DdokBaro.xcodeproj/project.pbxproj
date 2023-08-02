@@ -62,13 +62,13 @@
 		D39AE0A62A6BFAFC003D072D /* DropletView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D39AE0A52A6BFAFC003D072D /* DropletView.swift */; };
 		D3B570122A76E92B001DE024 /* ChartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B570112A76E92B001DE024 /* ChartViewController.swift */; };
 		D3B570142A77007F001DE024 /* BarChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B570132A77007F001DE024 /* BarChartView.swift */; };
+		D3C43C782A7AAC920015FB1C /* noSound.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D3C43C772A7AAC920015FB1C /* noSound.mp3 */; };
 		D3CFE9C82A6ED27900CB3358 /* LottieWrapperView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3CFE9C72A6ED27900CB3358 /* LottieWrapperView.swift */; };
 		D3ED8F982A6B41DD005E02DB /* WaterWaveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3ED8F972A6B41DD005E02DB /* WaterWaveView.swift */; };
 		D3ED8F9B2A6B4530005E02DB /* UIColorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3ED8F9A2A6B4530005E02DB /* UIColorManager.swift */; };
 		D3FF2B8A2A761876006B5758 /* DdokBaroData+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3FF2B882A761876006B5758 /* DdokBaroData+CoreDataClass.swift */; };
 		D3FF2B8B2A761876006B5758 /* DdokBaroData+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3FF2B892A761876006B5758 /* DdokBaroData+CoreDataProperties.swift */; };
 		D3FF2B8D2A76514D006B5758 /* GrassGraphView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3FF2B8C2A76514D006B5758 /* GrassGraphView.swift */; };
-		D3FF8F4F2A72721F00A3CC43 /* noSound.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D3FF8F4E2A72721F00A3CC43 /* noSound.mp3 */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -147,13 +147,13 @@
 		D39AE0A52A6BFAFC003D072D /* DropletView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropletView.swift; sourceTree = "<group>"; };
 		D3B570112A76E92B001DE024 /* ChartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartViewController.swift; sourceTree = "<group>"; };
 		D3B570132A77007F001DE024 /* BarChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarChartView.swift; sourceTree = "<group>"; };
+		D3C43C772A7AAC920015FB1C /* noSound.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = noSound.mp3; sourceTree = "<group>"; };
 		D3CFE9C72A6ED27900CB3358 /* LottieWrapperView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LottieWrapperView.swift; sourceTree = "<group>"; };
 		D3ED8F972A6B41DD005E02DB /* WaterWaveView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaterWaveView.swift; sourceTree = "<group>"; };
 		D3ED8F9A2A6B4530005E02DB /* UIColorManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorManager.swift; sourceTree = "<group>"; };
 		D3FF2B882A761876006B5758 /* DdokBaroData+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DdokBaroData+CoreDataClass.swift"; sourceTree = "<group>"; };
 		D3FF2B892A761876006B5758 /* DdokBaroData+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DdokBaroData+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		D3FF2B8C2A76514D006B5758 /* GrassGraphView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GrassGraphView.swift; sourceTree = "<group>"; };
-		D3FF8F4E2A72721F00A3CC43 /* noSound.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = noSound.mp3; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -185,7 +185,7 @@
 		0E5CC5482A6948F200A3903F /* Sound */ = {
 			isa = PBXGroup;
 			children = (
-				D3FF8F4E2A72721F00A3CC43 /* noSound.mp3 */,
+				D3C43C772A7AAC920015FB1C /* noSound.mp3 */,
 				0E18681C2A76B1010057F7FC /* ZeroSound.mp3 */,
 				0E5CC5742A6E153100A3903F /* Drop.mp3 */,
 				0E5CC5762A6E15D200A3903F /* Drop2.mp3 */,
@@ -444,10 +444,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				B9F658EC2A79FAAC00AFC4D6 /* DdokLogo.json in Resources */,
+				D3C43C782A7AAC920015FB1C /* noSound.mp3 in Resources */,
 				675242EA2A68CACA00F07886 /* TurtleAirpod.json in Resources */,
 				B9B3548D2A693D4C008FFBC2 /* welcomeTurtle.json in Resources */,
 				0E18681D2A76B1020057F7FC /* ZeroSound.mp3 in Resources */,
-				D3FF8F4F2A72721F00A3CC43 /* noSound.mp3 in Resources */,
 				D35DFA2F2A60D6240043B644 /* Timer.storyboard in Resources */,
 				0E8342242A66212C00922168 /* TurtleHead.json in Resources */,
 				0E5CC5732A6E152500A3903F /* WaterDrops2.json in Resources */,
@@ -694,7 +694,7 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = U65UYKH3S3;
+				DEVELOPMENT_TEAM = D9HG424P5H;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = DdokBaro/Info.plist;
 				INFOPLIST_KEY_NSMotionUsageDescription = "Used to acquire motion for AirPods.";

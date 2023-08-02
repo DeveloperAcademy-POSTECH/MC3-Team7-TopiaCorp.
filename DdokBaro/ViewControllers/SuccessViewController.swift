@@ -10,8 +10,10 @@ import Lottie
 import CoreData
 
 class SuccessViewController: UIViewController {
-    var fetchedData: DdokBaroData?
-
+    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    
+    var totalMinutes = 0
+    var waterRemain = 0
     
     @IBOutlet weak var titleLabel: UILabel!
     
@@ -31,31 +33,15 @@ class SuccessViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //core data
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        let context = appDelegate.persistentContainer.viewContext
-        let fetchRequest: NSFetchRequest<DdokBaroData> = DdokBaroData.fetchRequest()
-        do {
-            let data = try context.fetch(fetchRequest)
-            
-            if let firstData = data.first {
-                fetchedData = firstData
-            }
-        } catch {
-            print("Error fetching data: \(error)")
-        }
+        getAllData()
         
-        if let remainingWater = fetchedData?.remainWater, let totalTime = fetchedData?.totalMinutes {
-            let hour = Int(totalTime / 3600)
-            let totalTimeDouble = Double(totalTime)
-            let minute = Int((totalTimeDouble / 60).truncatingRemainder(dividingBy: 60))
-            let formattedTime = String(format: "%02d시 %02d분", hour, minute)
-            waterLabel.text = "\(remainingWater)L"
-            timeLabel.text = formattedTime
-        } else {
-            waterLabel.text = "없음"
-            timeLabel.text = "없음"
-        }
+        print(totalMinutes, "***")
+        let hour = Int(totalMinutes / 3600)
+        let totalTimeDouble = Double(totalMinutes)
+        let minute = Int((totalTimeDouble / 60).truncatingRemainder(dividingBy: 60))
+        let formattedTime = String(format: "%02d시 %02d분", hour, minute)
+        waterLabel.text = "\(waterRemain)L"
+        timeLabel.text = formattedTime
 
         view.setGradient3(color1: .white, color2: UIColor(hexCode: "ECF3FF"))
         titleLabel.text = "오늘도 바른 자세 유지 성공!\n잔디가 무럭무럭 자라요"
@@ -92,6 +78,29 @@ class SuccessViewController: UIViewController {
         if let welcomeViewController = storyboard.instantiateViewController(withIdentifier: "WelcomeViewController") as? WelcomeViewController {
             // Perform the segue programmatically
             navigationController?.pushViewController(welcomeViewController, animated: true)
+        }
+    }
+    
+    func getAllData() {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd"
+        formatter.locale = Locale(identifier: "ko_kr")
+        formatter.timeZone = TimeZone(abbreviation: "KST")
+        let today = formatter.string(from: Date())
+        print(today)
+        
+        do {
+            let data = try context.fetch(DdokBaroData.fetchRequest())
+            print(data)
+            for datum in data {
+                if datum.createdAt == today {
+                    print(datum.remainWater)
+                    waterRemain = Int(datum.remainWater)
+                    totalMinutes = Int(datum.totalMinutes)
+                }
+            }
+        } catch {
+            // error
         }
     }
 }
