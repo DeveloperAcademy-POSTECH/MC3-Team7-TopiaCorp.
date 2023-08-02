@@ -18,9 +18,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UNUserNotificationCenter.current().delegate = self
         
         let storyboard = UIStoryboard(name: "LottieLaunchScreen", bundle: nil)
-        let launchScreenViewController = storyboard.instantiateViewController(withIdentifier: "LaunchScreen") as! LaunchScreen
+        let lottieLaunchViewController = storyboard.instantiateViewController(withIdentifier: "LottieLaunchScreen")
         window = UIWindow(frame: UIScreen.main.bounds)
-        window?.rootViewController = launchScreenViewController
+        window?.rootViewController = lottieLaunchViewController
         window?.makeKeyAndVisible()
         
         return true

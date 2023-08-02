@@ -49,9 +49,9 @@ class WelcomeViewController: UIViewController, CMHeadphoneMotionManagerDelegate 
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        navigationController?.isNavigationBarHidden = true
-//        let backBarButtonItem = UIBarButtonItem(title: "자세 측정", style: .plain, target: self, action: nil)
-//        self.navigationItem.backBarButtonItem = backBarButtonItem
+        navigationController?.isNavigationBarHidden = true
+        let backBarButtonItem = UIBarButtonItem(title: "자세 측정", style: .plain, target: self, action: nil)
+        self.navigationItem.backBarButtonItem = backBarButtonItem
         view.setGradient3(color1: .white, color2: UIColor(hexCode: "ECF3FF"))
         
         chartButton.circleButton = true
@@ -115,13 +115,13 @@ class WelcomeViewController: UIViewController, CMHeadphoneMotionManagerDelegate 
         //welcomeCheck = true
         changeValueAndNotify()
     }
-//    @IBAction func goSettingButton(_ sender: UIButton) {
-//        
-//        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-//        if let settingViewController = storyboard.instantiateViewController(withIdentifier: "SettingViewController") as? SettingViewController {
-//            navigationController?.pushViewController(settingViewController, animated: true)
-//        }
-//    }
+    @IBAction func goSettingButton(_ sender: UIButton) {
+        
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        if let settingViewController = storyboard.instantiateViewController(withIdentifier: "SettingViewController") as? SettingViewController {
+            navigationController?.pushViewController(settingViewController, animated: true)
+        }
+    }
     
     @IBAction func GoToMain(_ sender: UIButton) {
         NotificationCenter.default.addObserver(self, selector: #selector(checkModal), name: NSNotification.Name("welcomeAirpodcheck"), object: nil)
