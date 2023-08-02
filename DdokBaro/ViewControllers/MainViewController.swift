@@ -123,14 +123,19 @@ class MainViewController: UIViewController, CMHeadphoneMotionManagerDelegate {
         
         titleLabel.text = "바른 자세를 유지해\n양동이의 물을 지켜주세요!"
         titleLabel.numberOfLines = 0
-        self.changeTextColor()
+//        self.changeTextColor()
+            guard let text = titleLabel.text else {return}
+            let attributeString = NSMutableAttributedString(string: text)
+            attributeString.addAttribute(.foregroundColor, value: UIColor.pointBlue, range: (text as NSString).range(of: "양동이의 물을 지켜주세요!"))
+            titleLabel.attributedText = attributeString
+
+        
         timeLabel.setupLabelAndButton(view: timeLabel, systemName: "clock", text: emptyString + showhour + labelHour + showminute + labelMinute, imageColor: .pointBlue ?? .black, textColor: .pointBlue ?? .black, font: .boldSystemFont(ofSize: 28), pointSize: 28, weight: .bold)
         
         startPauseButton.setupLabelAndButton(view: startPauseButton, systemName: "pause.circle.fill", text: " 일시 정지", imageColor: .white, textColor: .white, font: UIFont.boldSystemFont(ofSize: 17) , pointSize: 17, weight: .bold)
         
         resetButton.setupLabelAndButton(view: resetButton, systemName: "xmark.circle.fill", text: " 측정 종료", imageColor: .pointRed ?? .black, textColor: .pointRed ?? .black, font: UIFont.boldSystemFont(ofSize: 17) , pointSize: 17, weight: .bold)
-        
-        self.changeTextColor()
+       
         view.addSubview(circleView)
         self.view.sendSubviewToBack(circleView)
         circleView.translatesAutoresizingMaskIntoConstraints = false
@@ -344,12 +349,12 @@ class MainViewController: UIViewController, CMHeadphoneMotionManagerDelegate {
     
     //MARK: timer view controller
     
-    func changeTextColor() {
-        guard let text = self.titleLabel.text else {return}
-        let attributeString = NSMutableAttributedString(string: text)
-        attributeString.addAttribute(.foregroundColor, value: UIColor.pointBlue, range: (text as NSString).range(of: "양동이의 물을 지켜주세요!"))
-        self.titleLabel.attributedText = attributeString
-    }
+//    func changeTextColor() {
+//        guard let text = self.titleLabel.text else {return}
+//        let attributeString = NSMutableAttributedString(string: text)
+//        attributeString.addAttribute(.foregroundColor, value: UIColor.pointBlue, range: (text as NSString).range(of: "양동이의 물을 지켜주세요!"))
+//        self.titleLabel.attributedText = attributeString
+//    }
     
     private func startTimer() {
         timer = Timer.scheduledTimer(timeInterval: 0.01, target: self, selector: #selector(updateTimer), userInfo: nil, repeats: true)
@@ -373,7 +378,8 @@ class MainViewController: UIViewController, CMHeadphoneMotionManagerDelegate {
             self.view.sendSubviewToBack(animationView4)
             
             restView.removeFromSuperview()
-        
+            
+            titleLabel.font = UIFont.boldSystemFont(ofSize: 28)
             titleLabel.text = "바른 자세를 유지해\n양동이의 물을 지켜주세요!"
             titleLabel.numberOfLines = 0
         
@@ -493,9 +499,14 @@ class MainViewController: UIViewController, CMHeadphoneMotionManagerDelegate {
         dismiss(animated: true)
         titleLabel.font = UIFont.boldSystemFont(ofSize: 28)
         titleLabel.text = "바른 자세를 유지해\n양동이의 물을 지켜주세요!"
-        titleLabel.textColor = .black
         titleLabel.numberOfLines = 0
         titleLabel.isHidden = false
+        guard let text = self.titleLabel.text else {return}
+        let attributeString = NSMutableAttributedString(string: text)
+        attributeString.addAttribute(.foregroundColor, value: UIColor.black, range: (text as NSString).range(of: "바른 자세를 유지해"))
+        attributeString.addAttribute(.foregroundColor, value: UIColor.pointBlue, range: (text as NSString).range(of: "양동이의 물을 지켜주세요!"))
+        self.titleLabel.attributedText = attributeString
+        
         
         if isPause {
             print("일시정지 하고 빼고 꼈을때")
