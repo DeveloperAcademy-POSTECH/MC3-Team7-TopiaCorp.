@@ -208,6 +208,14 @@ class MainViewController: UIViewController, CMHeadphoneMotionManagerDelegate {
                 self?.turtleMotion(motion)
             }
         )
+        //                if isZero {
+        //                    isZero = false
+        //                    let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        //                    if let failViewController = storyboard.instantiateViewController(withIdentifier: "FailViewController") as? FailViewController {
+        //                        // Perform the segue programmatically
+        //                        self?.navigationController?.pushViewController(failViewController, animated: true)
+        //                    }
+        //                }
         
     }
     

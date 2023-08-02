@@ -158,4 +158,5 @@ class ZeroPointViewController: UIViewController, CMHeadphoneMotionManagerDelegat
 func changeValueAndNotify() {
     // true로 변경후 notification에서 감지하도록
     AirPodCheckModel.shared.updateValue(newValue: true)
+    WelcomeAirPodCheckModel.shared.updateValue(newValue: true)
 }

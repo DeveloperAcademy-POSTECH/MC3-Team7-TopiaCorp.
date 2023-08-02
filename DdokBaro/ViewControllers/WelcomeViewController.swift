@@ -11,6 +11,25 @@ import CoreMotion
 
 var isStart: Bool = false
 
+class WelcomeAirPodCheckModel {
+    static let shared = WelcomeAirPodCheckModel()
+
+    private init() {}
+
+    @objc dynamic var welcomeAirPodCheck:Bool = false {
+        didSet {
+            // airPodChec의 값이 변경될 때마다 호출되는 코드
+            // NotificationCenter를 이용하여 값을 알린다
+            NotificationCenter.default.post(name: NSNotification.Name("welcomeAirpodcheck"), object: nil)
+        }
+    }
+
+    func updateValue(newValue: Bool) {
+        print(welcomeAirPodCheck)
+        welcomeAirPodCheck = newValue
+    }
+}
+
 class WelcomeViewController: UIViewController, CMHeadphoneMotionManagerDelegate {
     
     var timer = Timer()
@@ -70,11 +89,31 @@ class WelcomeViewController: UIViewController, CMHeadphoneMotionManagerDelegate 
                 self?.welcomeMotion(motion)
             }
             )
-        print(welcomeCheck)
+        NotificationCenter.default.addObserver(self, selector: #selector(checkModal), name: NSNotification.Name("welcomeAirpodcheck"), object: nil)
+        //showModalView()
+//        button.isUserInteractionEnabled = false
+        
     }
+    @objc func checkModal() {
+        // if else로 모달뷰 띄울지
+        if WelcomeAirPodCheckModel.shared.welcomeAirPodCheck {
+//            button.isUserInteractionEnabled = true
+        } else {
+            showModalView()
+        }
+    }
+    func showModalView() {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let noConnectionViewController = storyboard.instantiateViewController(withIdentifier: "NoConnectViewController")
+        noConnectionViewController.modalPresentationStyle = .formSheet
+        noConnectionViewController.isModalInPresentation = true
+        self.present(noConnectionViewController, animated: true, completion: nil)
+    }
+    
     func welcomeMotion(_ motion: CMDeviceMotion)
     {
-        welcomeCheck = true
+        //welcomeCheck = true
+        changeValueAndNotify()
     }
 //    @IBAction func goSettingButton(_ sender: UIButton) {
 //        
@@ -85,7 +124,15 @@ class WelcomeViewController: UIViewController, CMHeadphoneMotionManagerDelegate 
 //    }
     
     @IBAction func GoToMain(_ sender: UIButton) {
+        NotificationCenter.default.addObserver(self, selector: #selector(checkModal), name: NSNotification.Name("welcomeAirpodcheck"), object: nil)
         timer.invalidate()
+//        if WelcomeAirPodCheckModel.shared.welcomeAirPodCheck {
+//
+//        }
+//        else {
+//            showModalView()
+//        }
+        //NotificationCenter.default.addObserver(self, selector: #selector(checkModal), name: NSNotification.Name("welcomeAirpodcheck"), object: nil)
     }
     
     @IBAction func goChartButton(_ sender: UIButton) {
@@ -125,6 +172,14 @@ class WelcomeViewController: UIViewController, CMHeadphoneMotionManagerDelegate 
         _ = Int(elapsedTime / 60)
         _ = Int((elapsedTime).truncatingRemainder(dividingBy: 60))
     }
+    override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
+        if WelcomeAirPodCheckModel.shared.welcomeAirPodCheck{
+            return true
+        }
+        print("여기는 shouldperform")
+        showModalView()
+        return false
+    }
 }
 extension UIButton {
     var circleButton: Bool {
@@ -139,3 +194,4 @@ extension UIButton {
         }
     }
 }
+
