@@ -17,6 +17,7 @@ var currentWeight = (0.0, 0) // 현재 측정 각도
 var userWeight = (0.0, 0) // 사용자 설정 가중치
 var intPitch: Int = 0 // 목 기울기(정수)
 var isZero = false
+var nextView = false
 
 class ZeroCheckModel {
     static let shared = ZeroCheckModel()
@@ -60,7 +61,6 @@ class MainViewController: UIViewController, CMHeadphoneMotionManagerDelegate {
     let waterWaveView = WaterWaveView()
     var currentProgress: CGFloat = 1.0 // 현재 물의 양 0.0 ~ 1.0
     
-    @IBOutlet weak var titleSubLabel: UILabel!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var startPauseButton: UIButton!
@@ -121,16 +121,21 @@ class MainViewController: UIViewController, CMHeadphoneMotionManagerDelegate {
         
         let circleView = CircleViewController()
         
-        titleLabel.font = UIFont.boldSystemFont(ofSize: 28)
         titleLabel.text = "바른 자세를 유지해\n양동이의 물을 지켜주세요!"
         titleLabel.numberOfLines = 0
+//        self.changeTextColor()
+            guard let text = titleLabel.text else {return}
+            let attributeString = NSMutableAttributedString(string: text)
+            attributeString.addAttribute(.foregroundColor, value: UIColor.pointBlue, range: (text as NSString).range(of: "양동이의 물을 지켜주세요!"))
+            titleLabel.attributedText = attributeString
+
+        
         timeLabel.setupLabelAndButton(view: timeLabel, systemName: "clock", text: emptyString + showhour + labelHour + showminute + labelMinute, imageColor: .pointBlue ?? .black, textColor: .pointBlue ?? .black, font: .boldSystemFont(ofSize: 28), pointSize: 28, weight: .bold)
         
         startPauseButton.setupLabelAndButton(view: startPauseButton, systemName: "pause.circle.fill", text: " 일시 정지", imageColor: .white, textColor: .white, font: UIFont.boldSystemFont(ofSize: 17) , pointSize: 17, weight: .bold)
         
         resetButton.setupLabelAndButton(view: resetButton, systemName: "xmark.circle.fill", text: " 측정 종료", imageColor: .pointRed ?? .black, textColor: .pointRed ?? .black, font: UIFont.boldSystemFont(ofSize: 17) , pointSize: 17, weight: .bold)
-        
-        self.changeTextColor()
+       
         view.addSubview(circleView)
         self.view.sendSubviewToBack(circleView)
         circleView.translatesAutoresizingMaskIntoConstraints = false
@@ -350,12 +355,12 @@ class MainViewController: UIViewController, CMHeadphoneMotionManagerDelegate {
     
     //MARK: timer view controller
     
-    func changeTextColor() {
-        guard let text = self.titleLabel.text else {return}
-        let attributeString = NSMutableAttributedString(string: text)
-        attributeString.addAttribute(.foregroundColor, value: UIColor.pointBlue, range: (text as NSString).range(of: "양동이의 물을 지켜주세요!"))
-        self.titleLabel.attributedText = attributeString
-    }
+//    func changeTextColor() {
+//        guard let text = self.titleLabel.text else {return}
+//        let attributeString = NSMutableAttributedString(string: text)
+//        attributeString.addAttribute(.foregroundColor, value: UIColor.pointBlue, range: (text as NSString).range(of: "양동이의 물을 지켜주세요!"))
+//        self.titleLabel.attributedText = attributeString
+//    }
     
     private func startTimer() {
         timer = Timer.scheduledTimer(timeInterval: 0.01, target: self, selector: #selector(updateTimer), userInfo: nil, repeats: true)
@@ -380,10 +385,16 @@ class MainViewController: UIViewController, CMHeadphoneMotionManagerDelegate {
             
             restView.removeFromSuperview()
             
-            titleLabel.textColor = .black
             titleLabel.font = UIFont.boldSystemFont(ofSize: 28)
             titleLabel.text = "바른 자세를 유지해\n양동이의 물을 지켜주세요!"
             titleLabel.numberOfLines = 0
+        
+                guard let text = self.titleLabel.text else {return}
+                let attributeString = NSMutableAttributedString(string: text)
+                attributeString.addAttribute(.foregroundColor, value: UIColor.black, range: (text as NSString).range(of: "바른 자세를 유지해"))
+                attributeString.addAttribute(.foregroundColor, value: UIColor.pointBlue, range: (text as NSString).range(of: "양동이의 물을 지켜주세요!"))
+                self.titleLabel.attributedText = attributeString
+            
             
             startTime = Date() //현재 시간으로 업데이트
             timer = Timer.scheduledTimer(timeInterval: 0.01, target: self, selector: #selector(updateTimer), userInfo: nil, repeats: true)
@@ -494,9 +505,14 @@ class MainViewController: UIViewController, CMHeadphoneMotionManagerDelegate {
         dismiss(animated: true)
         titleLabel.font = UIFont.boldSystemFont(ofSize: 28)
         titleLabel.text = "바른 자세를 유지해\n양동이의 물을 지켜주세요!"
-        titleLabel.textColor = .black
         titleLabel.numberOfLines = 0
         titleLabel.isHidden = false
+        guard let text = self.titleLabel.text else {return}
+        let attributeString = NSMutableAttributedString(string: text)
+        attributeString.addAttribute(.foregroundColor, value: UIColor.black, range: (text as NSString).range(of: "바른 자세를 유지해"))
+        attributeString.addAttribute(.foregroundColor, value: UIColor.pointBlue, range: (text as NSString).range(of: "양동이의 물을 지켜주세요!"))
+        self.titleLabel.attributedText = attributeString
+        
         
         if isPause {
             print("일시정지 하고 빼고 꼈을때")
@@ -566,8 +582,8 @@ class MainViewController: UIViewController, CMHeadphoneMotionManagerDelegate {
     
     //에어팟 연결 끊겼을때
     func headphoneMotionManagerDidDisconnect(_ manager: CMHeadphoneMotionManager) {
-        if isZero {
-            isZero = false
+        if nextView {
+            nextView = false
         } else{
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             let noConnectionViewController = storyboard.instantiateViewController(withIdentifier: "NoConnectViewController")
@@ -634,10 +650,13 @@ class MainViewController: UIViewController, CMHeadphoneMotionManagerDelegate {
         self.viewDidLoad()
     }
     
-    //뷰가 사라질때 하고 싶은 작업
+    //뷰가 사라질때 하고 싶은 작업들
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         manager.stopDeviceMotionUpdates()
+        stopSound()
+        motionTimer.invalidate()
+        nextView = true
         //let storyboard = UIStoryboard(name: "Main", bundle: nil)
         //let noConnectionViewController = storyboard.instantiateViewController(withIdentifier: "NoConnectViewController")
         //present(noConnectionViewController, animated: false)

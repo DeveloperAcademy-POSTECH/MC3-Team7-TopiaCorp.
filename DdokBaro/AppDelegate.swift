@@ -17,12 +17,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         UNUserNotificationCenter.current().delegate = self
         
-        let storyboard = UIStoryboard(name: "LottieLaunchScreen", bundle: nil)
-        let launchScreenViewController = storyboard.instantiateViewController(withIdentifier: "LaunchScreen") as! LaunchScreen
-        window = UIWindow(frame: UIScreen.main.bounds)
-        window?.rootViewController = launchScreenViewController
-        window?.makeKeyAndVisible()
-        
         return true
     }
 

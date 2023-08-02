@@ -36,11 +36,9 @@
 		B9CC5EBC2A7574080055151C /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9CC5EBB2A7574080055151C /* Storage.swift */; };
 		B9CC5EBE2A758ECF0055151C /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9CC5EBD2A758ECF0055151C /* SettingViewController.swift */; };
 		B9F658DA2A76952000AFC4D6 /* RightPostureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9F658D92A76952000AFC4D6 /* RightPostureViewController.swift */; };
-		B9F658DC2A76A72000AFC4D6 /* DdokLogo.json in Resources */ = {isa = PBXBuildFile; fileRef = B9F658DB2A76A71F00AFC4D6 /* DdokLogo.json */; };
-		B9F658E02A76F5BF00AFC4D6 /* LottieLaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B9F658DF2A76F5BF00AFC4D6 /* LottieLaunchScreen.storyboard */; };
-		B9F658E22A76F61C00AFC4D6 /* LaunchScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9F658E12A76F61C00AFC4D6 /* LaunchScreen.swift */; };
 		B9F658E42A7921AA00AFC4D6 /* TurtleResultA.json in Resources */ = {isa = PBXBuildFile; fileRef = B9F658E32A7921AA00AFC4D6 /* TurtleResultA.json */; };
 		B9F658E62A7921B400AFC4D6 /* TurtleResultB.json in Resources */ = {isa = PBXBuildFile; fileRef = B9F658E52A7921B400AFC4D6 /* TurtleResultB.json */; };
+		B9F658EC2A79FAAC00AFC4D6 /* DdokLogo.json in Resources */ = {isa = PBXBuildFile; fileRef = B9F658EB2A79FAAC00AFC4D6 /* DdokLogo.json */; };
 		D329808D2A60DB9B004C2632 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D329808C2A60DB9B004C2632 /* Main.storyboard */; };
 		D35DFA262A5F7E7B0043B644 /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D35DFA252A5F7E7B0043B644 /* TestViewController.swift */; };
 		D35DFA282A5F7F100043B644 /* TimerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D35DFA272A5F7F100043B644 /* TimerViewController.swift */; };
@@ -119,11 +117,9 @@
 		B9CC5EBB2A7574080055151C /* Storage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storage.swift; sourceTree = "<group>"; };
 		B9CC5EBD2A758ECF0055151C /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		B9F658D92A76952000AFC4D6 /* RightPostureViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RightPostureViewController.swift; sourceTree = "<group>"; };
-		B9F658DB2A76A71F00AFC4D6 /* DdokLogo.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = DdokLogo.json; sourceTree = "<group>"; };
-		B9F658DF2A76F5BF00AFC4D6 /* LottieLaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LottieLaunchScreen.storyboard; sourceTree = "<group>"; };
-		B9F658E12A76F61C00AFC4D6 /* LaunchScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchScreen.swift; sourceTree = "<group>"; };
 		B9F658E32A7921AA00AFC4D6 /* TurtleResultA.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = TurtleResultA.json; sourceTree = "<group>"; };
 		B9F658E52A7921B400AFC4D6 /* TurtleResultB.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = TurtleResultB.json; sourceTree = "<group>"; };
+		B9F658EB2A79FAAC00AFC4D6 /* DdokLogo.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = DdokLogo.json; sourceTree = "<group>"; };
 		D329808C2A60DB9B004C2632 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		D35DFA252A5F7E7B0043B644 /* TestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestViewController.swift; sourceTree = "<group>"; };
 		D35DFA272A5F7F100043B644 /* TimerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerViewController.swift; sourceTree = "<group>"; };
@@ -201,7 +197,7 @@
 		0E5CC5492A69492300A3903F /* Lottie */ = {
 			isa = PBXGroup;
 			children = (
-				B9F658DB2A76A71F00AFC4D6 /* DdokLogo.json */,
+				B9F658EB2A79FAAC00AFC4D6 /* DdokLogo.json */,
 				0E8342212A66191D00922168 /* TurtleBody.json */,
 				B9F658E32A7921AA00AFC4D6 /* TurtleResultA.json */,
 				B9F658E52A7921B400AFC4D6 /* TurtleResultB.json */,
@@ -240,7 +236,6 @@
 				B99D44E32A763334000160C1 /* NoConnectViewController.swift */,
 				0E1868202A7884B20057F7FC /* Modal.swift */,
 				B9F658D92A76952000AFC4D6 /* RightPostureViewController.swift */,
-				B9F658E12A76F61C00AFC4D6 /* LaunchScreen.swift */,
 				D3B570112A76E92B001DE024 /* ChartViewController.swift */,
 			);
 			path = ViewControllers;
@@ -254,7 +249,6 @@
 				D35DFA302A60D6A10043B644 /* Trial.storyboard */,
 				D35DFA2E2A60D6240043B644 /* Timer.storyboard */,
 				D35DFA322A60D7010043B644 /* Motion.storyboard */,
-				B9F658DF2A76F5BF00AFC4D6 /* LottieLaunchScreen.storyboard */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";
@@ -449,6 +443,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B9F658EC2A79FAAC00AFC4D6 /* DdokLogo.json in Resources */,
 				675242EA2A68CACA00F07886 /* TurtleAirpod.json in Resources */,
 				B9B3548D2A693D4C008FFBC2 /* welcomeTurtle.json in Resources */,
 				0E18681D2A76B1020057F7FC /* ZeroSound.mp3 in Resources */,
@@ -462,7 +457,6 @@
 				D35DFA332A60D7010043B644 /* Motion.storyboard in Resources */,
 				D329808D2A60DB9B004C2632 /* Main.storyboard in Resources */,
 				676BD2F72A677CFF00541BD9 /* Onboarding.storyboard in Resources */,
-				B9F658E02A76F5BF00AFC4D6 /* LottieLaunchScreen.storyboard in Resources */,
 				0E8342222A66191D00922168 /* TurtleBody.json in Resources */,
 				0E5CC5652A6C065900A3903F /* WaterDrops1.json in Resources */,
 				0E5CC5752A6E153100A3903F /* Drop.mp3 in Resources */,
@@ -470,7 +464,6 @@
 				0E5CC54D2A694AC000A3903F /* Rain.mp3 in Resources */,
 				B9F658E62A7921B400AFC4D6 /* TurtleResultB.json in Resources */,
 				D38DFAE62A5CE0AC0041C6E4 /* LaunchScreen.storyboard in Resources */,
-				B9F658DC2A76A72000AFC4D6 /* DdokLogo.json in Resources */,
 				D38DFAE32A5CE0AC0041C6E4 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -515,7 +508,6 @@
 				D35DFA2A2A5F7F2C0043B644 /* MotionViewController.swift in Sources */,
 				D38DFADB2A5CE0AB0041C6E4 /* ViewController.swift in Sources */,
 				B9CC5EBC2A7574080055151C /* Storage.swift in Sources */,
-				B9F658E22A76F61C00AFC4D6 /* LaunchScreen.swift in Sources */,
 				D38DFAD72A5CE0AB0041C6E4 /* AppDelegate.swift in Sources */,
 				676BD2FB2A6789F000541BD9 /* NoAirpodViewController.swift in Sources */,
 				B9CC5EBE2A758ECF0055151C /* SettingViewController.swift in Sources */,
@@ -699,14 +691,15 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = D9HG424P5H;
+				DEVELOPMENT_TEAM = U65UYKH3S3;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = DdokBaro/Info.plist;
 				INFOPLIST_KEY_NSMotionUsageDescription = "Used to acquire motion for AirPods.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen.storyboard;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -729,14 +722,15 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = D9HG424P5H;
+				DEVELOPMENT_TEAM = U65UYKH3S3;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = DdokBaro/Info.plist;
 				INFOPLIST_KEY_NSMotionUsageDescription = "Used to acquire motion for AirPods.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen.storyboard;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";

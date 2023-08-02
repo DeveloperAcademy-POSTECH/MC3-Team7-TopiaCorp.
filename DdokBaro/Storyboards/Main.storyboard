@@ -69,6 +69,9 @@
                                 <color key="tintColor" name="pointBlue"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" cornerStyle="capsule"/>
+                                <connections>
+                                    <action selector="goSettingButton:" destination="dFi-qe-lHF" eventType="touchUpInside" id="chT-rY-6bn"/>
+                                </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="nzt-ed-3Fs"/>
@@ -388,9 +391,6 @@
                             <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="vva-IQ-o6V">
                                 <rect key="frame" x="8" y="217" width="374" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <connections>
-                                    <action selector="slChangeVolume:" destination="kc0-dQ-477" eventType="valueChanged" id="eNO-WA-Ngh"/>
-                                </connections>
                             </slider>
                             <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="yxh-jI-yDs">
                                 <rect key="frame" x="8" y="321" width="374" height="30"/>
@@ -414,7 +414,7 @@
             <objects>
                 <viewController storyboardIdentifier="ChartViewController" id="4hT-A1-9kj" customClass="ChartViewController" customModule="DdokBaro" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="BHH-xR-HiC">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="자세 기록" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YiP-fK-ZkB">
@@ -560,6 +560,7 @@
                         <color key="backgroundColor" red="0.92941176889999999" green="0.9529411793" blue="0.99607843159999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <color key="tintColor" red="0.92941176889999999" green="0.9529411793" blue="0.99607843159999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                     </view>
+                    <navigationItem key="navigationItem" id="xVA-xB-JMx"/>
                     <connections>
                         <outlet property="barChartView" destination="49j-Do-RO2" id="hDm-78-djf"/>
                         <outlet property="dayLabel01" destination="1Oa-RO-EYP" id="dH6-t2-Vd3"/>
@@ -614,6 +615,9 @@
                                 <buttonConfiguration key="configuration" style="filled" title="잔디 보러가기" cornerStyle="capsule">
                                     <fontDescription key="titleFontDescription" name="AppleSDGothicNeo-Bold" family="Apple SD Gothic Neo" pointSize="17"/>
                                 </buttonConfiguration>
+                                <connections>
+                                    <segue destination="4hT-A1-9kj" kind="show" id="Ag9-Ah-wcJ"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="R7u-V0-sV6">
                                 <rect key="frame" x="16" y="760" width="358" height="50"/>
