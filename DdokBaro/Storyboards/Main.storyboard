@@ -414,7 +414,7 @@
             <objects>
                 <viewController storyboardIdentifier="ChartViewController" id="4hT-A1-9kj" customClass="ChartViewController" customModule="DdokBaro" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="BHH-xR-HiC">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="자세 기록" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YiP-fK-ZkB">
@@ -497,6 +497,7 @@
                         <color key="backgroundColor" red="0.92941176889999999" green="0.9529411793" blue="0.99607843159999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <color key="tintColor" red="0.92941176889999999" green="0.9529411793" blue="0.99607843159999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                     </view>
+                    <navigationItem key="navigationItem" id="xVA-xB-JMx"/>
                     <connections>
                         <outlet property="barChartView" destination="49j-Do-RO2" id="hDm-78-djf"/>
                     </connections>
@@ -537,6 +538,9 @@
                                 <buttonConfiguration key="configuration" style="filled" title="잔디 보러가기" cornerStyle="capsule">
                                     <fontDescription key="titleFontDescription" name="AppleSDGothicNeo-Bold" family="Apple SD Gothic Neo" pointSize="17"/>
                                 </buttonConfiguration>
+                                <connections>
+                                    <segue destination="4hT-A1-9kj" kind="show" id="Ag9-Ah-wcJ"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="R7u-V0-sV6">
                                 <rect key="frame" x="16" y="760" width="358" height="50"/>

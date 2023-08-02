@@ -41,7 +41,6 @@ class MainViewController: UIViewController, CMHeadphoneMotionManagerDelegate {
     let waterWaveView = WaterWaveView()
     var currentProgress: CGFloat = 1.0 // 현재 물의 양 0.0 ~ 1.0
     
-    @IBOutlet weak var titleSubLabel: UILabel!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var startPauseButton: UIButton!
@@ -102,9 +101,9 @@ class MainViewController: UIViewController, CMHeadphoneMotionManagerDelegate {
         
         let circleView = CircleViewController()
         
-        titleLabel.font = UIFont.boldSystemFont(ofSize: 28)
         titleLabel.text = "바른 자세를 유지해\n양동이의 물을 지켜주세요!"
         titleLabel.numberOfLines = 0
+        self.changeTextColor()
         timeLabel.setupLabelAndButton(view: timeLabel, systemName: "clock", text: emptyString + showhour + labelHour + showminute + labelMinute, imageColor: .pointBlue ?? .black, textColor: .pointBlue ?? .black, font: .boldSystemFont(ofSize: 28), pointSize: 28, weight: .bold)
         
         startPauseButton.setupLabelAndButton(view: startPauseButton, systemName: "pause.circle.fill", text: " 일시 정지", imageColor: .white, textColor: .white, font: UIFont.boldSystemFont(ofSize: 17) , pointSize: 17, weight: .bold)
@@ -335,11 +334,16 @@ class MainViewController: UIViewController, CMHeadphoneMotionManagerDelegate {
             self.view.sendSubviewToBack(animationView4)
             
             restView.removeFromSuperview()
-            
-            titleLabel.textColor = .black
-            titleLabel.font = UIFont.boldSystemFont(ofSize: 28)
+        
             titleLabel.text = "바른 자세를 유지해\n양동이의 물을 지켜주세요!"
             titleLabel.numberOfLines = 0
+        
+                guard let text = self.titleLabel.text else {return}
+                let attributeString = NSMutableAttributedString(string: text)
+                attributeString.addAttribute(.foregroundColor, value: UIColor.black, range: (text as NSString).range(of: "바른 자세를 유지해"))
+                attributeString.addAttribute(.foregroundColor, value: UIColor.pointBlue, range: (text as NSString).range(of: "양동이의 물을 지켜주세요!"))
+                self.titleLabel.attributedText = attributeString
+            
             
             startTime = Date() //현재 시간으로 업데이트
             timer = Timer.scheduledTimer(timeInterval: 0.01, target: self, selector: #selector(updateTimer), userInfo: nil, repeats: true)
