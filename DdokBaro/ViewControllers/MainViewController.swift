@@ -464,8 +464,8 @@ class MainViewController: UIViewController, CMHeadphoneMotionManagerDelegate {
         let currentTime = Date()
         let elapsedTime = accumulatedTime + currentTime.timeIntervalSince(startTime)
         
-        let hour = Int(elapsedTime / 60)
-        let minute = Int((elapsedTime).truncatingRemainder(dividingBy: 60))
+        let hour = Int(elapsedTime / 3600)
+        let minute = Int((elapsedTime / 60).truncatingRemainder(dividingBy: 60))
         
         timeLabel.setupLabelAndButton(view: timeLabel, systemName: "clock", text: emptyString +  showhour + labelHour + showminute + labelMinute, imageColor: .pointBlue ?? .black, textColor: .pointBlue ?? .black, font: .boldSystemFont(ofSize: 28), pointSize: 28, weight: .bold)
         

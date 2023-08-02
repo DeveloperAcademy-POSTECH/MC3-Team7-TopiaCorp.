@@ -43,9 +43,9 @@ class FailViewController: UIViewController {
         }
         
         if let remainingWater = fetchedData?.remainWater, let totalTime = fetchedData?.totalMinutes {
-            let hour = Int(totalTime / 60)
+            let hour = Int(totalTime / 3600)
             let totalTimeDouble = Double(totalTime)
-            let minute = Int((totalTimeDouble).truncatingRemainder(dividingBy: 60))
+            let minute = Int((totalTimeDouble / 60).truncatingRemainder(dividingBy: 60))
             let formattedTime = String(format: "%02d시 %02d분", hour, minute)
             waterLabel.text = "\(remainingWater)L"
             timeLabel.text = formattedTime
