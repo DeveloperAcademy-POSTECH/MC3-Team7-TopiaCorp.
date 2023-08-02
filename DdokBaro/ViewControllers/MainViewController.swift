@@ -370,6 +370,7 @@ class MainViewController: UIViewController, CMHeadphoneMotionManagerDelegate {
     @IBAction func pauseTapped(_ sender: UIButton) {
         if isPaused {
             isPause = false
+            animationView1.setPlay()
             backGroundColor.setGradient2(color1: .white, color2: UIColor(hexCode: "ECF2FF"))
             backGroundColor.layer.zPosition = -1
             
