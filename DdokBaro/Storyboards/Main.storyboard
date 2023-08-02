@@ -58,9 +58,6 @@
                                 <color key="tintColor" name="pointBlue"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" cornerStyle="capsule"/>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="boolean" keyPath="circleButton" value="YES"/>
-                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="goChartButton:" destination="dFi-qe-lHF" eventType="touchUpInside" id="4ac-FR-voc"/>
                                 </connections>
@@ -72,9 +69,6 @@
                                 <color key="tintColor" name="pointBlue"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" cornerStyle="capsule"/>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="boolean" keyPath="circleButton" value="YES"/>
-                                </userDefinedRuntimeAttributes>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="nzt-ed-3Fs"/>
@@ -160,7 +154,7 @@
         <scene sceneID="Uhl-Q2-cWL">
             <objects>
                 <viewController storyboardIdentifier="FailViewController" id="nBN-Ef-JfM" customClass="FailViewController" customModule="DdokBaro" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="jUy-S0-GHZ" customClass="Success">
+                    <view key="view" contentMode="scaleToFill" id="jUy-S0-GHZ">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -509,7 +503,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FFs-Ei-PL8" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6817.5572519083971" y="-20.422535211267608"/>
+            <point key="canvasLocation" x="5972" y="-423"/>
         </scene>
         <!--Success View Controller-->
         <scene sceneID="kup-j6-3Vu">
