@@ -8,11 +8,32 @@
 import UIKit
 
 class ChartViewController: UIViewController {
+    let month = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
+    let day = ["일", "월", "화", "수", "목", "금", "토"]
+    
+    @IBOutlet weak var monthLabel01: UILabel!
+    @IBOutlet weak var monthLabel02: UILabel!
+    @IBOutlet weak var monthLabel03: UILabel!
+    @IBOutlet weak var monthLabel04: UILabel!
+    @IBOutlet weak var monthLabel05: UILabel!
+    
+    @IBOutlet weak var dayLabel01: UILabel!
+    @IBOutlet weak var dayLabel02: UILabel!
+    @IBOutlet weak var dayLabel03: UILabel!
+    @IBOutlet weak var dayLabel04: UILabel!
+    @IBOutlet weak var dayLabel05: UILabel!
+    @IBOutlet weak var dayLabel06: UILabel!
+    @IBOutlet weak var dayLabel07: UILabel!
+    
+    @IBOutlet weak var timeLabel01: UILabel!
+    @IBOutlet weak var timeLabel02: UILabel!
+    
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     var grassLevels: [Int: Int] = [:]
     var graphLevels: [Int: Int] = [:]
     var frontCounter = 0
     var backCounter = 0
+    var currentMonth = 12
     
     var dataPoints = [Double]()
     var barColor = UIColor.systemBlue
@@ -46,7 +67,7 @@ class ChartViewController: UIViewController {
         let chartSquareView = ChartSquareView(frame: CGRect(x: 20, y: 245, width: screenWidth - 40, height: screenWidth / 2 - 20))
         view.addSubview(chartSquareView)
         
-        let chartSquareView2 = ChartSquareView(frame: CGRect(x: 20, y: 520, width: screenWidth - 40, height: screenWidth / 2))
+        let chartSquareView2 = ChartSquareView(frame: CGRect(x: 20, y: 520, width: screenWidth - 40, height: screenWidth / 2 + 10))
         view.addSubview(chartSquareView2)
         
         for i in 0..<17 {
@@ -89,6 +110,36 @@ class ChartViewController: UIViewController {
         barChartView.setData(dataPoints)
         self.view.sendSubviewToBack(chartSquareView)
         self.view.sendSubviewToBack(chartSquareView2)
+        
+        print(currentMonth, month[currentMonth % 12 - 1])
+        self.monthLabel01.text = month[(currentMonth - 5) % 12]
+        self.monthLabel02.text = month[(currentMonth - 4) % 12]
+        self.monthLabel03.text = month[(currentMonth - 3) % 12]
+        self.monthLabel04.text = month[(currentMonth - 2) % 12]
+        self.monthLabel05.text = month[(currentMonth - 1) % 12]
+        
+        let dayOfWeek = getDayOfWeek() + 7
+        self.dayLabel01.text = day[(dayOfWeek - 6) % 7]
+        self.dayLabel02.text = day[(dayOfWeek - 5) % 7]
+        self.dayLabel03.text = day[(dayOfWeek - 4) % 7]
+        self.dayLabel04.text = day[(dayOfWeek - 3) % 7]
+        self.dayLabel05.text = day[(dayOfWeek - 2) % 7]
+        self.dayLabel06.text = day[(dayOfWeek - 1) % 7]
+        self.dayLabel07.text = day[dayOfWeek % 7]
+        
+        self.timeLabel01.text = "8시간"
+        self.timeLabel02.text = "4시간"
+        
+        self.dayLabel01.textColor = .gray
+        self.dayLabel02.textColor = .gray
+        self.dayLabel03.textColor = .gray
+        self.dayLabel04.textColor = .gray
+        self.dayLabel05.textColor = .gray
+        self.dayLabel06.textColor = .gray
+        self.dayLabel07.textColor = .gray
+        
+        self.timeLabel01.textColor = .gray
+        self.timeLabel02.textColor = .gray
     }
     
     func getAllData() {
@@ -97,7 +148,7 @@ class ChartViewController: UIViewController {
         formatter.locale = Locale(identifier: "ko_kr")
         formatter.timeZone = TimeZone(abbreviation: "KST")
         let today = formatter.string(from: Date())
-        print(today)
+        currentMonth += Int(String(Array(today)[5]) + String(Array(today)[6]))!
         
         do {
             let data = try context.fetch(DdokBaroData.fetchRequest())
@@ -113,7 +164,6 @@ class ChartViewController: UIViewController {
     }
     
     func getDayOfWeek() -> Int {
-        let day = ["일", "월", "화", "수", "목", "금", "토"]
         let formatter = DateFormatter()
         formatter.dateFormat = "E"
         formatter.locale = Locale(identifier: "ko_kr")
@@ -136,7 +186,6 @@ extension String {
 
 extension Calendar {
     func numberOfDays(_ from: Date, and to: Date) -> Int {
-        let fromDate = startOfDay(for: from)
         let toDate = startOfDay(for: to)
         let numberOfDays = dateComponents([.day], from: from, to: toDate)
         return numberOfDays.day!
