@@ -106,7 +106,7 @@ class WelcomeViewController: UIViewController, CMHeadphoneMotionManagerDelegate 
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let noConnectionViewController = storyboard.instantiateViewController(withIdentifier: "NoConnectViewController")
         noConnectionViewController.modalPresentationStyle = .formSheet
-        noConnectionViewController.isModalInPresentation = true
+        //noConnectionViewController.isModalInPresentation = true
         self.present(noConnectionViewController, animated: true, completion: nil)
     }
     
@@ -179,6 +179,13 @@ class WelcomeViewController: UIViewController, CMHeadphoneMotionManagerDelegate 
         print("여기는 shouldperform")
         showModalView()
         return false
+    }
+    func headphoneMotionManagerDidConnect(_ manager: CMHeadphoneMotionManager) {
+        //let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        //let noConnectionViewController = storyboard.instantiateViewController(withIdentifier: "NoConnectViewController")
+        //noConnectionViewController.modalPresentationStyle = .formSheet
+        //self.present(noConnectionViewController, animated: true, completion: nil)
+        dismiss(animated: true)
     }
 }
 extension UIButton {
