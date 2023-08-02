@@ -632,6 +632,8 @@ class MainViewController: UIViewController, CMHeadphoneMotionManagerDelegate {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         manager.stopDeviceMotionUpdates()
+        stopSound()
+        motionTimer.invalidate()
         //let storyboard = UIStoryboard(name: "Main", bundle: nil)
         //let noConnectionViewController = storyboard.instantiateViewController(withIdentifier: "NoConnectViewController")
         //present(noConnectionViewController, animated: false)
