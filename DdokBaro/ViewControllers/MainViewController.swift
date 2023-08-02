@@ -17,6 +17,7 @@ var currentWeight = (0.0, 0) // 현재 측정 각도
 var userWeight = (0.0, 0) // 사용자 설정 가중치
 var intPitch: Int = 0 // 목 기울기(정수)
 var isZero = false
+var nextView = false
 
 class ZeroCheckModel {
     static let shared = ZeroCheckModel()
@@ -560,8 +561,8 @@ class MainViewController: UIViewController, CMHeadphoneMotionManagerDelegate {
     
     //에어팟 연결 끊겼을때
     func headphoneMotionManagerDidDisconnect(_ manager: CMHeadphoneMotionManager) {
-        if isZero {
-            isZero = false
+        if nextView {
+            nextView = false
         } else{
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             let noConnectionViewController = storyboard.instantiateViewController(withIdentifier: "NoConnectViewController")
@@ -634,6 +635,7 @@ class MainViewController: UIViewController, CMHeadphoneMotionManagerDelegate {
         manager.stopDeviceMotionUpdates()
         stopSound()
         motionTimer.invalidate()
+        nextView = true
         //let storyboard = UIStoryboard(name: "Main", bundle: nil)
         //let noConnectionViewController = storyboard.instantiateViewController(withIdentifier: "NoConnectViewController")
         //present(noConnectionViewController, animated: false)
