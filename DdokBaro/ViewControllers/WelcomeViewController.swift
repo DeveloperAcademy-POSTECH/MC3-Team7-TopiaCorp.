@@ -71,7 +71,6 @@ class WelcomeViewController: UIViewController, CMHeadphoneMotionManagerDelegate 
         
         titleLabel.text = "오늘의 작업을\n시작해볼까요?"
         titleLabel.numberOfLines = 0
-        
         self.changeTextColor()
         
         let welcomeTurtleView = LottieWrapperView(animationName: "welcomeTurtle")
