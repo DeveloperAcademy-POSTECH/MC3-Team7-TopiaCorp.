@@ -270,18 +270,25 @@ class MainViewController: UIViewController, CMHeadphoneMotionManagerDelegate {
         intPitch = degreeInt(pitch)
         //currentWeight = (pitch, degreeInt(pitch))
         //print(intPitch)
-        DispatchQueue.main.async { [weak self] in
+        DispatchQueue.global().async { [weak self] in
             if pitch > 0 {
-                self?.animationView2.setProgress(currentProgress: AnimationProgressTime(0))
+                DispatchQueue.main.async{
+                    self?.animationView2.setProgress(currentProgress: AnimationProgressTime(0))
+                }
             }
             else {
-                self?.animationView2.setProgress(currentProgress: AnimationProgressTime(max(-(pitch - userWeight.0)/40, 0)))
+                DispatchQueue.main.async{
+                    self?.animationView2.setProgress(currentProgress: AnimationProgressTime(max(-(pitch - userWeight.0)/40, 0)))
+                }
             }
                                   
         //만약 목 각도가 정해진 기준 이상이면(notgood - 1단계, bad - 2단계, danger - 3단계)
             if intPitch - userWeight.1 < angle.notgood.rawValue {
+                DispatchQueue.main.async{
+                    self?.animationView3.setPlay()
+                }
 
-                self?.animationView3.setPlay()
+                //self?.animationView3.setPlay()
                 
                 if !self!.isPause {
                     self!.currentProgress -= self!.dropWhenBad * 0.00001
@@ -305,8 +312,12 @@ class MainViewController: UIViewController, CMHeadphoneMotionManagerDelegate {
                 self!.waterWaveView.setupProgress(self!.currentProgress)
                 
                 if intPitch - userWeight.1 < angle.bad.rawValue {
-                    self?.animationView3.setStop()
-                    self?.animationView4.setPlay()
+                    DispatchQueue.main.async{
+                        self?.animationView3.setStop()
+                        self?.animationView4.setPlay()
+                    }
+//                    self?.animationView3.setStop()
+//                    self?.animationView4.setPlay()
                     
                     if !self!.isPause {
                         self!.currentProgress -= self!.dropWhenWorst * 0.00001
@@ -347,8 +358,12 @@ class MainViewController: UIViewController, CMHeadphoneMotionManagerDelegate {
             else{
                 self!.motionTimer.invalidate()
                 //stopSound()
-                self?.animationView4.setStop()
-                self?.animationView3.setStop()
+                DispatchQueue.main.async{
+                    self?.animationView4.setStop()
+                    self?.animationView3.setStop()
+                }
+//                self?.animationView4.setStop()
+//                self?.animationView3.setStop()
             }
         }
     }
