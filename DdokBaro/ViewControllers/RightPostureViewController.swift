@@ -34,14 +34,6 @@ class RightPostureViewController: UIViewController {
            
              view.setGradient3(color1: .white, color2: UIColor(hexCode: "ECF3FF"))
             
-//
-//            backGroundColor2.setGradient2(color1: .black, color2: .blue)
-//            backGroundColor2.frame = self.view.bounds
-//            backGroundColor2.center = self.view.center
-//            backGroundColor2.contentMode = .scaleAspectFit
-//            backGroundColor2.layer.zPosition = -1 // Move the gradient layer to the back
-//
-//            self.view.addSubview(backGroundColor2)
     }
     
     @IBAction func goToWelcomeButton(_ sender: UIButton) {

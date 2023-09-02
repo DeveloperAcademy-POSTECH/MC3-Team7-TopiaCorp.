@@ -56,6 +56,7 @@ class NoConnectViewController: UIViewController {
 //            }
 //        }
 //    }
+    
     override func dismiss(animated flag: Bool, completion: (() -> Void)? = nil) {
 
     }

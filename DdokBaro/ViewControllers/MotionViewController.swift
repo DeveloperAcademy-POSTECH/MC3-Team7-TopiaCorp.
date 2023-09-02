@@ -219,3 +219,16 @@ class MotionViewController: UIViewController, CMHeadphoneMotionManagerDelegate {
     }
     
 }
+
+class HeadphoneMotionManager{
+    let manager = CMHeadphoneMotionManager()
+    
+    func findDegrees() {
+        print("권한 허가됨 ", CMAuthorizationStatus.authorized)
+        manager.startDeviceMotionUpdates(
+            to: OperationQueue.current!, withHandler: { [weak self] deviceMotion, error in guard let motion = deviceMotion, error == nil else { return }
+            }
+        )
+    }
+
+}

@@ -7,8 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0E018D192A9B431600E5A14D /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E018D182A9B431600E5A14D /* Model.swift */; };
+		0E018D1B2AA0BCCF00E5A14D /* HeadphoneMotion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E018D1A2AA0BCCF00E5A14D /* HeadphoneMotion.swift */; };
+		0E018D1D2AA1646400E5A14D /* Temp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E018D1C2AA1646400E5A14D /* Temp.swift */; };
+		0E018D202AA17BC000E5A14D /* MainViewController+layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E018D1F2AA17BC000E5A14D /* MainViewController+layout.swift */; };
+		0E018D222AA17BE100E5A14D /* MainViewController+event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E018D212AA17BE100E5A14D /* MainViewController+event.swift */; };
 		0E18681D2A76B1020057F7FC /* ZeroSound.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 0E18681C2A76B1010057F7FC /* ZeroSound.mp3 */; };
 		0E1868212A7884B20057F7FC /* Modal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E1868202A7884B20057F7FC /* Modal.swift */; };
+		0E18682D2A93A77C0057F7FC /* CheckModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E18682C2A93A77C0057F7FC /* CheckModel.swift */; };
 		0E5CC54D2A694AC000A3903F /* Rain.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 0E5CC54B2A694AC000A3903F /* Rain.mp3 */; };
 		0E5CC54F2A6A6D2D00A3903F /* Vibrate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E5CC54E2A6A6D2D00A3903F /* Vibrate.swift */; };
 		0E5CC5512A6A6D3B00A3903F /* Sound.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E5CC5502A6A6D3B00A3903F /* Sound.swift */; };
@@ -20,6 +26,9 @@
 		0E5CC5772A6E15D200A3903F /* Drop2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 0E5CC5762A6E15D200A3903F /* Drop2.mp3 */; };
 		0E8342222A66191D00922168 /* TurtleBody.json in Resources */ = {isa = PBXBuildFile; fileRef = 0E8342212A66191D00922168 /* TurtleBody.json */; };
 		0E8342242A66212C00922168 /* TurtleHead.json in Resources */ = {isa = PBXBuildFile; fileRef = 0E8342232A66212C00922168 /* TurtleHead.json */; };
+		0EB05E812AA31A050032570D /* MainViewController+connect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EB05E802AA31A050032570D /* MainViewController+connect.swift */; };
+		0EB05E832AA31A810032570D /* MainViewController+objc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EB05E822AA31A810032570D /* MainViewController+objc.swift */; };
+		0EB05E852AA31ACF0032570D /* MainViewController+coredata.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EB05E842AA31ACF0032570D /* MainViewController+coredata.swift */; };
 		0EDFC3AD2A63814C005B1C68 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 0EDFC3AC2A63814C005B1C68 /* Lottie */; };
 		0EDFC3B12A64076D005B1C68 /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EDFC3B02A64076D005B1C68 /* Notification.swift */; };
 		675242E42A68C1D000F07886 /* Onboarding1ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675242E32A68C1D000F07886 /* Onboarding1ViewController.swift */; };
@@ -89,8 +98,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0E018D182A9B431600E5A14D /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
+		0E018D1A2AA0BCCF00E5A14D /* HeadphoneMotion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeadphoneMotion.swift; sourceTree = "<group>"; };
+		0E018D1C2AA1646400E5A14D /* Temp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Temp.swift; sourceTree = "<group>"; };
+		0E018D1F2AA17BC000E5A14D /* MainViewController+layout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MainViewController+layout.swift"; sourceTree = "<group>"; };
+		0E018D212AA17BE100E5A14D /* MainViewController+event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MainViewController+event.swift"; sourceTree = "<group>"; };
 		0E18681C2A76B1010057F7FC /* ZeroSound.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = ZeroSound.mp3; sourceTree = "<group>"; };
 		0E1868202A7884B20057F7FC /* Modal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Modal.swift; sourceTree = "<group>"; };
+		0E18682C2A93A77C0057F7FC /* CheckModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckModel.swift; sourceTree = "<group>"; };
 		0E5CC54B2A694AC000A3903F /* Rain.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Rain.mp3; sourceTree = "<group>"; };
 		0E5CC54E2A6A6D2D00A3903F /* Vibrate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Vibrate.swift; sourceTree = "<group>"; };
 		0E5CC5502A6A6D3B00A3903F /* Sound.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sound.swift; sourceTree = "<group>"; };
@@ -102,6 +117,9 @@
 		0E5CC5762A6E15D200A3903F /* Drop2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Drop2.mp3; sourceTree = "<group>"; };
 		0E8342212A66191D00922168 /* TurtleBody.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = TurtleBody.json; sourceTree = "<group>"; };
 		0E8342232A66212C00922168 /* TurtleHead.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = TurtleHead.json; sourceTree = "<group>"; };
+		0EB05E802AA31A050032570D /* MainViewController+connect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MainViewController+connect.swift"; sourceTree = "<group>"; };
+		0EB05E822AA31A810032570D /* MainViewController+objc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MainViewController+objc.swift"; sourceTree = "<group>"; };
+		0EB05E842AA31ACF0032570D /* MainViewController+coredata.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MainViewController+coredata.swift"; sourceTree = "<group>"; };
 		0EDFC3B02A64076D005B1C68 /* Notification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notification.swift; sourceTree = "<group>"; };
 		675242E32A68C1D000F07886 /* Onboarding1ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Onboarding1ViewController.swift; sourceTree = "<group>"; };
 		675242E92A68CACA00F07886 /* TurtleAirpod.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = TurtleAirpod.json; sourceTree = "<group>"; };
@@ -182,6 +200,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0E018D172A9B425100E5A14D /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				0E018D182A9B431600E5A14D /* Model.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		0E5CC5482A6948F200A3903F /* Sound */ = {
 			isa = PBXGroup;
 			children = (
@@ -220,7 +246,6 @@
 				675242ED2A6CF69900F07886 /* Onboarding3ViewController.swift */,
 				B9990A7F2A71520A0094F32C /* ZeroPointViewController.swift */,
 				D39820BE2A67798B004FE798 /* WelcomeViewController.swift */,
-				D39820C02A677A0C004FE798 /* MainViewController.swift */,
 				B98FE4EF2A72A13C00E13890 /* FailViewController.swift */,
 				B98FE4ED2A72A13100E13890 /* SuccessViewController.swift */,
 				D35DFA252A5F7E7B0043B644 /* TestViewController.swift */,
@@ -237,6 +262,15 @@
 				0E1868202A7884B20057F7FC /* Modal.swift */,
 				B9F658D92A76952000AFC4D6 /* RightPostureViewController.swift */,
 				D3B570112A76E92B001DE024 /* ChartViewController.swift */,
+				0E18682C2A93A77C0057F7FC /* CheckModel.swift */,
+				0E018D1A2AA0BCCF00E5A14D /* HeadphoneMotion.swift */,
+				0E018D1C2AA1646400E5A14D /* Temp.swift */,
+				D39820C02A677A0C004FE798 /* MainViewController.swift */,
+				0E018D212AA17BE100E5A14D /* MainViewController+event.swift */,
+				0E018D1F2AA17BC000E5A14D /* MainViewController+layout.swift */,
+				0EB05E802AA31A050032570D /* MainViewController+connect.swift */,
+				0EB05E822AA31A810032570D /* MainViewController+objc.swift */,
+				0EB05E842AA31ACF0032570D /* MainViewController+coredata.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -278,9 +312,10 @@
 			children = (
 				0E5CC5492A69492300A3903F /* Lottie */,
 				0E5CC5482A6948F200A3903F /* Sound */,
-				D35DFA2D2A60D5CE0043B644 /* Storyboards */,
-				D35DFA242A5F7E410043B644 /* ViewControllers */,
+				0E018D172A9B425100E5A14D /* Model */,
 				D39AE0A42A6BFA16003D072D /* Views */,
+				D35DFA242A5F7E410043B644 /* ViewControllers */,
+				D35DFA2D2A60D5CE0043B644 /* Storyboards */,
 				D3ED8F992A6B4454005E02DB /* Managers */,
 				D38DFAD62A5CE0AB0041C6E4 /* AppDelegate.swift */,
 				D38DFAD82A5CE0AB0041C6E4 /* SceneDelegate.swift */,
@@ -489,6 +524,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0E018D202AA17BC000E5A14D /* MainViewController+layout.swift in Sources */,
 				675242E42A68C1D000F07886 /* Onboarding1ViewController.swift in Sources */,
 				0E5CC5532A6BA5AB00A3903F /* Haptics.swift in Sources */,
 				D3FF2B8A2A761876006B5758 /* DdokBaroData+CoreDataClass.swift in Sources */,
@@ -499,6 +535,7 @@
 				D3B570142A77007F001DE024 /* BarChartView.swift in Sources */,
 				0E5CC54F2A6A6D2D00A3903F /* Vibrate.swift in Sources */,
 				B983ACB42A70C6BE0084A9DC /* SetupLabel&Button.swift in Sources */,
+				0EB05E812AA31A050032570D /* MainViewController+connect.swift in Sources */,
 				D3ED8F9B2A6B4530005E02DB /* UIColorManager.swift in Sources */,
 				D39820C32A677A41004FE798 /* CircleViewController.swift in Sources */,
 				D35DFA262A5F7E7B0043B644 /* TestViewController.swift in Sources */,
@@ -508,23 +545,30 @@
 				D35DFA2A2A5F7F2C0043B644 /* MotionViewController.swift in Sources */,
 				D38DFADB2A5CE0AB0041C6E4 /* ViewController.swift in Sources */,
 				B9CC5EBC2A7574080055151C /* Storage.swift in Sources */,
+				0E018D1B2AA0BCCF00E5A14D /* HeadphoneMotion.swift in Sources */,
 				D38DFAD72A5CE0AB0041C6E4 /* AppDelegate.swift in Sources */,
 				676BD2FB2A6789F000541BD9 /* NoAirpodViewController.swift in Sources */,
 				B9CC5EBE2A758ECF0055151C /* SettingViewController.swift in Sources */,
+				0EB05E852AA31ACF0032570D /* MainViewController+coredata.swift in Sources */,
 				0EDFC3B12A64076D005B1C68 /* Notification.swift in Sources */,
 				D3CFE9C82A6ED27900CB3358 /* LottieWrapperView.swift in Sources */,
 				B99D44E42A763334000160C1 /* NoConnectViewController.swift in Sources */,
 				D3ED8F982A6B41DD005E02DB /* WaterWaveView.swift in Sources */,
+				0E018D1D2AA1646400E5A14D /* Temp.swift in Sources */,
 				D39AE0A62A6BFAFC003D072D /* DropletView.swift in Sources */,
 				D38DFAD92A5CE0AB0041C6E4 /* SceneDelegate.swift in Sources */,
 				D35DFA282A5F7F100043B644 /* TimerViewController.swift in Sources */,
+				0EB05E832AA31A810032570D /* MainViewController+objc.swift in Sources */,
 				B98FE4EE2A72A13100E13890 /* SuccessViewController.swift in Sources */,
 				D38DFAE12A5CE0AB0041C6E4 /* DdokBaro.xcdatamodeld in Sources */,
 				D39AE0A32A6BE03A003D072D /* WaterViewController.swift in Sources */,
 				D39820C12A677A0C004FE798 /* MainViewController.swift in Sources */,
 				0E1868212A7884B20057F7FC /* Modal.swift in Sources */,
 				B9F658DA2A76952000AFC4D6 /* RightPostureViewController.swift in Sources */,
+				0E018D192A9B431600E5A14D /* Model.swift in Sources */,
+				0E18682D2A93A77C0057F7FC /* CheckModel.swift in Sources */,
 				D3B570122A76E92B001DE024 /* ChartViewController.swift in Sources */,
+				0E018D222AA17BE100E5A14D /* MainViewController+event.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
