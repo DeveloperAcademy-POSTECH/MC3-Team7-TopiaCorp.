@@ -7,8 +7,8 @@
 
 import UIKit
 
+//온보딩
 class Onboarding1ViewController: UIViewController {
-    
     
     @IBOutlet weak var titleLabel: UILabel!
     

@@ -8,25 +8,7 @@
 import UIKit
 import CoreMotion
 
-class AirPodCheckModel {
-    static let shared = AirPodCheckModel()
-
-    private init() {}
-
-    @objc dynamic var airPodCheck:Bool = false {
-        didSet {
-            // airPodChec의 값이 변경될 때마다 호출되는 코드
-            // NotificationCenter를 이용하여 값을 알린다
-            NotificationCenter.default.post(name: NSNotification.Name("airpodcheck"), object: nil)
-        }
-    }
-
-    func updateValue(newValue: Bool) {
-        print(airPodCheck)
-        airPodCheck = newValue
-    }
-}
-
+//영점조절을 위한 뷰
 class ZeroPointViewController: UIViewController, CMHeadphoneMotionManagerDelegate {
 
     @IBOutlet weak var titleLabel: UILabel!

@@ -43,7 +43,6 @@ class CircleViewController: UIView {
         shapeLayer.shadowRadius = 13
         shapeLayer.shadowColor = UIColor(red: 0.243, green: 0.416, blue: 0.906, alpha: 0.1).cgColor
         
-        
         self.layer.addSublayer(shapeLayer)
     }
 }

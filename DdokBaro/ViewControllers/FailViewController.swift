@@ -9,6 +9,7 @@ import UIKit
 import Lottie
 import CoreData
 
+//실패하면 나오는 화면
 class FailViewController: UIViewController {
     var fetchedData: DdokBaroData?
     

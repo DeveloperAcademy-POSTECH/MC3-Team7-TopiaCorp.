@@ -11,12 +11,10 @@ class WaterViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
         
         let width = Int(screenWidth) / 2 + 128
         for i in 0..<17 {
             for j in 0..<7 {
-//                let grassGraphView = GrassGraphView(frame: CGRect(x: 306 - (18 * i), y: 108 - (18 * j), width: 15, height: 15))
                 let grassGraphView = GrassGraphView(frame: CGRect(x: width - (18 * i), y: 300 + 108 - (18 * j), width: 15, height: 15), level: 0)
                 view.addSubview(grassGraphView)
             }

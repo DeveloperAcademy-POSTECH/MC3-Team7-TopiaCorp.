@@ -8,6 +8,7 @@
 import UIKit
 import Lottie
 
+//온보딩
 class Onboarding3ViewController: UIViewController {
     
     @IBOutlet weak var titleLabel: UILabel!

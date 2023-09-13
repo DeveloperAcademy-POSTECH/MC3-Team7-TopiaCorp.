@@ -23,13 +23,7 @@ class NotificationManager: NSObject, UNUserNotificationCenterDelegate {
         
     }
     
-    //    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
-    //            print("foreground 알람 작동 확인")
-    //            completionHandler([.alert, .badge, .sound])
-    //    }
-    
     func scheduleNotification() {
-        
         //content - 알림에 필요한 메세지의 기본속성을 설정하는 역할
         let content = UNMutableNotificationContent()
         content.title = "주토피아에서 알려드립니다" // 알림 제목 설정
@@ -47,11 +41,9 @@ class NotificationManager: NSObject, UNUserNotificationCenterDelegate {
         
         //알림 등록
         UNUserNotificationCenter.current().add(request)
-        
-        
     }
+    
     func scheduleNotification50() {
-        
         //content - 알림에 필요한 메세지의 기본속성을 설정하는 역할
         let content = UNMutableNotificationContent()
         content.title = "잠시 스트레칭을 해 볼까요?" // 알림 제목 설정
@@ -69,7 +61,6 @@ class NotificationManager: NSObject, UNUserNotificationCenterDelegate {
         
         //알림 등록
         UNUserNotificationCenter.current().add(request)
-        
     }
     func scheduleNotification20() {
         
@@ -94,7 +85,6 @@ class NotificationManager: NSObject, UNUserNotificationCenterDelegate {
         
     }
     func scheduleNotification10() {
-        
         //content - 알림에 필요한 메세지의 기본속성을 설정하는 역할
         let content = UNMutableNotificationContent()
         content.title = "물을 거의 다 쏟았어요" // 알림 제목 설정
@@ -112,8 +102,6 @@ class NotificationManager: NSObject, UNUserNotificationCenterDelegate {
         
         //알림 등록
         UNUserNotificationCenter.current().add(request)
-        
-        
     }
     func scheduleNotification0() {
         
@@ -134,8 +122,6 @@ class NotificationManager: NSObject, UNUserNotificationCenterDelegate {
         
         //알림 등록
         UNUserNotificationCenter.current().add(request)
-        
-        
     }
     func getNotificationSettings() {
         notificationCenter.getNotificationSettings { settings in
@@ -143,10 +129,3 @@ class NotificationManager: NSObject, UNUserNotificationCenterDelegate {
         }
     }
 }
-
-//extension AppDelegate : UNUserNotificationCenterDelegate {
-//    
-//    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
-//        completionHandler([.list,.sound,.banner])
-//    }
-//}

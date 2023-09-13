@@ -8,13 +8,12 @@
 import UIKit
 import Lottie
 
+//에어팟 연결이 끊기면 나오는 뷰(Modal뷰), 화면 전체크기라 리팩토링하면서 바꿔야함
 class NoConnectViewController: UIViewController {
-    
     
     @IBOutlet weak var titleLabel: UILabel!
     
     @IBOutlet weak var circleView: UIView!
-    
     
     override func viewDidLoad() {
         
@@ -46,16 +45,8 @@ class NoConnectViewController: UIViewController {
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-//        disableDismissGesture()
         
     }
-//    func disableDismissGesture() {
-//        if let gestures = self.view.gestureRecognizers {
-//            for gesture in gestures {
-//                gesture.isEnabled = false
-//            }
-//        }
-//    }
     override func dismiss(animated flag: Bool, completion: (() -> Void)? = nil) {
 
     }

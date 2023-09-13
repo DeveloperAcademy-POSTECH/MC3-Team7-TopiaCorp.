@@ -7,6 +7,7 @@
 
 import UIKit
 
+//시간 보여주는 뷰
 class TimerViewController: UIViewController {
     var timer = Timer()
     var startTime = Date()
