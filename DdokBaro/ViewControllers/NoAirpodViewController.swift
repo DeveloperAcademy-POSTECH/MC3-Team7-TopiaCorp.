@@ -8,6 +8,7 @@
 import UIKit
 import Lottie
 
+//에어팟을 연결 안하면 나오는 뷰 No ConnectionView랑 뭔 차이였는지 기억이 가물가물
 class NoAirpodViewController: UIViewController {
     
     @IBOutlet weak var titleLabel: UILabel!

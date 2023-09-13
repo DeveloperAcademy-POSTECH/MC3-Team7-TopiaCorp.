@@ -7,6 +7,7 @@
 
 import UIKit
 
+//올바른 자세 학습을 위한 뷰
 class RightPostureViewController: UIViewController {
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     var accumulatedTime: Int16 = 0

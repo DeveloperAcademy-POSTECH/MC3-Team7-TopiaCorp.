@@ -11,25 +11,7 @@ import CoreMotion
 
 var isStart: Bool = false
 
-class WelcomeAirPodCheckModel {
-    static let shared = WelcomeAirPodCheckModel()
-
-    private init() {}
-
-    @objc dynamic var welcomeAirPodCheck:Bool = false {
-        didSet {
-            // airPodChec의 값이 변경될 때마다 호출되는 코드
-            // NotificationCenter를 이용하여 값을 알린다
-            NotificationCenter.default.post(name: NSNotification.Name("welcomeAirpodcheck"), object: nil)
-        }
-    }
-
-    func updateValue(newValue: Bool) {
-        print(welcomeAirPodCheck)
-        welcomeAirPodCheck = newValue
-    }
-}
-
+//첫화면 뷰
 class WelcomeViewController: UIViewController, CMHeadphoneMotionManagerDelegate {
     
     var timer = Timer()
@@ -105,7 +87,6 @@ class WelcomeViewController: UIViewController, CMHeadphoneMotionManagerDelegate 
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let noConnectionViewController = storyboard.instantiateViewController(withIdentifier: "NoConnectViewController")
         noConnectionViewController.modalPresentationStyle = .formSheet
-        //noConnectionViewController.isModalInPresentation = true
         self.present(noConnectionViewController, animated: true, completion: nil)
     }
     
@@ -125,13 +106,6 @@ class WelcomeViewController: UIViewController, CMHeadphoneMotionManagerDelegate 
     @IBAction func GoToMain(_ sender: UIButton) {
         NotificationCenter.default.addObserver(self, selector: #selector(checkModal), name: NSNotification.Name("welcomeAirpodcheck"), object: nil)
         timer.invalidate()
-//        if WelcomeAirPodCheckModel.shared.welcomeAirPodCheck {
-//
-//        }
-//        else {
-//            showModalView()
-//        }
-        //NotificationCenter.default.addObserver(self, selector: #selector(checkModal), name: NSNotification.Name("welcomeAirpodcheck"), object: nil)
     }
     
     @IBAction func goChartButton(_ sender: UIButton) {
@@ -180,10 +154,6 @@ class WelcomeViewController: UIViewController, CMHeadphoneMotionManagerDelegate 
         return false
     }
     func headphoneMotionManagerDidConnect(_ manager: CMHeadphoneMotionManager) {
-        //let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        //let noConnectionViewController = storyboard.instantiateViewController(withIdentifier: "NoConnectViewController")
-        //noConnectionViewController.modalPresentationStyle = .formSheet
-        //self.present(noConnectionViewController, animated: true, completion: nil)
         dismiss(animated: true)
     }
 }

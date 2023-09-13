@@ -9,6 +9,7 @@ import UIKit
 import Lottie
 import CoreData
 
+//실패하지 않고 종료하면 나오는 화면
 class SuccessViewController: UIViewController {
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     

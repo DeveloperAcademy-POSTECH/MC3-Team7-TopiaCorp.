@@ -19,46 +19,6 @@ var intPitch: Int = 0 // 목 기울기(정수)
 var isZero = false
 var nextView = false
 
-class ZeroCheckModel {
-    static let shared = ZeroCheckModel()
-    
-    private init() {}
-    
-    @objc dynamic var zeroCheck:Bool = false {
-        didSet {
-            // airPodCheck의 값이 변경될 때마다 호출되는 코드
-            // NotificationCenter를 이용하여 값을 알린다
-            NotificationCenter.default.post(name: NSNotification.Name("zerocheck"), object: nil)
-        }
-    }
-    
-    func updateValue(newValue: Bool) {
-        zeroCheck = newValue
-    }
-}
-
-//enum timeDescript {
-//    static let showHour = "00"
-//    static let labelHour = "시간 "
-//    static let labelMinute = "분"
-//
-//    static let emptyString = " "
-//    static var showhour: String?
-//    static var showminute: String?
-//}
-
-//struct Timer {
-//    static var timer = Timer()
-//    static var startTime = Date()
-//    static var accumulatedTime = 0.0
-//}
-//
-//struct Drop {
-//    let dropWhenBad: CGFloat = 5.0
-//    let dropWhenDanger: CGFloat = 10.0
-//    let dropWhenWorst: CGFloat = 15.0
-//}
-
 class MainViewController: UIViewController, CMHeadphoneMotionManagerDelegate {
     //AppDelegate 패턴을 이용해서 뷰컨트롤러가 메모리에서 지워져도 데이터는 남아있게 만든다. 앱이 종료되면 데이터 사라짐 but coreData에 저장할거
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
@@ -75,10 +35,6 @@ class MainViewController: UIViewController, CMHeadphoneMotionManagerDelegate {
     var timer = Timer()
     var startTime = Date()
     var accumulatedTime = 0.0
-    
-    let dropWhenBad: CGFloat = 5.0
-    let dropWhenDanger: CGFloat = 10.0
-    let dropWhenWorst: CGFloat = 15.0
     
     var isPaused: Bool = false
     var notFirstConnect:Bool = false
@@ -112,6 +68,23 @@ class MainViewController: UIViewController, CMHeadphoneMotionManagerDelegate {
         case danger = -32
         case worst = -42
     }
+    
+//    enum step {
+//        case notgood
+//        case bad
+//        case danger
+//
+//        var checkDegree(angle: Int) -> self {
+//            if angle > ?{
+//                return self.notgood
+//            } else if  > ?{
+//                return self.bad
+//            } else {
+//                return self.danger
+//            }
+//        }
+//    }
+    
     
     let animationView1 = LottieWrapperView(animationName: "TurtleBody")
     let animationView2 = LottieWrapperView(animationName: "TurtleHead")
@@ -209,8 +182,10 @@ class MainViewController: UIViewController, CMHeadphoneMotionManagerDelegate {
         waterWaveView.layer.mask = maskLayer
         
         NotificationManager().requestAuthorization()
+        
         viewBack()
         addView()
+        layoutContiguee()
         
         let noSound = Bundle.main.path(forResource: "noSound", ofType: "mp3")
         
@@ -326,7 +301,7 @@ class MainViewController: UIViewController, CMHeadphoneMotionManagerDelegate {
         
     }
     
-    //willappear
+    //view willappear
     override func viewWillAppear(_ animated: Bool) {
         self.viewDidLoad()
     }

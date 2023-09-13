@@ -7,6 +7,7 @@
 
 import UIKit
 
+//설정뷰인데 이거 뭐하는건지 까먹음
 class SettingViewController: UIViewController {
     
     @IBOutlet weak var soundSlider: UISlider!
